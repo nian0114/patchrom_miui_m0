@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <bool name="has_led">true</bool>
+    <bool name="mass_storage_enable">true</bool>
+    <bool name="has_volume_wake">true</bool>
+    <bool name="config_additional_system_update_setting_enable">true</bool>
+    <bool name="has_internal_sdcard">true</bool>
+    <bool name="power_mode_enable">true</bool>
+    <bool name="screen_color_enable">true</bool>
+    <bool name="media_feedback_enable">true</bool>
+    <bool name="is_phone_call_noise_suppression_supported">true</bool>
+</resources>

@@ -1,0 +1,20 @@
+diff -uNar a/Settings/res/xml/settings_headers.xml b/Settings/res/xml/settings_headers.xml
+--- a/Settings/res/xml/settings_headers.xml	2013-12-21 10:29:13.000000000 +0800
++++ b/Settings/res/xml/settings_headers.xml	2013-12-21 10:35:08.805900674 +0800
+@@ -54,6 +54,9 @@
+     <header android:id="@id/manufacturer_settings">
+         <intent android:action="com.android.settings.MANUFACTURER_APPLICATION_SETTING" />
+     </header>
++    <header android:icon="@drawable/factory_settings" android:title="@string/advanced_settings">
++        <intent android:targetPackage="com.cyanogenmod.settings.device" android:action="com.cyanogenmod.action.LAUNCH_DEVICE_SETTINGS" android:targetClass="com.cyanogenmod.settings.device.DeviceSettings" />
++    </header>
+     <header android:id="@id/system_section" android:title="@string/header_category_system" />
+     <header android:icon="@drawable/ic_oldman_mode_settings" android:id="@id/oldman_mode_settings" android:title="@string/oldman_mode_entry_name">
+         <intent android:targetPackage="com.android.settings" android:action="android.intent.action.MAIN" android:targetClass="com.android.settings.OldmanModeSettings" />
+@@ -69,4 +72,4 @@
+     <header android:icon="@drawable/ic_about_settings" android:id="@id/about_settings" android:title="@string/about_settings">
+         <intent android:targetPackage="com.android.settings" android:targetClass="com.android.settings.Settings$DeviceInfoSettingsActivity" />
+     </header>
+-</preference-headers>
+\ 文件尾没有 newline 字符
++</preference-headers>
