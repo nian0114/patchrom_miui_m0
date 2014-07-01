@@ -38,4 +38,5 @@ include $(PORT_BUILD)/porting.mk
 # To define any local-target
 local-zip-misc:
 	cp -rf other/libsqlite.so $(ZIP_DIR)/system/lib/libsqlite.so
+	cp -rf other/QuickSearchBox.apk $(ZIP_DIR)/system/priv-app/QuickSearchBox.apk
 	rm -rf $(ZIP_DIR)/system/media/video/*

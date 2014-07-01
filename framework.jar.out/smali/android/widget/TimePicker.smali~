@@ -8,7 +8,6 @@
     value = {
         Landroid/widget/TimePicker$SavedState;,
         Landroid/widget/TimePicker$OnTimeChangedListener;
-        Landroid/widget/TimePicker$OnMinuteChangeListener;
     }
 .end annotation
 
