@@ -1597,6 +1597,30 @@
     throw v4
 .end method
 
+.method public updateIccRecords(Lcom/android/internal/telephony/uicc/IccRecords;)V
+    .locals 1
+    .parameter "iccRecords"
+
+    .prologue
+    if-eqz p1, :cond_0
+
+    invoke-virtual {p1}, Lcom/android/internal/telephony/uicc/IccRecords;->getAdnCache()Lcom/android/internal/telephony/uicc/AdnRecordCache;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/android/internal/telephony/IccPhoneBookInterfaceManager;->mAdnCache:Lcom/android/internal/telephony/uicc/AdnRecordCache;
+
+    :goto_0
+    return-void
+
+    :cond_0
+    const/4 v0, 0x0
+
+    iput-object v0, p0, Lcom/android/internal/telephony/IccPhoneBookInterfaceManager;->mAdnCache:Lcom/android/internal/telephony/uicc/AdnRecordCache;
+
+    goto :goto_0
+.end method
+
 .method public updateUsimAdnRecordsInEfByIndex(ILjava/lang/String;Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;ILjava/lang/String;)Z
     .locals 8
     .parameter "efid"

@@ -15791,39 +15791,30 @@
     throw v1
 .end method
 
-.method getTopLevelResources(Ljava/lang/String;[Ljava/lang/String;ILandroid/content/res/Configuration;Landroid/app/LoadedApk;Landroid/content/Context;Ljava/lang/String;)Landroid/content/res/Resources;
-    .locals 9
+.method getTopLevelResources(Ljava/lang/String;ILandroid/content/res/Configuration;Landroid/app/LoadedApk;)Landroid/content/res/Resources;
+    .locals 6
     .parameter "resDir"
-    .parameter "overlayDirs"
     .parameter "displayId"
     .parameter "overrideConfiguration"
     .parameter "pkgInfo"
-    .parameter "context"
-    .parameter "pkgName"
 
     .prologue
     .line 1544
     iget-object v0, p0, Landroid/app/ActivityThread;->mResourcesManager:Landroid/app/ResourcesManager;
 
-    invoke-virtual {p5}, Landroid/app/LoadedApk;->getCompatibilityInfo()Landroid/content/res/CompatibilityInfo;
+    invoke-virtual {p4}, Landroid/app/LoadedApk;->getCompatibilityInfo()Landroid/content/res/CompatibilityInfo;
 
-    move-result-object v6
+    move-result-object v4
 
-    const/4 v7, 0x0
+    const/4 v5, 0x0
 
     move-object v1, p1
 
-    move-object v2, p2
+    move v2, p2
 
-    move v3, p3
+    move-object v3, p3
 
-    move-object/from16 v4, p7
-
-    move-object v5, p4
-
-    move-object v8, p6
-
-    invoke-virtual/range {v0 .. v8}, Landroid/app/ResourcesManager;->getTopLevelResources(Ljava/lang/String;[Ljava/lang/String;ILjava/lang/String;Landroid/content/res/Configuration;Landroid/content/res/CompatibilityInfo;Landroid/os/IBinder;Landroid/content/Context;)Landroid/content/res/Resources;
+    invoke-virtual/range {v0 .. v5}, Landroid/app/ResourcesManager;->getTopLevelResources(Ljava/lang/String;ILandroid/content/res/Configuration;Landroid/content/res/CompatibilityInfo;Landroid/os/IBinder;)Landroid/content/res/Resources;
 
     move-result-object v0
 

@@ -1610,15 +1610,11 @@
     .restart local v5       #raf:Ljava/io/RandomAccessFile;
     .restart local v6       #stored:[B
     :cond_1
-    iget-object v8, p0, Lcom/android/server/LockSettingsService;->mLockPatternUtils:Lcom/android/internal/widget/LockPatternUtils;
+    invoke-static {p1}, Lcom/android/internal/widget/LockPatternUtils;->stringToPattern(Ljava/lang/String;)Ljava/util/List;
 
-    iget-object v9, p0, Lcom/android/server/LockSettingsService;->mLockPatternUtils:Lcom/android/internal/widget/LockPatternUtils;
+    move-result-object v8
 
-    invoke-virtual {v9, p1}, Lcom/android/internal/widget/LockPatternUtils;->stringToPattern(Ljava/lang/String;)Ljava/util/List;
-
-    move-result-object v9
-
-    invoke-virtual {v8, v9}, Lcom/android/internal/widget/LockPatternUtils;->patternToHash(Ljava/util/List;)[B
+    invoke-static {v8}, Lcom/android/internal/widget/LockPatternUtils;->patternToHash(Ljava/util/List;)[B
 
     move-result-object v2
 
@@ -2124,7 +2120,7 @@
 .end method
 
 .method public setLockPattern(Ljava/lang/String;I)V
-    .locals 4
+    .locals 2
     .parameter "pattern"
     .parameter "userId"
     .annotation system Ldalvik/annotation/Throws;
@@ -2138,51 +2134,20 @@
 
     invoke-direct {p0, p1, p2}, Lcom/android/server/LockSettingsService;->maybeUpdateKeystore(Ljava/lang/String;I)V
 
-    iget-object v2, p0, Lcom/android/server/LockSettingsService;->mLockPatternUtils:Lcom/android/internal/widget/LockPatternUtils;
+    invoke-static {p1}, Lcom/android/internal/widget/LockPatternUtils;->stringToPattern(Ljava/lang/String;)Ljava/util/List;
+ 
+    move-result-object v1
+    invoke-static {v1}, Lcom/android/internal/widget/LockPatternUtils;->patternToHash(Ljava/util/List;)[B
 
-    iget-object v3, p0, Lcom/android/server/LockSettingsService;->mLockPatternUtils:Lcom/android/internal/widget/LockPatternUtils;
+    move-result-object v0
 
-    invoke-virtual {v3, p1}, Lcom/android/internal/widget/LockPatternUtils;->stringToPattern(Ljava/lang/String;)Ljava/util/List;
-
-    move-result-object v3
-
-    invoke-virtual {v2, v3}, Lcom/android/internal/widget/LockPatternUtils;->patternToHash(Ljava/util/List;)[B
+    .local v0, hash:[B
+    invoke-direct {p0, p2}, Lcom/android/server/LockSettingsService;->getLockPatternFilename(I)Ljava/lang/String;
 
     move-result-object v1
+    invoke-direct {p0, v1, v0}, Lcom/android/server/LockSettingsService;->writeFile(Ljava/lang/String;[B)V
 
-    .local v1, hash:[B
-    invoke-direct {p0, p2}, Lcom/android/server/LockSettingsService;->isDefaultSize(I)Z
-
-    move-result v0
-
-    .local v0, defaultSize:Z
-    invoke-direct {p0, p2, v0}, Lcom/android/server/LockSettingsService;->getLockPatternFilename(IZ)Ljava/lang/String;
-
-    move-result-object v2
-
-    invoke-direct {p0, v2, v1}, Lcom/android/server/LockSettingsService;->writeFile(Ljava/lang/String;[B)V
-
-    if-nez v0, :cond_0
-
-    const/4 v2, 0x1
-
-    :goto_0
-    invoke-direct {p0, p2, v2}, Lcom/android/server/LockSettingsService;->getLockPatternFilename(IZ)Ljava/lang/String;
-
-    move-result-object v2
-
-    const/4 v3, 0x0
-
-    invoke-direct {p0, v2, v3}, Lcom/android/server/LockSettingsService;->writeFile(Ljava/lang/String;[B)V
-
-    .line 182
     return-void
-
-    .line 181
-    :cond_0
-    const/4 v2, 0x0
-
-    goto :goto_0
 .end method
 
 .method public setLong(Ljava/lang/String;JI)V

@@ -20,13 +20,12 @@
 
 
 # direct methods
-.method public constructor <init>(Ljava/lang/String;ILandroid/content/res/Configuration;FZLandroid/os/IBinder;)V
+.method public constructor <init>(Ljava/lang/String;ILandroid/content/res/Configuration;FLandroid/os/IBinder;)V
     .locals 4
     .parameter "resDir"
     .parameter "displayId"
     .parameter "overrideConfiguration"
     .parameter "scale"
-    .parameter "isThemeable"
     .parameter "token"
 
     .prologue
@@ -60,11 +59,7 @@
     :cond_0
     iput p4, p0, Landroid/content/res/ResourcesKey;->mScale:F
 
-    .line 40
-    iput-boolean p5, p0, Landroid/content/res/ResourcesKey;->mIsThemeable:Z
-
-    .line 41
-    iput-object p6, p0, Landroid/content/res/ResourcesKey;->mToken:Landroid/os/IBinder;
+    iput-object p5, p0, Landroid/content/res/ResourcesKey;->mToken:Landroid/os/IBinder;
 
     .line 43
     const/16 v0, 0x11
@@ -87,43 +82,30 @@
 
     add-int v0, v1, v3
 
-    .line 46
-    mul-int/lit8 v3, v0, 0x1f
+    mul-int/lit8 v1, v0, 0x1f
 
-    iget-object v1, p0, Landroid/content/res/ResourcesKey;->mOverrideConfiguration:Landroid/content/res/Configuration;
+    iget-object v3, p0, Landroid/content/res/ResourcesKey;->mOverrideConfiguration:Landroid/content/res/Configuration;
 
-    if-eqz v1, :cond_3
+    if-eqz v3, :cond_1
 
-    iget-object v1, p0, Landroid/content/res/ResourcesKey;->mOverrideConfiguration:Landroid/content/res/Configuration;
+    iget-object v2, p0, Landroid/content/res/ResourcesKey;->mOverrideConfiguration:Landroid/content/res/Configuration;
 
-    invoke-virtual {v1}, Landroid/content/res/Configuration;->hashCode()I
+    invoke-virtual {v2}, Landroid/content/res/Configuration;->hashCode()I
 
-    move-result v1
+    move-result v2
 
-    :goto_1
-    add-int v0, v3, v1
+    :cond_1
+    add-int v0, v1, v2
 
     .line 48
     mul-int/lit8 v1, v0, 0x1f
 
-    iget v3, p0, Landroid/content/res/ResourcesKey;->mScale:F
+    iget v2, p0, Landroid/content/res/ResourcesKey;->mScale:F
 
-    invoke-static {v3}, Ljava/lang/Float;->floatToIntBits(F)I
+    invoke-static {v2}, Ljava/lang/Float;->floatToIntBits(F)I
 
-    move-result v3
+    move-result v2
 
-    add-int v0, v1, v3
-
-    .line 49
-    mul-int/lit8 v1, v0, 0x1f
-
-    iget-boolean v3, p0, Landroid/content/res/ResourcesKey;->mIsThemeable:Z
-
-    if-eqz v3, :cond_1
-
-    const/4 v2, 0x1
-
-    :cond_1
     add-int v0, v1, v2
 
     .line 50
@@ -141,12 +123,6 @@
     move-result v1
 
     goto :goto_0
-
-    :cond_3
-    move v1, v2
-
-    .line 46
-    goto :goto_1
 .end method
 
 
@@ -229,13 +205,6 @@
     cmpl-float v2, v2, v3
 
     if-nez v2, :cond_0
-
-    .line 85
-    iget-boolean v2, p0, Landroid/content/res/ResourcesKey;->mIsThemeable:Z
-
-    iget-boolean v3, v0, Landroid/content/res/ResourcesKey;->mIsThemeable:Z
-
-    if-ne v2, v3, :cond_0
 
     const/4 v1, 0x1
 

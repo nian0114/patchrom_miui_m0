@@ -466,7 +466,7 @@
     .local v13, cpuCount:I
     const/4 v7, 0x1
 
-    if-ne v13, v7, :cond_0
+    if-ne v13, v7, :cond_1
 
     .line 402
     new-instance v3, Lcom/android/server/AssetAtlasService$ComputeWorker;
@@ -546,13 +546,6 @@
 
     invoke-static {v7, v8}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 440
-    invoke-interface {v9}, Ljava/util/List;->size()I
-
-    move-result v7
-
-    if-nez v7, :cond_2
-
     invoke-interface {v9}, Ljava/util/List;->isEmpty()Z
 
     move-result v7
@@ -564,6 +557,11 @@
     return-object v7
 
     :cond_miui
+    invoke-interface {v9}, Ljava/util/List;->size()I
+
+    move-result v7
+
+    if-nez v7, :cond_3
     const/4 v7, 0x0
 
     .line 443
@@ -571,8 +569,7 @@
     :goto_1
     return-object v7
 
-    .line 404
-    :cond_0
+    :cond_1
     const/16 v4, 0x300
 
     .line 405
@@ -601,7 +598,7 @@
     :goto_2
     move/from16 v0, v16
 
-    if-ge v0, v13, :cond_1
+    if-ge v0, v13, :cond_2
 
     .line 411
     new-instance v3, Lcom/android/server/AssetAtlasService$ComputeWorker;
@@ -655,7 +652,7 @@
 
     .line 417
     .end local v3           #worker:Lcom/android/server/AssetAtlasService$ComputeWorker;
-    :cond_1
+    :cond_2
     const-wide/16 v7, 0xa
 
     :try_start_0
@@ -694,7 +691,7 @@
     .end local v15           #e:Ljava/lang/InterruptedException;
     .end local v16           #i:I
     .restart local v14       #delay:F
-    :cond_2
+    :cond_3
     const/4 v7, 0x0
 
     invoke-interface {v9, v7}, Ljava/util/List;->get(I)Ljava/lang/Object;

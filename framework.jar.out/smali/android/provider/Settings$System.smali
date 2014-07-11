@@ -3225,7 +3225,6 @@
 
     move-result v0
 
-    .line 1173
     :goto_0
     return v0
 

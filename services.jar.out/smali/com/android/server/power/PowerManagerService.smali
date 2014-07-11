@@ -3808,10 +3808,6 @@
 
     invoke-virtual {v0, v1}, Lcom/android/server/power/PowerManagerService$PowerManagerHandler;->sendEmptyMessage(I)Z
 
-    iget-object v3, p0, Lcom/android/server/power/PowerManagerService;->mContext:Landroid/content/Context;
-
-    invoke-static {v3}, Lcom/android/server/power/PowerManagerService$Injector;->updateButtonLightTimeout(Landroid/content/Context;)V
-
     return-void
 .end method
 
@@ -4585,7 +4581,10 @@
 
     iput v5, p0, Lcom/android/server/power/PowerManagerService;->mDirty:I
 
-    .line 660
+    iget-object v5, p0, Lcom/android/server/power/PowerManagerService;->mContext:Landroid/content/Context;
+
+    invoke-static {v5}, Lcom/android/server/power/PowerManagerService$Injector;->updateButtonLightTimeout(Landroid/content/Context;)V
+
     return-void
 
     .end local v0           #newAutoBrightnessResponsitivityFactor:F

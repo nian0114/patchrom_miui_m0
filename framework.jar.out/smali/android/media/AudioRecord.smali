@@ -1192,6 +1192,17 @@
     goto :goto_0
 .end method
 
+.method public setParameters(Ljava/lang/String;)I
+    .locals 1
+    .parameter "keyValuePairs"
+
+    .prologue
+     .line 848
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
 .method public setPositionNotificationPeriod(I)I
     .locals 1
     .parameter "periodInFrames"

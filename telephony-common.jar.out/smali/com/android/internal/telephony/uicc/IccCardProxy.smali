@@ -2560,6 +2560,46 @@
     .line 598
     return-void
 
+    .end local v0           #r:Landroid/os/Registrant;
+    :catchall_0
+    move-exception v1
+
+    monitor-exit v2
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    throw v1
+.end method
+
+.method public registerForNetworkLocked(Landroid/os/Handler;ILjava/lang/Object;)V
+    .locals 4
+    .parameter "h"
+    .parameter "what"
+    .parameter "obj"
+
+    .prologue
+    iget-object v2, p0, Lcom/android/internal/telephony/uicc/IccCardProxy;->mLock:Ljava/lang/Object;
+
+    monitor-enter v2
+
+    :try_start_0
+    new-instance v0, Landroid/os/Registrant;
+
+    invoke-direct {v0, p1, p2, p3}, Landroid/os/Registrant;-><init>(Landroid/os/Handler;ILjava/lang/Object;)V
+
+    .local v0, r:Landroid/os/Registrant;
+    iget-object v1, p0, Lcom/android/internal/telephony/uicc/IccCardProxy;->mPersoLockedRegistrants:Landroid/os/RegistrantList;
+
+    invoke-virtual {v1, v0}, Landroid/os/RegistrantList;->add(Landroid/os/Registrant;)V
+
+    invoke-virtual {p0}, Lcom/android/internal/telephony/uicc/IccCardProxy;->getState()Lcom/android/internal/telephony/IccCardConstants$State;
+
+    move-result-object v1
+
+    monitor-exit v2
+
+    return-void
+
     .line 597
     .end local v0           #r:Landroid/os/Registrant;
     :catchall_0
@@ -3406,6 +3446,34 @@
     monitor-exit v1
 
     .line 605
+    return-void
+ 
+    :catchall_0
+    move-exception v0
+
+    monitor-exit v1
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    throw v0
+.end method
+
+.method public unregisterForNetworkLocked(Landroid/os/Handler;)V
+    .locals 2
+    .parameter "h"
+
+    .prologue
+    iget-object v1, p0, Lcom/android/internal/telephony/uicc/IccCardProxy;->mLock:Ljava/lang/Object;
+
+    monitor-enter v1
+
+    :try_start_0
+    iget-object v0, p0, Lcom/android/internal/telephony/uicc/IccCardProxy;->mPersoLockedRegistrants:Landroid/os/RegistrantList;
+
+    invoke-virtual {v0, p1}, Landroid/os/RegistrantList;->remove(Landroid/os/Handler;)V
+
+    monitor-exit v1
+
     return-void
 
     .line 604

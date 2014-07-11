@@ -2074,7 +2074,7 @@
 .end method
 
 .method public getResources(Landroid/app/ActivityThread;)Landroid/content/res/Resources;
-    .locals 8
+    .locals 3
     .parameter "mainThread"
 
     .prologue
@@ -2083,26 +2083,13 @@
 
     if-nez v0, :cond_0
 
-    .line 495
-    iget-object v1, p0, Landroid/app/LoadedApk;->mResDir:Ljava/lang/String;
+    iget-object v0, p0, Landroid/app/LoadedApk;->mResDir:Ljava/lang/String;
 
-    iget-object v2, p0, Landroid/app/LoadedApk;->mOverlayDirs:[Ljava/lang/String;
+    const/4 v1, 0x0
 
-    const/4 v3, 0x0
+    const/4 v2, 0x0
 
-    const/4 v4, 0x0
-
-    invoke-virtual {p1}, Landroid/app/ActivityThread;->getSystemContext()Landroid/app/ContextImpl;
-
-    move-result-object v6
-
-    iget-object v7, p0, Landroid/app/LoadedApk;->mPackageName:Ljava/lang/String;
-
-    move-object v0, p1
-
-    move-object v5, p0
-
-    invoke-virtual/range {v0 .. v7}, Landroid/app/ActivityThread;->getTopLevelResources(Ljava/lang/String;[Ljava/lang/String;ILandroid/content/res/Configuration;Landroid/app/LoadedApk;Landroid/content/Context;Ljava/lang/String;)Landroid/content/res/Resources;
+    invoke-virtual {p1, v0, v1, v2, p0}, Landroid/app/ActivityThread;->getTopLevelResources(Ljava/lang/String;ILandroid/content/res/Configuration;Landroid/app/LoadedApk;)Landroid/content/res/Resources;
 
     move-result-object v0
 
