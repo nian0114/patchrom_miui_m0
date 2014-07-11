@@ -1,0 +1,13 @@
+--- a/settings_headers.xml	2014-07-10 12:19:54.000000000 +0800
++++ b/settings_headers.xml	2014-07-10 12:25:43.180757309 +0800
+@@ -56,7 +56,7 @@
+     <header android:icon="@drawable/ic_headset_settings" android:id="@id/headset_settings" android:title="@string/headset_settings">
+         <intent android:action="miui.intent.action.HEADSET_SETTINGS" />
+     </header>
+-    <header android:id="@id/manufacturer_settings">
++    <header android:icon="@drawable/ic_launcher_settings" android:id="@id/manufacturer_settings" android:title="@string/galaxy_settings">
+         <intent android:action="com.android.settings.MANUFACTURER_APPLICATION_SETTING" />
+     </header>
+     <header android:id="@id/system_section" android:title="@string/header_category_system" />
+
+

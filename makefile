@@ -15,7 +15,7 @@ local-modified-apps := GalaxyS3Settings
 # All apks from MIUI execept MIUISystemUI and framework-miui-res.apk
 local-miui-removed-apps := MediaProvider
 local-miui-apps     := 
-local-miui-modified-apps :=  QuickSearchBox ThemeManager MiuiHome
+local-miui-modified-apps :=  ThemeManager MiuiHome
 PORT_PRODUCT := nian_i9300
 
 # All apps need to be removed from original ZIP file 
