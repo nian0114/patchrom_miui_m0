@@ -1,0 +1,711 @@
+===================================
+Since Sat Apr  5 20:26:05 UTC 2014
+===================================
+
+   * external/koush/Superuser
+88a9bd1 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+2c008c6 Automatic translation import
+a4c4790 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+fd2cdfa Automatic translation import
+bca228b Merge remote-tracking branch 'github/cm-11.0' into HEAD
+fa811a3 Automatic translation import
+
+   * android
+70faa47 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+bf81824 manifest: track libtar
+0a26843 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+b8e5401 Merge "manifest: Don't track Launcher3" into cm-11.0
+6a3d7ba Merge "manifest: Dont track QuickSearchBox" into cm-11.0
+4d8b85b Track our own copy of chromium.org's openssl
+
+   * bootable/recovery
+cf95801 shell pipe: set exit code to error if any pipe element fails
+2cc2297 Fix verify_root_and_recovery menu selections
+d3c8d42 Prohibit mounting/formatting swap partitions in recovery
+569fe1f Recovery: swap XY on swipe controls
+613db95 Version 6.0.4.8
+3dafc75 dualboot: handle 'format_device'
+47f8bb0 dualboot: add menu item under advanced to set bootmode - also refresh dualboot entries everytime before calling 'get_filtered_menu_selection'   to sync changes
+867f468 dualboot: add truedualboot support
+3c9f03c allow changing menu color
+626f070 add basic support for native dualboot
+f91ee1c mounts: add find_mounted_volume_by_real_node this function finds a mounted volume by the real device node(resolved symlink)
+
+   * build
+b8e3f3c releasetools: Add a newline for radio flashing scripts
+64196f4 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+2f2500f releasetools: Modify regex for radio files
+7c634ae Remove extra product property overrides
+e1e02a3 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+e0a0be1 build: Disable languages that have no translations
+6e139a4 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+57e07ee build: Re-enable Sinhala language
+06dc5d0 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+0688344 New Theme Engine [4/6]
+7315bda Runtime resource overlay, iteration 2
+bce2bf9 Wrong product package: Gallery was replaced by Gallery2
+aa415df build: edify: use set_metadata for backuptool
+89a76d2 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+04d290c releasetools: Add radio images to fastboot packages
+d062982 build: Disable Punjabi & Sinhala languages
+
+   * dalvik
+cd2251b Revert "dalvik: add placeholder for future changes"
+169bd57 Use RETURN_PTR(NULL) instead of RETURN_VOID in newNonMovableArray.
+c32e5ea Dalvik :Increase the upper limit check for DexOpt Deps table
+052e0b4 Revert "Use MAP_FIXED in remapNewHeap"
+05184b0 Revert "Change exception message for ArrayStoreException."
+
+   * development
+73f2e6b Merge "Update classpath to remove obsolete apps and to fix compile error when importing to eclipse" into cm-11.0
+6847ddb Update classpath to remove obsolete apps and to fix compile error when importing to eclipse
+
+   * device/samsung/i9300
+7c9742c Camera2: Don't try to cancel focus messages when preview stops
+dc8d352 SELinux: Remove duplicate rules
+5e43572 Switch back to the binary camera HAL
+
+   * device/samsung/smdk4412-common
+7f06e63 smdk4412-common: Update recovery_keys
+3de122f media_profiles: Remove unused profiles
+
+   * external/bluetooth/bluedroid
+53b182c Merge remote-tracking branch 'github/cm-11.0' into HEAD
+1f3671d hci: Limit debug options to eng builds
+d7e9d65 hci: Limit debug options to eng builds
+7da99c9 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+14fb2b6 Merge branch 'LNX.LA.3.5.2_RB1' of git://codeaurora.org/platform/external/bluetooth/bluedroid into cm-11.0
+89f3f21 Revert "BT: Multi HF support in bluedroid stack."
+
+   * external/busybox
+d5b63cc touch -h: quickfix for bionic
+9963f07 update config for 1.22.1, add F2FS volume_id support
+c1f4182 zcat: complain if input is not compressed
+a99f066 libbb: open_zipped() should not fail on non-compressed files
+05cea40 nc: fix option bit positions. Closes 6926
+439f7c2 iplink: fix build with kernel versions prior to 2.6.23
+b69306a libbb: fix parsing of "10101010" date/time form
+77e054b ash: in bash compat mode, always export $SHLVL
+13733d3 libarchive: open_zipped() does not need to check extensions for e.g. gzip
+
+   * external/chromium_org/third_party/openssl
+b3eba2d Add heartbeat extension bounds check.
+
+   * external/libtar
+0600afa libtar: Add const qualifiers to reduce compile warnings
+
+   * external/openssl
+8eb23b2 Add heartbeat extension bounds check.
+
+   * external/sepolicy
+8bebb1c Move audio_firmware_file and /data/misc/audio entry to core sepolicy.
+fa32bbc Fix denials encountered while getting bugreports.
+667a2bd Allow apps to execute app_data_files
+75d51f1 Isolate untrusted app ptys from other domains.
+
+   * external/skia
+c2807ac New Theme Engine [3/6]
+
+   * external/whispersystems/WhisperPush
+d81ab20 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+712afa7 Automatic translation import
+6a90e21 WhisperPush: change appearence to Holo
+8f6ebb1 Merge "WhisperPush: change appearence to Holo" into cm-11.0
+30bc855 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+a228113 Automatic translation import
+5c4408b WhisperPush: change appearence to Holo
+0199d49 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+24afffb WhisperPush: add Privacy Policy links
+26ce96b Merge remote-tracking branch 'github/cm-11.0' into HEAD
+fa7bc8d Automatic translation import
+
+   * frameworks/av
+26e605d Merge remote-tracking branch 'github/cm-11.0' into HEAD
+54471cf stagefright: Handle acquireWakeLock failure case
+1d61b42 libstagefright: Copy the entire buffer from/to OMX component
+928223d StagefrightRecorder: Pause audio encoder on recorder pause
+907e920 libstagefright/omx: Fix logic to handle dead observers.
+6d8f392 stagefright: yield callbackDispatcher to writer safely
+97f5061 stagefright: ExtendedCodec: enable arbitrary/frame-by-frame mode
+30d2c70 libstagefright: Drain input buffer on resume
+3c5ac15 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+491db97 stagefright: enable traces for performance debugging
+0cb35fa stagefright: Remove dead code
+2b49739 audio: calculate mute duration using getOutputLatency
+ef25b2c Fix kAutoRampDurationUs overflow issue
+27ee13e stagefright: Handle missing text track language
+5e1a4e6 audio: mute duration at the beginning of recording
+
+   * frameworks/base
+4d1a5c9 QS: Add TD-SCDMA support to the LTE toggle tile
+5081621 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+4d25afe Allow configuration of the default screen-off animation style
+526bff9 frameworks/base: Fix change propagating issue
+eab456d Fix typo causing FC on Russian language
+0e0bc99 Merge "CM11 Themes: Update lights out resources and extra nav buttons" into cm-11.0
+8c6ba03 wallpapercropper: OOM issue while opening *.bmp image
+fe6011f Media process is crashing with NullPointer exception
+284bc96 WallpaperCropper: Fix crash when set .gif as wallpaper
+b11c16b SignalStrength: Hotfix TD-SCDMA
+cbd9cf1 SignalStrength: Hotfix TD-SCDMA
+8e3df11 Fix typo causing FC on Russian language
+dcf4a85 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+70d089d CM11 Themes: Update lights out resources and extra nav buttons
+9870363 SystemUI: Add missing AOSP RU translation
+410ed1e MSIM: Expanded StatusBar: Show SIM slot number
+da9f540 core: Remove unused strings
+da0f2d6 Automatic translation import
+55337dc hide new AssetManager methods for themes
+39b1fcd Allow icons in shared restables to be themed
+3b534ed Keyguard: Move test app translations to the correct place
+77ce5ff Merge "move def_lockscreen_targets and def_lockscreen_targets_no_telephony to frameworks/base/packages/SettingsProvider" into cm-11.0
+7154b64 Merge "MSimNetworkController: Set debug to false." into cm-11.0
+acb6fae Bluetooth: Add Total track number.
+d951de8 Bluetooth: pause music player on A2dp service disconnect
+3168e38 MSimNetworkController: Set debug to false.
+93a7021 SystemUI: Don't try to translate SIM slot numbers
+cf1a134 hide search assistant arrow from lockscreen when custom lockscreen is enabled
+5144e00 Merge "MSIM: Rework statusbar, order signal clusters to match settings" into cm-11.0
+184521f Merge "QuickSettings: fix long press on Network Mode Tile" into cm-11.0
+ff3180f MSIM: Rework statusbar, order signal clusters to match settings
+1039c87 QS: smaller tiles: Fix the text labels on small screen devices
+b70ab62 QS: Make it possible to show smaller tiles (1/2)
+1382474 Merge "CM11 Themes: Use theme name for audible name." into cm-11.0
+25ba7a1 Merge "CM11 Themes: Allow forcing idmap (re)creation." into cm-11.0
+7bfe4c6 Merge "CM11 Themes: Remove type matching restriction" into cm-11.0
+a473a80 CM11 Themes: Put overlays in their own group.
+a3f84d9 Merge "CM11 Themes: Put overlays in their own group." into cm-11.0
+93eeaca CM11 Themes: Use theme name for audible name.
+70be922 CM11 Themes: Allow forcing idmap (re)creation.
+057e98b CM11 Themes: Remove type matching restriction
+b8a6460 Merge "Add config_batterySdCardAccessibility to symbols.xml" into cm-11.0
+5515bce move def_lockscreen_targets and def_lockscreen_targets_no_telephony to frameworks/base/packages/SettingsProvider
+4c8a2c4 CM11 Themes: Put overlays in their own group.
+97b26ec QuickSettings: fix long press on Network Mode Tile
+56f9cde Download: add to support pause/resume download by manual
+fcb30b1 Keyguard: give the Keyguard a non-empty app label
+1f57c61 Merge "Keyguard: give the Keyguard a non-empty app label" into cm-11.0
+28d838f Revert "[1/2] Speed up booting on multicore devices."
+96bdd7a Revert "PackageManager: Fix reconnection logic in Installer."
+9932342 Fix segfault removing theme assets
+2c8deff Style previews [1/3]
+5ddfe62 Style previews [1/3]
+befb788 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+7997350 Fix segfault removing theme assets
+1fe59c8 Merge "Parallel shutdown" into cm-11.0
+4c07102 Parallel shutdown
+81b33e3 fix WRITE_SETTINGS to be "dangerous"
+b54a0af Fix setSurfaceTexture to handle surface caching
+d682ddf Fix very long app_name crash.
+6d3ba52 Fix for crash in LocationManagerService
+0bc78fe Combo Provider: Specific location screening
+491ac57 Combo Provider: Get the package name from resource
+a43e60a decouple SW FLP and HW FLP overlay flags
+443b1e6 Add config_batterySdCardAccessibility to symbols.xml
+9757a1d Keyguard: give the Keyguard a non-empty app label
+11b4f60 Keyguard: Fix "Show more than a "." when input wrong PIN code" issue
+b75c1a6 Automatic translation import
+5a1dfff Merge "Add OpenCnam paid account settings keys" into cm-11.0
+7be76f4 Cleanup theme assets when done with them
+cc13e50 quickboot: Disable quickboot by default
+1eb067f core: Add support for Galician
+1cf716c Merge remote-tracking branch 'github/cm-11.0' into HEAD
+34c674d CM11 Themes: Use 32bit hash to decide if idmap should be created
+28e38b4 Merge "fonts: Add LBhashitaComplexSans font for Sinhala" into cm-11.0
+4002048 Merge "CM11 Themes: Use 32bit hash to decide if idmap should be created" into cm-11.0
+cf2d8d6 CM11 Themes: Use 32bit hash to decide if idmap should be created
+eeb3aae revert camera icon disable when Settings.System.LOCKSCREEN_MODLOCK_ENABLED was set to 1
+b3426b6 Keyguard: Set untranslatable
+2180d89 Merge "CM11 Themes: Take into account ALL res/xml dirs" into cm-11.0
+1432fca CM11 Themes: Take into account ALL res/xml dirs
+0a7d9cb frameworks/base: Call setDirtyRect to update dirty rectangle
+3dd5f56 CM11 Themes: Take into account ALL res/xml dirs
+12b7ae1 Move theme strings to cm_strings.xml
+7bd5eaa Keyguard : Fix album art sticking after playback is stopped
+ad75473 Fix the value type of def_noise_suppression
+e564f93 Merge "SysUI: Don't recreate controllers." into cm-11.0
+3cd778a Add OpenCnam paid account settings keys
+708b62b Merge "Modified "Empty button" > "Leave empty"" into cm-11.0
+8b12347 Make the default value of in-call noise suppression configurable.
+590defe Make the default value of in-call noise suppression configurable.
+bae8c7a Merge "Lockscreen wallpaper for themes" into cm-11.0
+ed8ff8a Lockscreen wallpaper for themes
+2ccbf77 fonts: Add LBhashitaComplexSans font for Sinhala
+c92bc85 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+5d23067 wallpaper: add missing @hides
+5669a08 Modified "Empty button" > "Leave empty"
+ec4fb56 Keyguard: more consistency with the new lockscreen wallpaper
+b91e1d8 Merge "add Custom Lockscreen switch" into cm-11.0
+f205aff Merge "Wallpaper Overscroll and Transparent NavBar" into cm-11.0
+0c19caa Merge "Update settings after recreating status bar." into cm-11.0
+34d6168 New Theme Engine [1/6]
+2fc9bca Runtime resource overlay, iteration 2, test cases
+4224a7e Runtime resource overlay, iteration 2
+b60ccc8 New command line tool 'idmap'
+32133d4 Remove T-mobile items not used by new theme engine
+1df2f35 add Custom Lockscreen switch
+6236828 Wallpaper Overscroll and Transparent NavBar
+e95bc12 SysUI: Don't recreate controllers.
+2346ae6 Automatic translation import
+9cee371 Update settings after recreating status bar.
+0ed2b5d Merge "ConnectivtyService : Execute connectivityCheck in thread pool" into cm-11.0
+25b5377 Merge "base: Add blacklist provider permission" into cm-11.0
+0b2df29 Merge "SysUI: Use LocationController from status bar service for GPSTile." into cm-11.0
+28070f9 Lockscreen: Fix SystemUI crash on initial selection of Custom Background.
+8c10f99 Merge "Set some GC parameters only for dalvik" into cm-11.0
+0326502 Frameworks: Lockscreen custom wallpaper (1/2)
+de45396 Set some GC parameters only for dalvik
+07c549e SysUI: Use LocationController from status bar service for GPSTile.
+3f2e3f7 Merge "base: Fix screen on stats after a boot" into cm-11.0
+
+   * frameworks/native
+e5013f6 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+df3c8be libs/gui: Release acquired buffer when createImage fails
+7ce34cc Merge remote-tracking branch 'github/cm-11.0' into HEAD
+ccb5cd9 CM11 Themes: Pipe stderr from aapt to logcat.
+768f700 Revert "GFX-3D: Hold the BufferReference of GraphicBuffer in BpGraphicBufferAlloc"
+c50357a Revert "GFX-3D: Hold the BufferReference of GraphicBuffer in BpGraphicBufferAlloc"
+58a8d97 Revert "[2/2] Speed up booting on multicore devices."
+83c0ced Merge remote-tracking branch 'github/cm-11.0' into HEAD
+7a3802e GFX-3D: Hold the BufferReference of GraphicBuffer in BpGraphicBufferAlloc
+d542acf Merge remote-tracking branch 'github/cm-11.0' into HEAD
+b302bc3 CM11 Themes: Store hash codes for target and overlay in idmap
+368dc02 CM11 Themes: Store hash codes for target and overlay in idmap
+683a41a SF: Add known programs to cache.
+f88fe15 egl: Addition of eglGpuPerfHintQCOM
+57c4140 frameworks/native: Propagate dirty region in hwc_layer
+2aa1da5 Revert swaprect feature for new upstream implementation.
+702568f Merge remote-tracking branch 'github/cm-11.0' into HEAD
+ad12007 New Theme Engine [2/6] CM11 Themes
+bdabd0d Runtime resource overlay, iteration 2
+dd0a362 New command line tool 'idmap'
+
+   * frameworks/opt/telephony
+4e89022 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+e566de9 Fix Whisperpush and Voice+ when using the new Hangouts.
+527b36d Fix Whisperpush and Voice+ when using the new Hangouts.
+6538d3b Merge remote-tracking branch 'github/cm-11.0' into HEAD
+ad87897 Merge "Telephony: Mock SMS (2/4)" into cm-11.0
+4443722 Merge "Telephony: fix null pointer exception" into cm-11.0
+2e34e48 DcTracker: wait for default apn to disconnect before setting up new
+c771a33 Merge changes Ib7b288e5,Ic1323574 into cm-11.0
+7383e39 Merge "Telephony: Bring back older IMSI method for legacy RIL" into cm-11.0
+30a49d0 SamsungQualcommRIL: fix power on and off state
+
+   * hardware/libhardware
+429ea70 Revert "BT: Multi HF support in libhardware."
+a1dd951 libhardware: Add dirty region field to hwc layer
+
+   * hardware/qcom/audio-caf
+8db5327   hal: Fix device disable/enable sequence
+db62a8b policy_hal: remove VGS check for BT volume
+1ebf278 hal: fix BT device switch issue for audio playback during VoIP call
+34de526 hal: Ensure all the mutexes are initialized
+7774ef8  Audio: Fix for audio loss on switching between speaker and USB headset
+004bc83 hal: fix to handle voip issue when input stream starts first
+0e2e062 hal: fix listen and audio calibration concurency
+24ba5cf hal: update csd soft volume and mute controls
+5b3cd06 audio: Disabled excessive logging in OMX AACEncoder
+bd3b1ab postproc: Add exceptions for USB digital out
+e1dc78d audio: Update call state from RIL during silent mode
+4af189c hal: Do not apply CSD voice switch API on 8960
+938774f hal: Check hfp usecase to differenciate between nb and wb
+4392d29 hal: Add new CSD API to reduce in call device switch delay
+b78cd52 hal: apply TTY mode change for all voice use cases
+0440d7e hal: HFP support for setting volume
+e9b8a39 hal: start voip driver independent of voip output stream
+01f7fcc audio: primary desc check for sonification
+4e549c9 Audio: Add routing option between HDMI speakers and device speakers
+
+   * hardware/qcom/display-caf
+a8e9831 Don't force GPU composite for older devices
+64328b4 libhwcomposer: Don't reset cached layer handle on MDP comp
+
+   * hardware/qcom/media-caf
+452304d mm-video: venc: use source stride for color-converting RGB input
+
+   * hardware/qcom/wlan
+81fb770 wcnss: Build and dlopen wcnss_qmi_client as a shared library
+518fbeb Fix derpy ifdef
+92d77e9 wcnss-service: Additional format support
+9b1e0bf wcnss-service: Additional guard on QMI support
+9c86fd6 wcnss: Write WLAN Mac addr through Ctrl interfafe
+37c7b8f wcnss_service: Added support to read wlan mac from Modem NV
+
+   * libcore
+820beab Merge remote-tracking branch 'github/cm-11.0' into HEAD
+28f0fcc Revert "Fix a CharsetEncoder bug."
+0d40611 Revert "Fix a CharsetEncoder bug."
+2ae85f5 Locale: Retain compatibility with 4.4 APIs
+23fe8c5 Locale: Retain compatibility with 4.4 APIs
+
+   * packages/apps/Apollo
+b3cfeb8 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+8f89b02 Automatic translation import
+2068b22 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+a4a1d81 Automatic translation import
+814d7df Merge remote-tracking branch 'github/cm-11.0' into HEAD
+0510ca9 Automatic translation import
+
+   * packages/apps/Bluetooth
+d07299b Merge remote-tracking branch 'github/cm-11.0' into HEAD
+851de92 Bluetooth: Proper Sep-type update in BTAPP
+07d376c Merge remote-tracking branch 'github/cm-11.0' into HEAD
+3c99a1e Merge branch 'LNX.LA.3.5.2_RB1' of git://codeaurora.org/platform/packages/apps/Bluetooth into cm-11.0
+35743ee Revert "BT: Multi HF support in Bluetooth App."
+695d044 Revert "BT: HFP: Start DIALING_OUT_TIMEOUT for correct matching device"
+7060247 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+
+   * packages/apps/BluetoothExt
+25d2d3c Automatic translation import
+531a37a Merge branch 'LNX.LA.3.5.2_RB1' of git://codeaurora.org/platform/vendor/qcom-opensource/bluetooth into cm-11.0
+70d0475 Automatic translation import
+e0449f1 Automatic translation import
+
+   * packages/apps/Browser
+31b667a Merge remote-tracking branch 'github/cm-11.0' into HEAD
+c39e855 Browser: fix crash updating recycled favicon
+5dbde16 Automatic translation import
+dc58444 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+
+   * packages/apps/CMAccount
+4c95ba5 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+09f4f46 Automatic translation import
+ed768e7 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+0cdaf2b Update timezone list
+a3b003c Automatic translation import
+0a3ae63 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+47ae15a Implement getPage with page id instead of key.
+cb7bd8f Implement getPage with page id instead of key.
+736920c Automatic translation import
+
+   * packages/apps/CMFileManager
+d6ccaaf Automatic translation import
+21c9141 Automatic translation import
+1727cad Automatic translation import
+
+   * packages/apps/CMUpdater
+4fead9f Merge remote-tracking branch 'github/cm-11.0' into HEAD
+4a807c1 Automatic translation import
+7ed31a0 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+bf83942 Add missing permission to expand/collapse statusbar
+fba8599 Automatic translation import
+c92ac21 CMUpdater: Really collapse after installing from statusbar
+a61c5ab Merge remote-tracking branch 'github/cm-11.0' into HEAD
+92fbfbe Automatic translation import
+c293f76 CMUpdater: collapse statusbar when upgrading from notification
+
+   * packages/apps/CMWallpapers
+e2a09c2 Automatic translation import
+15e011c Automatic translation import
+d4cfff3 Merge "CMWallpapers: correct package name" into cm-11.0
+8a9bd6b Automatic translation import
+
+   * packages/apps/Calculator
+8f52b6a Automatic translation import
+ec67aae Automatic translation import
+d7f99da Automatic translation import
+
+   * packages/apps/Calendar
+f7a5582 Automatic translation import
+d8a6279 Automatic translation import
+afab71a Automatic translation import
+
+   * packages/apps/Camera2
+039bc09 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+362ad84 Camera2: Surface Qualcomm denoise option
+0ad48ec Camera2: Disable ZSL for slow shutter shots
+058f119 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+1eee064 Camera2: Update to use newer slow-shutter parameter
+db6e5ef Automatic translation import
+0925b77 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+ecb56f4 Automatic translation import
+8d49e27 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+82a8805 Automatic translation import
+0d38a00 Camera2: Surface Qualcomm HFR setting
+bdcb7a8 Camera2: Show post-picture spinner for slow shutter
+2b07fa0 Camera2: Add proper support for SuperZoom
+
+   * packages/apps/Contacts
+c30689e Merge "Check whether the contact exists when saving the contact" into cm-11.0
+9e8bf29 Check whether the contact exists when saving the contact
+bc8184e Move cursor to the right place when adding phonetic name
+
+   * packages/apps/ContactsCommon
+223cc5c Automatic translation import
+d97dd69 Automatic translation import
+daf5b79 Automatic translation import
+
+   * packages/apps/DSPManager
+1a8c2ea Automatic translation import
+e326a0b Automatic translation import
+d8a2317 Automatic translation import
+
+   * packages/apps/DeskClock
+ce48b3d Merge remote-tracking branch 'github/cm-11.0' into HEAD
+f216d2d DeskClock: Fix NullPointerException in AlarmClockFragment
+7556377 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+7c640ec Automatic translation import
+d3ca959 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+e18ca7e Automatic translation import
+5099a81 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+67b091d Automatic translation import
+
+   * packages/apps/Dialer
+3f568b1 Automatic translation import
+a690f7f Dialer: Landscape support (for in-dock use / qwerty sliders)
+1a4b19d Automatic translation import
+3c9053d Merge "Dialer: Add support for OpenCNAM paid accounts" into cm-11.0
+1c82f1c Dialer (MSIM): display all IMEI/MEID for *#06#
+71b121d Dialer: Add support for OpenCNAM paid accounts
+ecbe7b2 Dialer: Readd missing T9 strings
+2900693 Automatic translation import
+
+   * packages/apps/Email
+fd2605e Automatic translation import
+dfc0617 Automatic translation import
+7da8914 Automatic translation import
+
+   * packages/apps/Gallery2
+fa0e433 Automatic translation import
+4c63b01 Automatic translation import
+
+   * packages/apps/InCallUI
+03ec991 MSIM: Use operator name instead of SUBS for InCallUI
+b50a7a5 Automatic translation import
+53e0df3 InCallUI: Landscape support (for in-dock use / qwerty sliders)
+548bdb0 Automatic translation import
+9f93f00 InCallUI: ES translations
+d7f2979 Automatic translation import
+
+   * packages/apps/LockClock
+72db75b Automatic translation import
+6cb1916 goldfish: fix emulator build.
+0e52a2c Automatic translation import
+1c60970 Merge "LockClock: display date range for multi-day allday appointments" into cm-11.0
+91a6ed4 LockClock: remove external force refresh action
+9c765fe LockClock: display date range for multi-day allday appointments
+8202614 LockClock: add a content provider for weather
+4cc937c Automatic translation import
+
+   * packages/apps/Mms
+0b8ea9d Merge remote-tracking branch 'github/cm-11.0' into HEAD
+61ff37f Automatic translation import
+6472d21 MSIM: Replace SUBs with real operator name.
+6866f7b Merge remote-tracking branch 'github/cm-11.0' into HEAD
+8608c73 mms: Add CHANGE_PHONE_BLACKLIST permission
+131fda1 Merge "mms: Add CHANGE_PHONE_BLACKLIST permission" into cm-11.0
+d8a4975 mms: Add CHANGE_PHONE_BLACKLIST permission
+aeb7685 Automatic translation import
+7e79986 Automatic translation import
+6e35a2c QuickMessagePopup: pager fix on multiple messages.
+f9bd9d3 Mms: Move Mark as unread strings to the correct places
+ec464d0 Implement SMS mark for unread (Cyan-348)
+
+   * packages/apps/SamsungServiceMode
+4c863a5 Automatic translation import
+0431812 Automatic translation import
+00c7cea Automatic translation import
+
+   * packages/apps/Settings
+8353a5e Show "Eject card" for usb storage
+230f56b Merge remote-tracking branch 'github/cm-11.0' into HEAD
+060da7b Merge "Settings : Add contributors word cloud" into cm-11.0
+05ad817 Settings : Add contributors word cloud
+0e97166 Merge "Update MobileNetworks Icon" into cm-11.0
+ca3503d Merge "Call equals() comparing different types" into cm-11.0
+f080ab7 Update MobileNetworks Icon
+cefe03e Merge remote-tracking branch 'github/cm-11.0' into HEAD
+0178706 Move Multi Sim settings above other settings
+28c356e MSIM: Hide setting for signal status mods
+4cd9333 Automatic translation import
+4480549 Merge "MSIM: Ui fixes, replace Subscriptions with real operator names" into cm-11.0
+773b498 MSIM: Hide latest area info broadcast if not brazilian sim
+0173f1a Settings: lock screen grammar fix
+ce36a03 QS: smaller tiles: Fix typo
+e08bfc5 Merge "Settings: Only disable menu unlock options with custom keyguard" into cm-11.0
+ac59a30 Merge "QS: Make it possible to show smaller tiles (2/2)" into cm-11.0
+1c5f27f Settings: Only disable menu unlock options with custom keyguard
+6cf3246 Fix MSIM Network Settings (1/2)
+2b060af Merge "Settings: update a few CM strings" into cm-11.0
+b1a005b Call equals() comparing different types
+ea72d47 MSIM: Ui fixes, replace Subscriptions with real operator names
+3dc7fcb Merge "Don't show "Eject card" if the card is not accessible" into cm-11.0
+a449dc5 Settings: disable hardware unlock buttons while secure
+c75512d Settings: remove screen-off animation checkbox
+7f49017 Settings: lockscreen wallpaper crash fix
+f1b4d5f Merge "Settings: disable hardware unlock buttons while secure" into cm-11.0
+bc2d1b0 Settings: disable hardware unlock buttons while secure
+2ace05b Merge "Settings: lockscreen wallpaper crash fix" into cm-11.0
+b33c1fa Merge "Settings: remove screen-off animation checkbox" into cm-11.0
+6779ee1 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+20bb9f6 Settings: Remove Wallpaper selection from Display
+b71c517 Revert "BT: Multi HF support in Settings App."
+de3d953 QS: Make it possible to show smaller tiles (2/2)
+6dd8595 Merge "Make phone status string translatable." into cm-11.0
+762c0f0 Add dummy strings to prevent aapt warnings
+36e08ce Settings: update a few CM strings
+b699d90 Don't show "Eject card" if the card is not accessible
+0297b9c Settings: remove screen-off animation checkbox
+dafd241 Add Entrypoint for theme sounds
+d884fde Merge "Add Entrypoint for theme sounds" into cm-11.0
+6075fb6 Automatic translation import
+71a0098 Make phone status string translatable.
+6c8e4ce Fix a number of aapt warnings.
+12d2189 Add Entrypoint for theme sounds
+67b8c1c Settings: lockscreen wallpaper crash fix
+5260cbd Add entry to change lock wallpaper via themes
+bdf91c7 settings: Make mobile settings a first-class citizen
+3b89d5b settings: Make mobile settings a first-class citizen
+c80dba5 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+469c873 Settings: disable lockscreen settings appropriately
+8e38552 Settings: Apply Processor settings to all cpus
+fcf981d Changed "Wake on plug" description...
+11628c9 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+750ae10 Add new themes items to personalization menu
+7ca82c6 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+76e5f3c add Custom Lockscreen switch
+3a707c2 Automatic translation import
+c29724f Merge "settings: Add blacklist provider permission" into cm-11.0
+e8c713f Merge "Settings: Mock SMS (3/4)" into cm-11.0
+170dcfa Settings: Fix VoiceWakeup settings crash
+3538a66 Settings: Lockscreen custom wallpaper (2/2)
+11b0067 SoundSettings: Assigning a null to an unnecessary variable
+3f5fa89 Merge "Do not enable Camera widget on non-camera devices" into cm-11.0
+a28f411 Update 'Wi-Fi display' string to 'Cast screen'
+
+   * packages/apps/SoundRecorder
+5c5bd06 Automatic translation import
+
+   * packages/apps/Stk
+8e68370 Automatic translation import
+
+   * packages/apps/Torch
+3118bb5 Torch: apply wakelocks to sysfs nodes
+e02769b Automatic translation import
+6ef1e71 Automatic translation import
+79bf952 Automatic translation import
+
+   * packages/apps/Trebuchet
+9ade3e0 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+dcbd1c4 Trebuchet: change defaults to false
+d8bbfbd Merge remote-tracking branch 'github/cm-11.0' into HEAD
+84110c3 Do Not Default Hide Labels
+d0741d4 Automatic translation import
+45936b3 Add options to hide icon labels from drawer and homescreen
+6a43e66 Re-Add hidden-apps setting
+1631032 Merge "Trebuchet : Don't hideoutlines if in small overview mode" into cm-11.0
+45b71b4 Trebuchet : Don't hideoutlines if in small overview mode
+d8f4d1f Merge remote-tracking branch 'github/cm-11.0' into HEAD
+87a0eb3 Trebuchet: Fix capitalization of some strings
+4f6d2ab Automatic translation import
+2ba5aa4 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+9cf5a0a Oh hey there.
+68c2c9b Oh hey there.
+e6b34f2 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+2229872 Automatic translation import
+dc8637b Fix displaying of the sort order
+fef9b60 Trebuchet : Fix search bar icon/text disapearing
+
+   * packages/apps/VoicePlus
+92d5656 Automatic translation import
+9361f63 Automatic translation import
+1624d65 Automatic translation import
+
+   * packages/inputmethods/LatinIME
+ef21994 Automatic translation import
+6f2c9b8 Automatic translation import
+5afaa8c Automatic translation import
+
+   * packages/providers/DownloadProvider
+341aed6 Automatic translation import
+cbba7de Automatic translation import
+944aacc Automatic translation import
+
+   * packages/providers/MediaProvider
+faf3f77 Merge "Fix mounting of ext4 formated sdcards" into cm-11.0
+e664904 Fix mounting of ext4 formated sdcards
+2ba7dfb Add dummy strings to prevent aapt warnings
+
+   * packages/providers/UserDictionaryProvider
+e565fe3 Automatic translation import
+ece6c99 Update copyright header
+
+   * packages/services/Telephony
+f80a32a Holoize multi-SIM call target selection dialog.
+999e343 NetworkSettings: Don't error out with TD-SCDMA values
+18ec548 Merge remote-tracking branch 'github/cm-11.0' into HEAD
+d29ca11 Remove hard-coded CDMA roaming mode restrictions.
+27e25a6 Remove hard-coded CDMA roaming mode restrictions.
+3c3454b telephony: Remove "managed roaming" feature
+799e81d Automatic translation import
+2a5ab32 Merge "MSIM: Replace names of tabs to real operator names" into cm-11.0
+6f966c0 Fix appt warnings: Add dummy strings for no default localization
+aa53714 Fix MSIM Network Settings (2/2)
+6edd5cd MSIM: Replace names of tabs to real operator names
+c718240 Automatic translation import
+fc218af telephony: Disable MSIM settings if unavailable
+3b0207d Telephony: ES translations
+2265718 Merge "phone: Add blacklist provider permission" into cm-11.0
+f38a605 Automatic translation import
+
+   * packages/wallpapers/Galaxy4
+9332bd9 Automatic translation import
+1c3f328 Automatic translation import
+
+   * packages/wallpapers/PhaseBeam
+ef81c8f Automatic translation import
+5491962 Automatic translation import
+743d181 Automatic translation import
+
+   * system/core
+de067dc sdcard: Link to cutils and libc as DSOs
+c8492fb Merge remote-tracking branch 'github/cm-11.0' into HEAD
+4504997 Merge "Add Nokia vendor ID to adb and fastboot" into cm-11.0
+ef734d0 Add Nokia vendor ID to adb and fastboot
+638714a Merge remote-tracking branch 'github/cm-11.0' into HEAD
+dfe31f9 adb: Do not look for bu in /system/bin when in recovery mode
+
+   * system/extras
+ce52b56 ext4_utils: don't leave bad image file in case of error
+513d66f Set s_flags to 2 to prevent a write on first mount.
+6339391 make_ext4fs: fix block allocation to be best-fit
+
+   * system/netd
+fca5952 Netd: Do not reset routing policies
+05260f5 netd: Use append to add routes to secondary routing table
+09984bf RouteController: use fixed priority for ip rule
+
+   * system/vold
+054d2fd Add missing head sys/types.h to Volume.h  Fix compile error of build with C++
+
+   * vendor/cm
+0b86c97 cm: Update URL pointing to cm-build-targets
+983e830 Merge "move def_lockscreen_targets and def_lockscreen_targets_no_telephony to frameworks/base/packages/SettingsProvider" into cm-11.0
+22dbe29 Merge "apns-conf: Add QUAM APNs" into cm-11.0
+b346695 apns-conf: Add QUAM APNs
+6172b7b move def_lockscreen_targets and def_lockscreen_targets_no_telephony to frameworks/base/packages/SettingsProvider
+c2025e5 apns: remove default- and dun-types for Verizon MMS 31x/48x
+ba296d1 Merge "Revert "apns: Add type default for Sprint."" into cm-11.0
+bb72224 Softbank carrier overlay that fixes Mms User Agent for both Mms.apk & Hangouts
+ef278b6 Revert "apns: Add type default for Sprint."
+d3827c4 cm: sepolicy: Allow ueventd to load WiFi and audio irmware
+002b4f0 cm: sepolicy: Allow ueventd to properly handle cpufreq changes
+
+   * vendor/tmobile/libs/com.tmobile.themes
+487ae23 New Theme Engine [6/6]
+
+   * vendor/tmobile/providers/ThemeManager
+461810f Automatic translation import
+7c431e4 Automatic translation import
+305ef11 New Theme Engine [5/6]
+3d4047b Automatic translation import
+
+   * external/koush/ion
+97be4da Silly Google
+
+   * vendor/tmobile/apps/ThemeChooser
+8be9146 Automatic translation import
+9eec092 Automatic translation import
+81be923 Automatic translation import
+
