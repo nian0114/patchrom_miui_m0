@@ -30,6 +30,17 @@ if [ $1 = "MiuiHome" ];then
 fi
 
 
+if [ $1 = "QuickSearchBox" ];then
+    cp $1/*.part out/
+    cd out
+    $GIT_APPLY QuickSearchBox.part
+    cd ..
+    for file in `find $2 -name *.rej`
+    do
+	echo "Fatal error: QuickSearchBox patch fail"
+        exit 1
+    done
+fi
 
 if [ $1 = "Settings" ];then
     cp $1/*.part out/

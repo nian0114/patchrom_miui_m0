@@ -15,7 +15,7 @@ local-modified-apps := GalaxyS3Settings
 # All apks from MIUI execept MIUISystemUI and framework-miui-res.apk
 local-miui-removed-apps := MediaProvider
 local-miui-apps     := 
-local-miui-modified-apps :=  ThemeManager MiuiHome
+local-miui-modified-apps :=  QuickSearchBox ThemeManager MiuiHome Settings
 PORT_PRODUCT := nian_i9300
 
 # All apps need to be removed from original ZIP file 
@@ -39,4 +39,3 @@ include $(PORT_BUILD)/porting.mk
 local-zip-misc:
 	rm -rf $(ZIP_DIR)/system/media/video/*
 	cp -rf other/installd $(ZIP_DIR)/system/bin/installd
-	cp -rf other/libskia.so $(ZIP_DIR)/system/lib/libskia.so
