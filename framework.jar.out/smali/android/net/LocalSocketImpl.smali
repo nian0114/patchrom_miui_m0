@@ -383,6 +383,10 @@
 
     iput-object v0, p1, Landroid/net/LocalSocketImpl;->fd:Ljava/io/FileDescriptor;
 
+    const/4 v0, 0x1
+
+    iput-boolean v0, p1, Landroid/net/LocalSocketImpl;->mFdCreatedInternally:Z
+
     .line 329
     return-void
 .end method

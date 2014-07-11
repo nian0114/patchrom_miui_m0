@@ -270,6 +270,14 @@
 
     invoke-virtual {v8, v9}, Landroid/widget/NumberPicker;->setOnValueChangedListener(Landroid/widget/NumberPicker$OnValueChangeListener;)V
 
+    iget-object v8, p0, Landroid/widget/TimePicker;->mMinuteSpinner:Landroid/widget/NumberPicker;
+
+    new-instance v9, Landroid/widget/TimePicker$OnMinuteChangeListener;
+
+    invoke-direct {v9, p0}, Landroid/widget/TimePicker$OnMinuteChangeListener;-><init>(Landroid/widget/TimePicker;)V
+
+    invoke-virtual {v8, v9}, Landroid/widget/NumberPicker;->setOnValueChangedListener(Landroid/widget/NumberPicker$OnValueChangeListener;)V
+
     .line 204
     iget-object v8, p0, Landroid/widget/TimePicker;->mMinuteSpinner:Landroid/widget/NumberPicker;
 
@@ -1481,6 +1489,24 @@
 
 
 # virtual methods
+.method callOnTimeChanged()V
+    .locals 0
+
+    .prologue
+    invoke-direct {p0}, Landroid/widget/TimePicker;->onTimeChanged()V
+
+    return-void
+.end method
+
+.method callUpdateInputState()V
+    .locals 0
+
+    .prologue
+    invoke-direct {p0}, Landroid/widget/TimePicker;->updateInputState()V
+
+    return-void
+.end method
+
 .method public dispatchPopulateAccessibilityEvent(Landroid/view/accessibility/AccessibilityEvent;)Z
     .locals 1
     .parameter "event"
@@ -1583,11 +1609,29 @@
     return-object v0
 .end method
 
-.method public is24HourView()Z
+.method getIs24HourViewField()Z
     .locals 1
 
     .prologue
     .line 502
+    iget-boolean v0, p0, Landroid/widget/TimePicker;->mIs24HourView:Z
+
+    return v0
+.end method
+
+.method getMinuteSpinner()Landroid/widget/NumberPicker;
+    .locals 1
+
+    .prologue
+    iget-object v0, p0, Landroid/widget/TimePicker;->mMinuteSpinner:Landroid/widget/NumberPicker;
+
+    return-object v0
+.end method
+
+.method public is24HourView()Z
+    .locals 1
+
+    .prologue
     iget-boolean v0, p0, Landroid/widget/TimePicker;->mIs24HourView:Z
 
     return v0
@@ -1940,7 +1984,8 @@
     .parameter "is24HourView"
 
     .prologue
-    .line 481
+    invoke-static {p0, p1}, Landroid/widget/Injector$TimePickerHook;->before_setIs24HourView(Landroid/widget/TimePicker;Ljava/lang/Boolean;)V
+
     iget-boolean v1, p0, Landroid/widget/TimePicker;->mIs24HourView:Z
 
     invoke-virtual {p1}, Ljava/lang/Boolean;->booleanValue()Z
