@@ -1,0 +1,51 @@
+From 8333205d68dc36bbef938731ed22305e289335f3 Mon Sep 17 00:00:00 2001
+From: wonitor <wonitor@qq.com>
+Date: Wed, 9 Jul 2014 21:42:17 +0800
+Subject: [PATCH 2/2] 2
+
+---
+ Phone/smali/com/android/phone/MiuiPhoneGlobals.smali               |    2 +-
+ .../com/android/phone/MiuiPreferredNetworkTypeListPreference.smali |    4 ++--
+ Phone/smali/com/android/phone/MiuiTelephonyCapabilities.smali      |    2 +-
+ 3 files changed, 4 insertions(+), 4 deletions(-)
+
+--- a/Phone/smali/com/android/phone/MiuiPhoneGlobals.smali
++++ b/Phone/smali/com/android/phone/MiuiPhoneGlobals.smali
+@@ -199,7 +199,7 @@
+     .local v0, needReset:Z
+     sget-boolean v3, Lmiui/os/Build;->IS_MIFOUR_LTE:Z
+ 
+-    if-eqz v3, :cond_2
++    #if-eqz v3, :cond_2
+ 
+     const/4 v3, 0x7
+ 
+--- a/Phone/smali/com/android/phone/MiuiPreferredNetworkTypeListPreference.smali
++++ b/Phone/smali/com/android/phone/MiuiPreferredNetworkTypeListPreference.smali
+@@ -582,9 +582,9 @@
+ 
+     sget-boolean v4, Lmiui/os/Build;->IS_MIFOUR_LTE:Z
+ 
+-    if-eqz v4, :cond_7
++    #if-eqz v4, :cond_7
+ 
+-    const v4, 0x7f06001d
++    const v4, 0x7f06001e
+ 
+     invoke-virtual {p0, v4}, Lcom/android/phone/MiuiPreferredNetworkTypeListPreference;->addPreferencesFromResource(I)V
+ 
+--- a/Phone/smali/com/android/phone/MiuiTelephonyCapabilities.smali
++++ b/Phone/smali/com/android/phone/MiuiTelephonyCapabilities.smali
+@@ -239,7 +239,7 @@
+ 
+     sget-boolean v0, Lmiui/os/Build;->IS_MIFOUR_LTE:Z
+ 
+-    if-eqz v0, :cond_1
++    #if-eqz v0, :cond_1
+ 
+     :cond_0
+     const/4 v0, 0x1
+-- 
+1.7.10.4
+
+

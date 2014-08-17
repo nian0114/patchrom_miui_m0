@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool name="has_dock_settings">false</bool> 
+    <bool name="has_button">true</bool>
+    <bool name="has_led">true</bool>
+    <bool name="mass_storage_enable">false</bool>
+    <bool name="has_volume_wake">true</bool>
+    <bool name="is_phone_call_noise_suppression_supported">false</bool>
+    <bool name="has_button_light">true</bool>
+</resources>

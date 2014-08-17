@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool name="ignore_sim_network_locked_events">true</bool>
+    <bool name="sim_network_unlock_allow_dismiss">true</bool>
+    <bool name="world_phone">false</bool>
+    <bool name="config_enable_dialer_key_vibration">true</bool>
+    <bool name="tty_enabled">false</bool>
+    <bool name="hac_enabled">false</bool>
+    <bool name="dtmf_type_enabled">false</bool>
+    <bool name="auto_retry_enabled">false</bool>
+    <bool name="allow_local_dtmf_tones">true</bool>
+    <bool name="config_show_onscreen_dial_button">true</bool>
+    <bool name="send_mic_mute_to_AudioManager">true</bool>
+    <bool name="has_in_call_noise_suppression">false</bool>
+    <bool name="allow_emergency_numbers_in_call_log">false</bool>
+    <bool name="csp_enabled">false</bool>
+    <bool name="config_voice_privacy_disable">false</bool>
+    <bool name="config_apn_expand">true</bool>
+    <bool name="config_operator_selection_expand">true</bool>
+    <bool name="config_prefer_2g">true</bool>
+    <bool name="config_voice_capable">true</bool>
+    <bool name="config_built_in_sip_phone">true</bool>
+    <bool name="config_call_recording">true</bool>
+    <bool name="config_call_stream_recording">false</bool>
+    <bool name="config_download_mms_always">true</bool>
+    <bool name="config_preferred_network_type_when_data_enabled">true</bool>
+    <bool name="config_smsc_address_encoded">true</bool>
+    <bool name="config_support_dialing_emergency_number_suffix">true</bool>
+    <bool name="config_support_dialing_emergency_number_directly">true</bool>
+    <bool name="config_vibrate_pattern">false</bool>
+    <bool name="config_force_redial">true</bool>
+    <bool name="config_show_network_type">true</bool>
+    <bool name="config_enable_call_menu">false</bool>
+</resources>

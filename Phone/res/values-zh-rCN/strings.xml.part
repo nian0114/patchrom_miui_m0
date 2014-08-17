@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="preferred_network_type_pref_entries_4g_preferred_miui">LTE(首选)/WCDMA/GSM</string>
+    <string name="preferred_network_type_pref_entries_3g_preferred_miui">WCDMA(首选)/GSM</string>
+    <string name="preferred_network_type_pref_entries_only_2g_miui">仅使用GSM(更省电)</string>
+    <string name="preferred_network_type_pref_entries_only_3g_miui">仅使用WCDMA</string>
+    <string name="preferred_network_type_pref_entries_not_2g_preferred_miui">LTE/WCDMA</string>
+    <string name="preferred_network_type_pref_entries_only_4g_miui">仅使用LTE</string>
+</resources>

@@ -1,0 +1,33 @@
+From 075a1f69aee709f81057682e4b8003aab4c2b84d Mon Sep 17 00:00:00 2001
+From: gtbluesky <gantaobluesky@gmail.com>
+Date: Mon, 30 Jun 2014 20:13:23 +0800
+Subject: [PATCH] mod some headers
+
+---
+ Settings/res/xml/settings_headers.xml | 3 +--
+ 1 file changed, 0 insertion(+), 1 deletions(-)
+
+--- a/Settings/res/xml/settings_headers.xml
++++ b/Settings/res/xml/settings_headers.xml
+@@ -15,7 +15,6 @@
+     </header>
+     <header android:icon="@drawable/ic_settings_data_usage" android:id="@id/data_usage_settings" android:title="@string/data_usage_summary_title" android:fragment="com.android.settings.DataUsageSummary" />
+     <header android:icon="@drawable/ic_application_settings" android:id="@id/restrict_background_data" android:title="@string/restrict_background_data_title" android:fragment="com.android.settings.WirelessSettings" />
+-    <header android:icon="@drawable/ic_settings_nfc_payment" android:id="@id/nfc_payment_settings" android:title="@string/nfc_payment_settings_title" android:fragment="com.android.settings.nfc.PaymentSettings" />
+     <header android:id="@id/operator_settings" android:fragment="com.android.settings.WirelessSettings">
+         <intent android:action="com.android.settings.OPERATOR_APPLICATION_SETTING" />
+     </header>
+-- 
+1.8.1.2
+
+--- a/Settings/res/xml/development_prefs.xml
++++ b/Settings/res/xml/development_prefs.xml
+@@ -6,6 +6,7 @@
+     <CheckBoxPreference android:title="@string/development_enable" android:key="development_enable" />
+     <PreferenceCategory />
+     <CheckBoxPreference android:title="@string/keep_screen_on" android:key="keep_screen_on" android:summary="@string/keep_screen_on_summary" />
++    <ListPreference android:entries="@array/select_runtime_titles" android:title="@string/select_runtime_title" android:key="select_runtime" android:dialogTitle="@string/select_runtime_dialog_title" android:entryValues="@array/select_runtime_values" />
+     <CheckBoxPreference android:persistent="false" android:title="@string/unlock_set_enter_system" android:key="unlock_enter_system" android:summary="@string/unlock_set_enter_system_summary" />
+     <ListPreference android:entries="@array/hdcp_checking_titles" android:title="@string/hdcp_checking_title" android:key="hdcp_checking" android:dialogTitle="@string/hdcp_checking_dialog_title" android:entryValues="@array/hdcp_checking_values" />
+     <CheckBoxPreference android:title="@string/bt_hci_snoop_log" android:key="bt_hci_snoop_log" android:summary="@string/bt_hci_snoop_log_summary" />
+-- 

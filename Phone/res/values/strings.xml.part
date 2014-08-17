@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="preferred_network_type_pref_entries_4g_preferred_miui">LTE(preferred)/WCDMA/GSM</string>
+    <string name="preferred_network_type_pref_entries_3g_preferred_miui">WCDMA(preferred)/GSM</string>
+    <string name="preferred_network_type_pref_entries_only_3g_miui">WCDMA only</string>
+    <string name="preferred_network_type_pref_entries_not_2g_preferred_miui">LTE/WCDMA</string>
+    <string name="preferred_network_type_pref_entries_only_4g_miui">LTE only</string>
+    <string name="mw_disable_fuction">minimize|exit</string>
+</resources>
