@@ -1,0 +1,26 @@
+From 0a83cd4b51f2b8fe2aee0d359ff6e2b3267ccfcf Mon Sep 17 00:00:00 2001
+From: wangtongli <276792882@qq.com>
+Date: Tue, 5 May 2015 22:27:29 +0800
+Subject: [PATCH] add camera
+
+---
+ MiuiKeyguard/smali/com/android/keyguard/MiuiKeyguardUtils.smali | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+--- a/MiuiKeyguard/smali/com/android/keyguard/MiuiKeyguardUtils.smali
++++ b/MiuiKeyguard/smali/com/android/keyguard/MiuiKeyguardUtils.smali
+@@ -123,9 +123,9 @@
+ 
+     new-instance v1, Landroid/content/ComponentName;
+ 
+-    const-string v2, "com.android.camera"
++    const-string v2, "com.cyngn.cameranext"
+ 
+-    const-string v3, "com.android.camera.Camera"
++    const-string v3, "com.cyngn.cameranext.Camera"
+ 
+     invoke-direct {v1, v2, v3}, Landroid/content/ComponentName;-><init>(Ljava/lang/String;Ljava/lang/String;)V
+ 
+-- 
+1.9.1
+

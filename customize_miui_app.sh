@@ -252,10 +252,12 @@ if [ $1 = "MiuiGallery" ];then
 fi
 
 if [ $1 = "MiuiHome" ];then
+	applyPatch $1 $2
 	add $1
 fi
 
 if [ $1 = "MiuiKeyguard" ];then
+	applyPatch $1 $2
 	add $1
 fi
 
