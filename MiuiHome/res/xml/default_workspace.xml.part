@@ -1,0 +1,3 @@
+com.android.camera/com.android.camera.Camera=com.android.camera2/com.android.camera.CameraLauncher
+com.android.camera/com.android.camera.Camera=com.cyngn.cameranext/com.android.camera.CameraLauncher
+com.android.camera/com.android.camera.Camera=com.motorola.camera/com.android.camera.CameraLauncher

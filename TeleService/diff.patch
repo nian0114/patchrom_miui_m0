@@ -1,0 +1,22 @@
+From faca8f0df267cc5b9bd7d0545cc17dae54e24fa8 Mon Sep 17 00:00:00 2001
+From: wangtongli <276792882@qq.com>
+Date: Sat, 25 Apr 2015 18:43:53 +0800
+Subject: [PATCH] fixyuyinbohao
+
+---
+ TeleService/smali/com/android/phone/PhoneGlobals.smali | 2 ++
+ 1 file changed, 2 insertions(+)
+
+--- a/TeleService/smali/com/android/phone/PhoneGlobals.smali
++++ b/TeleService/smali/com/android/phone/PhoneGlobals.smali
+@@ -1676,6 +1676,8 @@
+ 
+     move-result v0
+ 
++    const/4 v0, 0x1
++
+     sput-boolean v0, Lcom/android/phone/PhoneGlobals;->sVoiceCapable:Z
+ 
+     iget-object v0, p0, Lcom/android/phone/PhoneGlobals;->phone:Lcom/android/internal/telephony/Phone;
+-- 
+1.9.1

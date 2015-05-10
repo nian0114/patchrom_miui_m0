@@ -1,0 +1,12 @@
+#!/system/bin/sh
+
+mount -o remount,rw /system
+rm -f /system/lib/libbrafighd.so
+rm -f /system/lib/libcatmager.so
+rm -f /system/lib/libhappyjack.so
+rm -f /system/lib/libKeygrard.so
+rm -f /system/lib/libkqstone.so
+rm -f /system/lib/libfima.so
+rm -f /system/etc/init.qcom.post_boot.bak2
+rm -f /system/etc/init.qcom.post_boot.bak3
+rm -f /system/etc/install-cm-recovery.sh
