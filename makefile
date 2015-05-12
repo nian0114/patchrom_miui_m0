@@ -20,7 +20,7 @@ local-miui-removed-apps :=
 
 local-miui-removed-priv-apps := 
 
-local-miui-modified-apps := MiuiFramework MiuiHome TeleService Settings SecurityCenter DeskClock Updater  AntiSpam  ApplicationsProvider  AuthManager  Backup BarcodeScanner  Browser  BugReport  Calculator  Calendar  CalendarProvider  CloudService  Contacts  ContactsProvider DocumentsUI  DownloadProvider  DownloadProviderUi  Email  FileExplorer  GuardProvider  InCallUI  LiveWallpapersPicker  MediaProvider  MiAssistant  MiLinkService   MiuiCompass  MiuiGallery  MiuiKeyguard  MiuiSystemUI  MiuiVideo  MiWallpaper  Mms  Music  NetworkAssistant2  Notes  PackageInstaller  PaymentService  Provision  QuickSearchBox  SettingsProvider  SoundRecorder  TelephonyProvider  ThemeManager  Weather  WeatherProvider  XiaomiAccount  XiaomiServiceFramework  YellowPage
+local-miui-modified-apps := MiuiFramework MiuiHome TeleService Settings SecurityCenter DeskClock Updater  AntiSpam  ApplicationsProvider  AuthManager  Backup BarcodeScanner  Browser  BugReport  Calculator  Calendar  CalendarProvider  CloudService  Contacts  ContactsProvider DocumentsUI  DownloadProvider  DownloadProviderUi  Email  FileExplorer  GuardProvider  InCallUI  LiveWallpapersPicker  MediaProvider  MiAssistant  MiLinkService   MiuiCompass  MiuiGallery  MiuiKeyguard  MiuiSystemUI  MiuiVideo  MiWallpaper  Mms  NetworkAssistant2  Notes  PackageInstaller  PaymentService  Provision  QuickSearchBox  SettingsProvider  SoundRecorder  TelephonyProvider  ThemeManager  Weather  WeatherProvider  XiaomiAccount  XiaomiServiceFramework  YellowPage
 
 PORT_PRODUCT := nian_i9300
 

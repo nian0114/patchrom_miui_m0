@@ -277,10 +277,6 @@ if [ $1 = "Mms" ];then
 	add $1
 fi
 
-if [ $1 = "Music" ];then
-	add $1
-fi
-
 if [ $1 = "NetworkAssistant2" ];then
 	add $1
 fi
