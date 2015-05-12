@@ -20,7 +20,7 @@ local-miui-removed-apps :=
 
 local-miui-removed-priv-apps := 
 
-local-miui-modified-apps := MiuiFramework MiuiHome TeleService Settings SecurityCenter DeskClock Updater  AntiSpam  ApplicationsProvider  AuthManager  Backup BarcodeScanner  Browser  BugReport  Calculator  Calendar  CalendarProvider  CloudAppBackup  CloudService  Contacts  ContactsProvider DocumentsUI  DownloadProvider  DownloadProviderUi  Email  FileExplorer  GuardProvider  InCallUI  LiveWallpapersPicker  MediaProvider  MiAssistant  MiLinkService   MiuiCompass  MiuiGallery  MiuiKeyguard  MiuiSystemUI  MiuiVideo  MiWallpaper  Mms  Music  NetworkAssistant2  Notes  PackageInstaller  PaymentService  Provision  QuickSearchBox  SettingsProvider  SoundRecorder  TelephonyProvider  ThemeManager  Weather  WeatherProvider  XiaomiAccount  XiaomiServiceFramework  YellowPage
+local-miui-modified-apps := MiuiFramework MiuiHome TeleService Settings SecurityCenter DeskClock Updater  AntiSpam  ApplicationsProvider  AuthManager  Backup BarcodeScanner  Browser  BugReport  Calculator  Calendar  CalendarProvider  CloudService  Contacts  ContactsProvider DocumentsUI  DownloadProvider  DownloadProviderUi  Email  FileExplorer  GuardProvider  InCallUI  LiveWallpapersPicker  MediaProvider  MiAssistant  MiLinkService   MiuiCompass  MiuiGallery  MiuiKeyguard  MiuiSystemUI  MiuiVideo  MiWallpaper  Mms  Music  NetworkAssistant2  Notes  PackageInstaller  PaymentService  Provision  QuickSearchBox  SettingsProvider  SoundRecorder  TelephonyProvider  ThemeManager  Weather  WeatherProvider  XiaomiAccount  XiaomiServiceFramework  YellowPage
 
 PORT_PRODUCT := nian_i9300
 
@@ -49,6 +49,9 @@ include $(PORT_BUILD)/porting.mk
 #updater := $(ZIP_DIR)/META-INF/com/google/android/updater-script
 #pre_install_data_packages := $(TMP_DIR)/pre_install_apk_pkgname.txt
 local-pre-zip-misc:
+	@echo replace libsurfaceflinger.so with dpi
+	sed -i 's/ro.sf.lcd_density/persist.xsdensity/g' $(ZIP_DIR)/system/lib/libsurfaceflinger.so
+	
 	@echo Update boot.img
 	cp other/boot.img $(ZIP_DIR)/boot.img
 
