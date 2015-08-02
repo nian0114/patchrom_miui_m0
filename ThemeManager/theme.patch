@@ -1,0 +1,109 @@
+From 9d2e08c71877001f398cc7ab5c4875abe4272b91 Mon Sep 17 00:00:00 2001
+From: nian0114 <268078545@qq.com>
+Date: Wed, 3 Jun 2015 01:18:40 +0800
+Subject: [PATCH] hack theme
+
+---
+ .../view/ResourceOperationHandler.smali            | 75 ++--------------------
+ 1 file changed, 4 insertions(+), 71 deletions(-)
+
+--- a/ThemeManager/smali/miui/resourcebrowser/view/ResourceOperationHandler.smali
++++ b/ThemeManager/smali/miui/resourcebrowser/view/ResourceOperationHandler.smali
+@@ -530,11 +530,7 @@
+     .locals 1
+ 
+     .prologue
+-    iget-object v0, p0, Lmiui/resourcebrowser/view/ResourceOperationHandler;->mResource:Lmiui/resourcebrowser/model/Resource;
+-
+-    invoke-virtual {v0}, Lmiui/resourcebrowser/model/Resource;->isProductBought()Z
+-
+-    move-result v0
++    const/4 v0, 0x1
+ 
+     return v0
+ .end method
+@@ -651,7 +647,7 @@
+     .locals 1
+ 
+     .prologue
+-    iget-boolean v0, p0, Lmiui/resourcebrowser/view/ResourceOperationHandler;->mIsLegal:Z
++    const/4 v0, 0x1
+ 
+     return v0
+ .end method
+@@ -707,70 +703,9 @@
+     .locals 2
+ 
+     .prologue
+-    new-instance v0, Ljava/io/File;
+-
+-    iget-object v1, p0, Lmiui/resourcebrowser/view/ResourceOperationHandler;->mResResolver:Lmiui/resourcebrowser/model/ResourceResolver;
+-
+-    invoke-virtual {v1}, Lmiui/resourcebrowser/model/ResourceResolver;->getRightsPath()Ljava/lang/String;
+-
+-    move-result-object v1
+-
+-    invoke-direct {v0, v1}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+-
+-    .local v0, "rightsFile":Ljava/io/File;
+-    invoke-virtual {p0}, Lmiui/resourcebrowser/view/ResourceOperationHandler;->isAuthorizedResource()Z
+-
+-    move-result v1
+-
+-    if-nez v1, :cond_1
+-
+-    invoke-virtual {p0}, Lmiui/resourcebrowser/view/ResourceOperationHandler;->getPrice()I
+-
+-    move-result v1
+-
+-    if-eqz v1, :cond_1
+-
+-    invoke-virtual {p0}, Lmiui/resourcebrowser/view/ResourceOperationHandler;->isLocalResource()Z
+-
+-    move-result v1
+-
+-    if-eqz v1, :cond_0
+-
+-    invoke-virtual {v0}, Ljava/io/File;->exists()Z
+-
+-    move-result v1
+-
+-    if-nez v1, :cond_0
+-
+-    invoke-virtual {p0}, Lmiui/resourcebrowser/view/ResourceOperationHandler;->isTrialable()Z
+-
+-    move-result v1
+-
+-    if-eqz v1, :cond_1
+-
+-    :cond_0
+-    invoke-virtual {v0}, Ljava/io/File;->exists()Z
+-
+-    move-result v1
+-
+-    if-eqz v1, :cond_2
+-
+-    invoke-static {v0}, Lmiui/drm/DrmManager;->isPermanentRights(Ljava/io/File;)Z
+-
+-    move-result v1
+-
+-    if-eqz v1, :cond_2
+-
+-    :cond_1
+-    const/4 v1, 0x1
+-
+-    :goto_0
+-    return v1
+-
+-    :cond_2
+-    const/4 v1, 0x0
++    const/4 v0, 0x1
+ 
+-    goto :goto_0
++    return v0
+ .end method
+ 
+ .method public isPicker()Z
+-- 
+1.9.1
+
