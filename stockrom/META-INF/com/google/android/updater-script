@@ -1,48 +1,34 @@
-getprop("ro.product.device") == "m0" || abort("This package is for \"m0\" devices; this is a \"" + getprop("ro.product.device") + "\".");
-mount("ext4", "EMMC", "/dev/block/mmcblk0p12", "/data");
-show_progress(0.500000, 0);
-ui_print("Formatting system...");
-unmount("/system");
-format("ext4", "EMMC", "/dev/block/mmcblk0p9", "0", "/system");
-ui_print("Installing system files...");
+assert(getprop("ro.product.device") == "m0" ||
+       getprop("ro.build.product") == "m0" || 
+       getprop("ro.product.device") == "i9300" ||
+       getprop("ro.build.product") == "i9300" || 
+       getprop("ro.product.device") == "GT-I9300" ||
+       getprop("ro.build.product") == "GT-I9300" ||
+       abort("This package is for device: m0,i9300,GT-I9300; this device is " + getprop("ro.product.device") + "."););
 mount("ext4", "EMMC", "/dev/block/mmcblk0p9", "/system");
+package_extract_file("system/bin/backuptool.sh", "/tmp/backuptool.sh");
+package_extract_file("system/bin/backuptool.functions", "/tmp/backuptool.functions");
+set_metadata("/tmp/backuptool.sh", "uid", 0, "gid", 0, "mode", 0755);
+set_metadata("/tmp/backuptool.functions", "uid", 0, "gid", 0, "mode", 0644);
+run_program("/tmp/backuptool.sh", "backup");
+unmount("/system");
+show_progress(0.500000, 0);
+mount("ext4", "EMMC", "/dev/block/mmcblk0p12", "/data");
+package_extract_file("system/bin/otasigcheck.sh", "/tmp/otasigcheck.sh");
+package_extract_file("META-INF/org/cyanogenmod/releasekey", "/tmp/releasekey");
+set_metadata("/tmp/otasigcheck.sh", "uid", 0, "gid", 0, "mode", 0755);
+run_program("/tmp/otasigcheck.sh");
+sha1_check(read_file("/tmp/releasekey"),"7241e92725436afc79389d4fc2333a2aa8c20230") && abort("Can't install this package on top of incompatible data. Please try another package or run a factory reset");
+unmount("/data");
+format("ext4", "EMMC", "/dev/block/mmcblk0p9", "0", "/system");
+mount("ext4", "EMMC", "/dev/block/mmcblk0p9", "/system");
+package_extract_dir("recovery", "/system");
 package_extract_dir("system", "/system");
-ui_print("Creating system links...");
-symlink("/system/bin/../bin/fsck.f2fs", "/system/bin/dump.f2fs");
-symlink("/system/bin/logcat", "/system/bin/lolcat");
-symlink("/system/bin/mksh", "/system/bin/sh");
-symlink("/system/bin/mount.exfat", "/system/bin/fsck.exfat",
-        "/system/bin/mkfs.exfat");
-symlink("/system/bin/toolbox", "/system/bin/cat", "/system/bin/chcon",
-        "/system/bin/chmod", "/system/bin/chown", "/system/bin/clear",
-        "/system/bin/cmp", "/system/bin/cp", "/system/bin/date",
-        "/system/bin/dd", "/system/bin/df", "/system/bin/dmesg",
-        "/system/bin/du", "/system/bin/getenforce", "/system/bin/getevent",
-        "/system/bin/getprop", "/system/bin/getsebool", "/system/bin/grep",
-        "/system/bin/hd", "/system/bin/id", "/system/bin/ifconfig",
-        "/system/bin/iftop", "/system/bin/insmod", "/system/bin/ioctl",
-        "/system/bin/ionice", "/system/bin/kill", "/system/bin/ln",
-        "/system/bin/load_policy", "/system/bin/log", "/system/bin/ls",
-        "/system/bin/lsmod", "/system/bin/lsof", "/system/bin/md5",
-        "/system/bin/mkdir", "/system/bin/mkswap", "/system/bin/mount",
-        "/system/bin/mv", "/system/bin/nandread", "/system/bin/netstat",
-        "/system/bin/newfs_msdos", "/system/bin/notify", "/system/bin/printenv",
-        "/system/bin/ps", "/system/bin/r", "/system/bin/readlink",
-        "/system/bin/renice", "/system/bin/restart", "/system/bin/restorecon",
-        "/system/bin/rm", "/system/bin/rmdir", "/system/bin/rmmod",
-        "/system/bin/route", "/system/bin/runcon", "/system/bin/schedtop",
-        "/system/bin/sendevent", "/system/bin/setconsole",
-        "/system/bin/setenforce", "/system/bin/setfattr", "/system/bin/setprop",
-        "/system/bin/setsebool", "/system/bin/sleep", "/system/bin/smd",
-        "/system/bin/start", "/system/bin/stop", "/system/bin/swapoff",
-        "/system/bin/swapon", "/system/bin/sync", "/system/bin/top",
-        "/system/bin/touch", "/system/bin/umount", "/system/bin/uptime",
-        "/system/bin/vmstat", "/system/bin/watchprops",
-        "/system/bin/wipe");
-symlink("/system/fonts/Roboto-Bold.ttf", "/system/fonts/DroidSans-Bold.ttf");
-symlink("/system/fonts/Roboto-Regular.ttf", "/system/fonts/DroidSans.ttf");
-symlink("/system/lib/libGLESv2.so", "/system/lib/libGLESv3.so");
-symlink("/system/xbin/busybox", "/system/xbin/[", "/system/xbin/[[",
+symlink("../bin/fsck.f2fs", "/system/bin/dump.f2fs");
+symlink("../xbin/su", "/system/bin/su");
+symlink("Roboto-Bold.ttf", "/system/fonts/DroidSans-Bold.ttf");
+symlink("Roboto-Regular.ttf", "/system/fonts/DroidSans.ttf");
+symlink("busybox", "/system/xbin/[", "/system/xbin/[[",
         "/system/xbin/adjtimex", "/system/xbin/arp", "/system/xbin/ash",
         "/system/xbin/awk", "/system/xbin/base64", "/system/xbin/basename",
         "/system/xbin/bbconfig", "/system/xbin/blkid", "/system/xbin/blockdev",
@@ -124,47 +110,101 @@ symlink("/system/xbin/busybox", "/system/xbin/[", "/system/xbin/[[",
         "/system/xbin/which", "/system/xbin/whoami", "/system/xbin/xargs",
         "/system/xbin/xz", "/system/xbin/xzcat", "/system/xbin/yes",
         "/system/xbin/zcat");
-symlink("/system/xbin/pigz", "/system/xbin/unpigz");
-ui_print("Set permission...");
-set_perm_recursive(0, 0, 0755, 0644, "/system");
-set_perm_recursive(0, 0, 0755, 0755, "/system/addon.d");
-set_perm_recursive(0, 2000, 0755, 0755, "/system/bin");
-set_perm(0, 3003, 02750, "/system/bin/netcfg");
-set_perm(0, 0, 0755, "/system/bin/ping");
-set_perm(0, 2000, 0750, "/system/bin/run-as");
-set_perm(0, 0, 0750, "/system/bin/uncrypt");
-set_perm(1014, 2000, 0550, "/system/etc/dhcpcd/dhcpcd-run-hooks");
-set_perm_recursive(0, 2000, 0755, 0755, "/system/etc/init.d");
-set_perm(0, 0, 0755, "/system/etc/init.d");
-set_perm(0, 0, 0544, "/system/etc/install-cm-recovery.sh");
-set_perm_recursive(0, 0, 0755, 0555, "/system/etc/ppp");
-set_perm(0, 2000, 0755, "/system/vendor");
-set_perm_recursive(0, 2000, 0755, 0644, "/system/vendor/etc");
-set_perm(0, 0, 0644, "/system/vendor/etc/audio_effects.conf");
-set_perm(0, 2000, 0755, "/system/vendor/firmware");
-set_perm(0, 2000, 0755, "/system/vendor/lib");
-set_perm_recursive(0, 2000, 0755, 0644, "/system/vendor/lib/drm");
-set_perm(0, 0, 0644, "/system/vendor/lib/drm/libdrmwvmplugin.so");
-set_perm_recursive(0, 2000, 0755, 0644, "/system/vendor/lib/mediadrm");
-set_perm(0, 0, 0644, "/system/vendor/lib/mediadrm/libwvdrmengine.so");
-set_perm_recursive(0, 2000, 0755, 0755, "/system/xbin");
-set_perm(0, 0, 06755, "/system/xbin/librank");
-set_perm(0, 0, 06755, "/system/xbin/procmem");
-set_perm(0, 0, 06755, "/system/xbin/procrank");
-ui_print("Update Boot image...");
+symlink("libGLESv2.so", "/system/lib/libGLESv3.so");
+symlink("logcat", "/system/bin/lolcat");
+symlink("mksh", "/system/bin/sh");
+symlink("mount.exfat", "/system/bin/fsck.exfat",
+        "/system/bin/mkfs.exfat");
+symlink("pigz", "/system/xbin/unpigz");
+symlink("toolbox", "/system/bin/cat", "/system/bin/chcon",
+        "/system/bin/chmod", "/system/bin/chown", "/system/bin/clear",
+        "/system/bin/cmp", "/system/bin/cp", "/system/bin/date",
+        "/system/bin/dd", "/system/bin/df", "/system/bin/dmesg",
+        "/system/bin/du", "/system/bin/getenforce", "/system/bin/getevent",
+        "/system/bin/getprop", "/system/bin/getsebool", "/system/bin/grep",
+        "/system/bin/hd", "/system/bin/id", "/system/bin/ifconfig",
+        "/system/bin/iftop", "/system/bin/insmod", "/system/bin/ioctl",
+        "/system/bin/ionice", "/system/bin/kill", "/system/bin/ln",
+        "/system/bin/load_policy", "/system/bin/log", "/system/bin/ls",
+        "/system/bin/lsmod", "/system/bin/lsof", "/system/bin/md5",
+        "/system/bin/mkdir", "/system/bin/mkswap", "/system/bin/mount",
+        "/system/bin/mv", "/system/bin/nandread", "/system/bin/netstat",
+        "/system/bin/newfs_msdos", "/system/bin/notify", "/system/bin/printenv",
+        "/system/bin/ps", "/system/bin/r", "/system/bin/readlink",
+        "/system/bin/renice", "/system/bin/restart", "/system/bin/restorecon",
+        "/system/bin/rm", "/system/bin/rmdir", "/system/bin/rmmod",
+        "/system/bin/route", "/system/bin/runcon", "/system/bin/schedtop",
+        "/system/bin/sendevent", "/system/bin/setconsole",
+        "/system/bin/setenforce", "/system/bin/setfattr", "/system/bin/setprop",
+        "/system/bin/setsebool", "/system/bin/sleep", "/system/bin/smd",
+        "/system/bin/start", "/system/bin/stop", "/system/bin/swapoff",
+        "/system/bin/swapon", "/system/bin/sync", "/system/bin/top",
+        "/system/bin/touch", "/system/bin/umount", "/system/bin/uptime",
+        "/system/bin/vmstat", "/system/bin/watchprops",
+        "/system/bin/wipe");
+set_metadata_recursive("/system", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
+set_metadata_recursive("/system/addon.d", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
+set_metadata_recursive("/system/bin", "uid", 0, "gid", 2000, "dmode", 0755, "fmode", 0755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
+set_metadata("/system/bin/app_process", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:zygote_exec:s0");
+set_metadata("/system/bin/clatd", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:clatd_exec:s0");
+set_metadata("/system/bin/debuggerd", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:debuggerd_exec:s0");
+set_metadata("/system/bin/dhcpcd", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:dhcp_exec:s0");
+set_metadata("/system/bin/dnsmasq", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:dnsmasq_exec:s0");
+set_metadata("/system/bin/drmserver", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:drmserver_exec:s0");
+set_metadata("/system/bin/hostapd", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:hostapd_exec:s0");
+set_metadata("/system/bin/installd", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:installd_exec:s0");
+set_metadata("/system/bin/keystore", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:keystore_exec:s0");
+set_metadata("/system/bin/mediaserver", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:mediaserver_exec:s0");
+set_metadata("/system/bin/mksh", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:shell_exec:s0");
+set_metadata("/system/bin/mtpd", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:mtp_exec:s0");
+set_metadata("/system/bin/netcfg", "uid", 0, "gid", 3003, "mode", 02750, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
+set_metadata("/system/bin/netd", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:netd_exec:s0");
+set_metadata("/system/bin/ping", "uid", 0, "gid", 0, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:ping_exec:s0");
+set_metadata("/system/bin/pppd", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:ppp_exec:s0");
+set_metadata("/system/bin/racoon", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:racoon_exec:s0");
+set_metadata("/system/bin/rild", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:rild_exec:s0");
+set_metadata("/system/bin/run-as", "uid", 0, "gid", 2000, "mode", 0750, "capabilities", 0xc0, "selabel", "u:object_r:runas_exec:s0");
+set_metadata("/system/bin/sdcard", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:sdcardd_exec:s0");
+set_metadata("/system/bin/servicemanager", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:servicemanager_exec:s0");
+set_metadata("/system/bin/surfaceflinger", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:surfaceflinger_exec:s0");
+set_metadata("/system/bin/uncrypt", "uid", 0, "gid", 0, "mode", 0750, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
+set_metadata("/system/bin/vold", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:vold_exec:s0");
+set_metadata("/system/bin/wpa_supplicant", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:wpa_exec:s0");
+set_metadata_recursive("/system/etc/dhcpcd", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644, "capabilities", 0x0, "selabel", "u:object_r:dhcp_system_file:s0");
+set_metadata("/system/etc/dhcpcd/dhcpcd-run-hooks", "uid", 1014, "gid", 2000, "mode", 0550, "capabilities", 0x0, "selabel", "u:object_r:dhcp_system_file:s0");
+set_metadata_recursive("/system/etc/init.d", "uid", 0, "gid", 2000, "dmode", 0755, "fmode", 0755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
+set_metadata("/system/etc/init.d", "uid", 0, "gid", 0, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
+set_metadata("/system/etc/install-cm-recovery.sh", "uid", 0, "gid", 0, "mode", 0544, "capabilities", 0x0);
+set_metadata_recursive("/system/etc/ppp", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0555, "capabilities", 0x0, "selabel", "u:object_r:ppp_system_file:s0");
+set_metadata("/system/recovery-from-boot.p", "uid", 0, "gid", 0, "mode", 0644, "capabilities", 0x0);
+set_metadata_recursive("/system/vendor", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644, "capabilities", 0x0, "selabel", "u:object_r:firmware_camera:s0");
+set_metadata("/system/vendor", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
+set_metadata_recursive("/system/vendor/etc", "uid", 0, "gid", 2000, "dmode", 0755, "fmode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
+set_metadata("/system/vendor/etc/audio_effects.conf", "uid", 0, "gid", 0, "mode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
+set_metadata("/system/vendor/firmware", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:firmware_camera:s0");
+set_metadata("/system/vendor/firmware/mfc_fw.bin", "uid", 0, "gid", 0, "mode", 0644, "capabilities", 0x0, "selabel", "u:object_r:firmware_mfc:s0");
+set_metadata_recursive("/system/vendor/lib", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
+set_metadata("/system/vendor/lib", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
+set_metadata_recursive("/system/vendor/lib/drm", "uid", 0, "gid", 2000, "dmode", 0755, "fmode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
+set_metadata("/system/vendor/lib/drm/libdrmwvmplugin.so", "uid", 0, "gid", 0, "mode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
+set_metadata_recursive("/system/vendor/lib/mediadrm", "uid", 0, "gid", 2000, "dmode", 0755, "fmode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
+set_metadata("/system/vendor/lib/mediadrm/libwvdrmengine.so", "uid", 0, "gid", 0, "mode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
+set_metadata_recursive("/system/xbin", "uid", 0, "gid", 2000, "dmode", 0755, "fmode", 0755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
+set_metadata("/system/xbin/librank", "uid", 0, "gid", 0, "mode", 06755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
+set_metadata("/system/xbin/procmem", "uid", 0, "gid", 0, "mode", 06755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
+set_metadata("/system/xbin/procrank", "uid", 0, "gid", 0, "mode", 06755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
+set_metadata("/system/xbin/su", "uid", 0, "gid", 0, "mode", 06755, "capabilities", 0x0, "selabel", "u:object_r:su_exec:s0");
 show_progress(0.200000, 0);
+delete("/system/bin/otasigcheck.sh");
 show_progress(0.200000, 10);
+package_extract_file("system/bin/backuptool.sh", "/tmp/backuptool.sh");
+package_extract_file("system/bin/backuptool.functions", "/tmp/backuptool.functions");
+set_metadata("/tmp/backuptool.sh", "uid", 0, "gid", 0, "mode", 0755);
+set_metadata("/tmp/backuptool.functions", "uid", 0, "gid", 0, "mode", 0644);
+run_program("/tmp/backuptool.sh", "restore");
+delete("/system/bin/backuptool.sh");
+delete("/system/bin/backuptool.functions");
+show_progress(0.200000, 10);
+package_extract_file("boot.img", "/dev/block/mmcblk0p5");
 show_progress(0.100000, 0);
-package_extract_dir("data", "/data");
-package_extract_file("META-INF/com/miui/relink", "/tmp/relink");
-set_perm(0, 0, 0555, "/tmp/relink");
-run_program("/tmp/relink");
-delete("/tmp/relink");
-set_perm_recursive(1000, 1000, 0755, 0644, "/data/miui");
-set_metadata("/system/bin/debuggerd", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
-set_metadata("/system/bin/debuggerd_vendor", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:debuggerd_exec:s0");
-set_metadata("/system/xbin/su", "uid", 0, "gid", 2000, "mode", 06755, "capabilities", 0x0, "selabel", "u:object_r:su_exec:s0");
-delete_recursive("/data/miui/preinstall_apps");
-delete_recursive("/data/miui/cust/preinstall_apps");
-unmount("/data");
 unmount("/system");

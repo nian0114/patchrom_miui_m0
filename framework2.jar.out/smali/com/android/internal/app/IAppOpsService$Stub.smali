@@ -28,6 +28,8 @@
 
 .field static final TRANSACTION_checkOperation:I = 0x1
 
+.field static final TRANSACTION_checkOperationInternal:I = 0xe
+
 .field static final TRANSACTION_checkPackage:I = 0x8
 
 .field static final TRANSACTION_finishOperation:I = 0x4
@@ -36,19 +38,15 @@
 
 .field static final TRANSACTION_getPackagesForOps:I = 0x9
 
-.field static final TRANSACTION_getPrivacyGuardSettingForPackage:I = 0xe
-
 .field static final TRANSACTION_getToken:I = 0x7
 
 .field static final TRANSACTION_noteOperation:I = 0x2
 
+.field static final TRANSACTION_registerCallback:I = 0xd
+
 .field static final TRANSACTION_resetAllModes:I = 0xc
 
-.field static final TRANSACTION_resetCounters:I = 0xd
-
 .field static final TRANSACTION_setMode:I = 0xb
-
-.field static final TRANSACTION_setPrivacyGuardSettingForPackage:I = 0xf
 
 .field static final TRANSACTION_startOperation:I = 0x3
 
@@ -120,7 +118,7 @@
 .end method
 
 .method public onTransact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
-    .locals 9
+    .locals 8
     .param p1, "code"    # I
     .param p2, "data"    # Landroid/os/Parcel;
     .param p3, "reply"    # Landroid/os/Parcel;
@@ -132,30 +130,28 @@
     .end annotation
 
     .prologue
-    const/4 v6, 0x0
-
-    const/4 v7, 0x1
+    const/4 v6, 0x1
 
     sparse-switch p1, :sswitch_data_0
 
     invoke-super {p0, p1, p2, p3, p4}, Landroid/os/Binder;->onTransact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    move-result v7
+    move-result v6
 
     :goto_0
-    return v7
+    return v6
 
     :sswitch_0
-    const-string v6, "com.android.internal.app.IAppOpsService"
+    const-string v7, "com.android.internal.app.IAppOpsService"
 
-    invoke-virtual {p3, v6}, Landroid/os/Parcel;->writeString(Ljava/lang/String;)V
+    invoke-virtual {p3, v7}, Landroid/os/Parcel;->writeString(Ljava/lang/String;)V
 
     goto :goto_0
 
     :sswitch_1
-    const-string v6, "com.android.internal.app.IAppOpsService"
+    const-string v7, "com.android.internal.app.IAppOpsService"
 
-    invoke-virtual {p2, v6}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
+    invoke-virtual {p2, v7}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
 
@@ -188,9 +184,9 @@
     .end local v2    # "_arg2":Ljava/lang/String;
     .end local v4    # "_result":I
     :sswitch_2
-    const-string v6, "com.android.internal.app.IAppOpsService"
+    const-string v7, "com.android.internal.app.IAppOpsService"
 
-    invoke-virtual {p2, v6}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
+    invoke-virtual {p2, v7}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
 
@@ -223,9 +219,9 @@
     .end local v2    # "_arg2":Ljava/lang/String;
     .end local v4    # "_result":I
     :sswitch_3
-    const-string v6, "com.android.internal.app.IAppOpsService"
+    const-string v7, "com.android.internal.app.IAppOpsService"
 
-    invoke-virtual {p2, v6}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
+    invoke-virtual {p2, v7}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     invoke-virtual {p2}, Landroid/os/Parcel;->readStrongBinder()Landroid/os/IBinder;
 
@@ -264,9 +260,9 @@
     .end local v3    # "_arg3":Ljava/lang/String;
     .end local v4    # "_result":I
     :sswitch_4
-    const-string v6, "com.android.internal.app.IAppOpsService"
+    const-string v7, "com.android.internal.app.IAppOpsService"
 
-    invoke-virtual {p2, v6}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
+    invoke-virtual {p2, v7}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     invoke-virtual {p2}, Landroid/os/Parcel;->readStrongBinder()Landroid/os/IBinder;
 
@@ -299,9 +295,9 @@
     .end local v2    # "_arg2":I
     .end local v3    # "_arg3":Ljava/lang/String;
     :sswitch_5
-    const-string v6, "com.android.internal.app.IAppOpsService"
+    const-string v7, "com.android.internal.app.IAppOpsService"
 
-    invoke-virtual {p2, v6}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
+    invoke-virtual {p2, v7}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
 
@@ -315,9 +311,9 @@
     .local v1, "_arg1":Ljava/lang/String;
     invoke-virtual {p2}, Landroid/os/Parcel;->readStrongBinder()Landroid/os/IBinder;
 
-    move-result-object v6
+    move-result-object v7
 
-    invoke-static {v6}, Lcom/android/internal/app/IAppOpsCallback$Stub;->asInterface(Landroid/os/IBinder;)Lcom/android/internal/app/IAppOpsCallback;
+    invoke-static {v7}, Lcom/android/internal/app/IAppOpsCallback$Stub;->asInterface(Landroid/os/IBinder;)Lcom/android/internal/app/IAppOpsCallback;
 
     move-result-object v2
 
@@ -332,15 +328,15 @@
     .end local v1    # "_arg1":Ljava/lang/String;
     .end local v2    # "_arg2":Lcom/android/internal/app/IAppOpsCallback;
     :sswitch_6
-    const-string v6, "com.android.internal.app.IAppOpsService"
+    const-string v7, "com.android.internal.app.IAppOpsService"
 
-    invoke-virtual {p2, v6}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
+    invoke-virtual {p2, v7}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     invoke-virtual {p2}, Landroid/os/Parcel;->readStrongBinder()Landroid/os/IBinder;
 
-    move-result-object v6
+    move-result-object v7
 
-    invoke-static {v6}, Lcom/android/internal/app/IAppOpsCallback$Stub;->asInterface(Landroid/os/IBinder;)Lcom/android/internal/app/IAppOpsCallback;
+    invoke-static {v7}, Lcom/android/internal/app/IAppOpsCallback$Stub;->asInterface(Landroid/os/IBinder;)Lcom/android/internal/app/IAppOpsCallback;
 
     move-result-object v0
 
@@ -353,9 +349,9 @@
 
     .end local v0    # "_arg0":Lcom/android/internal/app/IAppOpsCallback;
     :sswitch_7
-    const-string v6, "com.android.internal.app.IAppOpsService"
+    const-string v7, "com.android.internal.app.IAppOpsService"
 
-    invoke-virtual {p2, v6}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
+    invoke-virtual {p2, v7}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     invoke-virtual {p2}, Landroid/os/Parcel;->readStrongBinder()Landroid/os/IBinder;
 
@@ -376,9 +372,9 @@
     .end local v0    # "_arg0":Landroid/os/IBinder;
     .end local v4    # "_result":Landroid/os/IBinder;
     :sswitch_8
-    const-string v6, "com.android.internal.app.IAppOpsService"
+    const-string v7, "com.android.internal.app.IAppOpsService"
 
-    invoke-virtual {p2, v6}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
+    invoke-virtual {p2, v7}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
 
@@ -405,9 +401,9 @@
     .end local v1    # "_arg1":Ljava/lang/String;
     .end local v4    # "_result":I
     :sswitch_9
-    const-string v6, "com.android.internal.app.IAppOpsService"
+    const-string v7, "com.android.internal.app.IAppOpsService"
 
-    invoke-virtual {p2, v6}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
+    invoke-virtual {p2, v7}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     invoke-virtual {p2}, Landroid/os/Parcel;->createIntArray()[I
 
@@ -428,9 +424,9 @@
     .end local v0    # "_arg0":[I
     .end local v5    # "_result":Ljava/util/List;, "Ljava/util/List<Landroid/app/AppOpsManager$PackageOps;>;"
     :sswitch_a
-    const-string v6, "com.android.internal.app.IAppOpsService"
+    const-string v7, "com.android.internal.app.IAppOpsService"
 
-    invoke-virtual {p2, v6}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
+    invoke-virtual {p2, v7}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
 
@@ -463,9 +459,9 @@
     .end local v2    # "_arg2":[I
     .end local v5    # "_result":Ljava/util/List;, "Ljava/util/List<Landroid/app/AppOpsManager$PackageOps;>;"
     :sswitch_b
-    const-string v6, "com.android.internal.app.IAppOpsService"
+    const-string v7, "com.android.internal.app.IAppOpsService"
 
-    invoke-virtual {p2, v6}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
+    invoke-virtual {p2, v7}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
 
@@ -498,9 +494,9 @@
     .end local v2    # "_arg2":Ljava/lang/String;
     .end local v3    # "_arg3":I
     :sswitch_c
-    const-string v6, "com.android.internal.app.IAppOpsService"
+    const-string v7, "com.android.internal.app.IAppOpsService"
 
-    invoke-virtual {p2, v6}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
+    invoke-virtual {p2, v7}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     invoke-virtual {p0}, Lcom/android/internal/app/IAppOpsService$Stub;->resetAllModes()V
 
@@ -509,97 +505,15 @@
     goto/16 :goto_0
 
     :sswitch_d
-    const-string v6, "com.android.internal.app.IAppOpsService"
+    const-string v7, "com.android.internal.app.IAppOpsService"
 
-    invoke-virtual {p2, v6}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
-
-    #invoke-virtual {p0}, Lcom/android/internal/app/IAppOpsService$Stub;->resetCounters()V
-
-    invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
-
-    goto/16 :goto_0
-
-    :sswitch_e
-    const-string v8, "com.android.internal.app.IAppOpsService"
-
-    invoke-virtual {p2, v8}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
-
-    invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
-
-    move-result v0
-
-    .restart local v0    # "_arg0":I
-    invoke-virtual {p2}, Landroid/os/Parcel;->readString()Ljava/lang/String;
-
-    move-result-object v1
-
-    .local v1, "_arg1":Ljava/lang/String;
-    #invoke-virtual {p0, v0, v1}, Lcom/android/internal/app/IAppOpsService$Stub;->getPrivacyGuardSettingForPackage(ILjava/lang/String;)Z
-
-    #move-result v4
-    const/4 v4, 0x1
-    .local v4, "_result":Z
-    invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
-
-    if-eqz v4, :cond_0
-
-    move v6, v7
-
-    :cond_0
-    invoke-virtual {p3, v6}, Landroid/os/Parcel;->writeInt(I)V
-
-    goto/16 :goto_0
-
-    .end local v0    # "_arg0":I
-    .end local v1    # "_arg1":Ljava/lang/String;
-    .end local v4    # "_result":Z
-    :sswitch_f
-    const-string v8, "com.android.internal.app.IAppOpsService"
-
-    invoke-virtual {p2, v8}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
-
-    invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
-
-    move-result v0
-
-    .restart local v0    # "_arg0":I
-    invoke-virtual {p2}, Landroid/os/Parcel;->readString()Ljava/lang/String;
-
-    move-result-object v1
-
-    .restart local v1    # "_arg1":Ljava/lang/String;
-    invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
-
-    move-result v8
-
-    if-eqz v8, :cond_1
-
-    move v2, v7
-
-    .local v2, "_arg2":Z
-    :goto_1
-    invoke-virtual {p0, v0, v1, v2}, Lcom/android/internal/app/IAppOpsService$Stub;->setPrivacyGuardSettingForPackage(ILjava/lang/String;Z)V
-
-    invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
-
-    goto/16 :goto_0
-
-    .end local v2    # "_arg2":Z
-    :cond_1
-    move v2, v6
-
-    goto :goto_1
-
-    :sswitch_10
-    const-string v6, "com.android.internal.app.IAppOpsService"
-
-    invoke-virtual {p2, v6}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
+    invoke-virtual {p2, v7}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     invoke-virtual {p2}, Landroid/os/Parcel;->readStrongBinder()Landroid/os/IBinder;
 
-    move-result-object v6
+    move-result-object v7
 
-    invoke-static {v6}, Lcom/android/internal/app/IOpsCallback$Stub;->asInterface(Landroid/os/IBinder;)Lcom/android/internal/app/IOpsCallback;
+    invoke-static {v7}, Lcom/android/internal/app/IOpsCallback$Stub;->asInterface(Landroid/os/IBinder;)Lcom/android/internal/app/IOpsCallback;
 
     move-result-object v0
 
@@ -617,10 +531,10 @@
 
     .end local v0    # "_arg0":Lcom/android/internal/app/IOpsCallback;
     .end local v4    # "_result":I
-    :sswitch_11
-    const-string v6, "com.android.internal.app.IAppOpsService"
+    :sswitch_e
+    const-string v7, "com.android.internal.app.IAppOpsService"
 
-    invoke-virtual {p2, v6}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
+    invoke-virtual {p2, v7}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
 
@@ -666,9 +580,6 @@
         0xc -> :sswitch_c
         0xd -> :sswitch_d
         0xe -> :sswitch_e
-        0xf -> :sswitch_f
-        0x10 -> :sswitch_10
-        0x11 -> :sswitch_11
         0x5f4e5446 -> :sswitch_0
     .end sparse-switch
 .end method

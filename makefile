@@ -9,19 +9,18 @@ local-zip-file     := stockrom.zip
 local-out-zip-file := MIUI_i9300.zip
 
 # All apps from original ZIP, but has smali files chanded
-local-modified-apps := 
+local-modified-apps :=  
 
-local-modified-priv-apps :=
+local-modified-priv-apps := 
 
 local-modified-jars :=
 
 # All apks from MIUI
 local-miui-removed-apps := 
 
-local-miui-removed-priv-apps := 
+local-miui-removed-priv-apps :=
 
-local-miui-modified-apps := MiuiFramework MiuiHome TeleService Settings SecurityCenter DeskClock Updater  AntiSpam  ApplicationsProvider  AuthManager  Backup BarcodeScanner  Browser  BugReport  Calculator  Calendar  CalendarProvider  CloudService  Contacts  ContactsProvider DocumentsUI  DownloadProvider  DownloadProviderUi  Email  FileExplorer  GuardProvider  InCallUI  LiveWallpapersPicker  MediaProvider  MiAssistant  MiLinkService   MiuiCompass  MiuiGallery  MiuiKeyguard  MiuiSystemUI  MiuiVideo  MiWallpaper  Mms  NetworkAssistant2  Notes  PackageInstaller  PaymentService  Provision  QuickSearchBox  SettingsProvider  SoundRecorder  TelephonyProvider  ThemeManager  Weather  WeatherProvider  XiaomiAccount  XiaomiServiceFramework  YellowPage
-
+local-miui-modified-apps := Music miuisystem SecurityCenter DeskClock Settings MiuiHome MiuiSystemUI Updater TeleService BarcodeScanner DownloadProvider
 PORT_PRODUCT := nian_i9300
 
 # Config density for co-developers to use the aaps with HDPI or XHDPI resource,
@@ -53,13 +52,18 @@ local-pre-zip-misc:
 	sed -i 's/ro.sf.lcd_density/persist.xsdensity/g' $(ZIP_DIR)/system/lib/libsurfaceflinger.so
 	
 	@echo Update boot.img
-	cp other/boot.img $(ZIP_DIR)/boot.img
+	cp -rf other/boot.img $(ZIP_DIR)/boot.img
 
 	cp -rf other/system $(ZIP_DIR)/
+
+	mv $(ZIP_DIR)/system/app/QuickSearchBox.apk $(ZIP_DIR)/system/priv-app/QuickSearchBox.apk
+
 	@echo goodbye! miui prebuilt binaries!
 	cp -rf stockrom/system/bin/app_process $(ZIP_DIR)/system/bin/app_process
 	rm -rf $(ZIP_DIR)/system/bin/debuggerd_vendor
 	cp -rf stockrom/system/bin/debuggerd $(ZIP_DIR)/system/bin/debuggerd
 	rm -rf $(ZIP_DIR)/system/bin/dexopt_vendor
 	cp -rf stockrom/system/bin/dexopt $(ZIP_DIR)/system/bin/dexopt
+	echo "mijl.changelog.ftpPath=http://www.heavenke.com/miui/nian/m0/" >> $(ZIP_DIR)/system/build.prop 
+
 

@@ -1,6 +1,6 @@
 Signature-Version: 1.0
 Created-By: 1.0 (Android SignApk)
-SHA1-Digest-Manifest: cFjMQPTLvkY0WGH4qzvCLbLnShE=
+SHA1-Digest-Manifest: yV7IIPCGnGVlXenDYveb0swvlz8=
 
 Name: res/drawable-xxhdpi/stat_notify_sdcard.png
 SHA1-Digest-Manifest: K44U0D8cIfIv8bIWglaGU7J92F0=
@@ -3058,7 +3058,7 @@ Name: res/drawable-xhdpi/stat_sys_battery_0.png
 SHA1-Digest-Manifest: PeTEKamRQShta9hR7dppK5M3T9I=
 
 Name: AndroidManifest.xml
-SHA1-Digest-Manifest: ODfH8Ros+XmJmvc6NGVyRw3eAsg=
+SHA1-Digest-Manifest: 0PBNLHdiQm9P8oKdKoPx/nicYZE=
 
 Name: res/drawable-xhdpi/btn_cab_done_pressed_holo_light.9.png
 SHA1-Digest-Manifest: 3Iiit4kt1Sb3MHLe0z8/UjpplGM=
@@ -8409,7 +8409,7 @@ Name: res/drawable/settings_header.xml
 SHA1-Digest-Manifest: ksp/6+N3BWnJ0qGiFYElbxevqNk=
 
 Name: resources.arsc
-SHA1-Digest-Manifest: 56PDpoEQywxg9rGvqyC23atgSz4=
+SHA1-Digest-Manifest: ag0ReeAyxyrhhmhJlzNjDCIjx7g=
 
 Name: res/drawable-xhdpi/btn_radio_off_pressed_holo_light.png
 SHA1-Digest-Manifest: DzHu4UKhY4DXOEgNIXy742SaycE=

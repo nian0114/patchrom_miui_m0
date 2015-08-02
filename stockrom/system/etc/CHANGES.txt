@@ -1,0 +1,387 @@
+===================================
+Since Sun May 17 17:25:26 UTC 2015
+===================================
+
+   * packages/apps/Browser
+13dd5e1 browser: fix most visited page
+
+   * packages/apps/Contacts
+bdec220 Prevent potential crash when exporting contact to sim card
+
+   * packages/apps/ContactsCommon
+c7beaec Only query the msim adn provider if the device is multi sim
+
+   * packages/apps/Mms
+d6e357b Mms: Fix selection-list retention and non-contact omission in SelectRecipientsList
+
+   * packages/apps/Settings
+bfe61c9 Settings: persist backlight brightness setting
+25ea6f2 Settings: fix button back light restore logic
+
+   * vendor/cm
+ce53ac4 Split Smartfren MMS out
+4ddc345 Update Smartfren APN protocol to IPV4V6
+871c527 Added several APNs, updated a couple carrier names
+16570ec APNs: Separate Simyo ES' entry (default and mms)
+d27f170 APNs: moar MVNO's
+e4ac214 apns: Added APN configuration for Suop MVNO (Spain)
+8a3d839 APNs: 716: added Claro, Entel; 732: Fixed COMCEL
+43680f2 APNs: Add MVNO HoT Austria Internet and MMS APN configuration
+
+===================================
+Since Sun May 10 17:45:21 UTC 2015
+===================================
+
+   * external/whispersystems/WhisperPush
+b2511ce Automatic translation import
+
+   * frameworks/base
+4c766f5 Automatic translation import
+
+   * packages/apps/Apollo
+82be12a Automatic translation import
+
+   * packages/apps/BluetoothExt
+549e9f2 Automatic translation import
+
+   * packages/apps/Browser
+fa558a0 Automatic translation import
+
+   * packages/apps/CMAccount
+717b224 Automatic translation import
+
+   * packages/apps/CMFileManager
+70661a7 Automatic translation import
+
+   * packages/apps/CMUpdater
+87124a9 Automatic translation import
+
+   * packages/apps/CMWallpapers
+58a909b Automatic translation import
+
+   * packages/apps/Calculator
+79f5506 Split floating calc display text color to its own value.
+c0e51ed Automatic translation import
+
+   * packages/apps/Calendar
+5fbb26b Automatic translation import
+
+   * packages/apps/Camera2
+b378956 Camera2: Add LOCAL_CERTIFICATE := platform
+
+   * packages/apps/Contacts
+b9abdb9 Automatic translation import
+
+   * packages/apps/ContactsCommon
+714461e Automatic translation import
+
+   * packages/apps/DSPManager
+d09c564 Automatic translation import
+
+   * packages/apps/DeskClock
+ce1cf67 Automatic translation import
+
+   * packages/apps/Dialer
+4fef6c9 Dialer: remove contact importing from Dialer
+7d692cf Automatic translation import
+
+   * packages/apps/Email
+c95f21e Automatic translation import
+
+   * packages/apps/Gallery2
+d256eda Automatic translation import
+
+   * packages/apps/LockClock
+5052ab8 Automatic translation import
+
+   * packages/apps/Mms
+e860cd5 Mms: apply input mode type to ComposeMessage activity
+1c8c571 Automatic translation import
+
+   * packages/apps/Settings
+635da6e Automatic translation import
+
+   * packages/apps/SoundRecorder
+9836aa0 Automatic translation import
+
+   * packages/apps/ThemeChooser
+bdba407 Automatic translation import
+
+   * packages/apps/Torch
+67b5ed9 Automatic translation import
+
+   * packages/inputmethods/LatinIME
+8054d7e Automatic translation import
+
+   * packages/services/Telephony
+3bfdbcf Automatic translation import
+
+   * packages/wallpapers/PhaseBeam
+edb9da1 Automatic translation import
+
+   * packages/wallpapers/PhotoPhase
+1b8be4e Automatic translation import
+
+   * vendor/cm
+f975ad0 Add authentication parameters to MVNO NL APN configuration
+39359be Added APN for Costa Rica ICE Kolbi
+1f4cb33 Updated Telekom RO APN to reflect their recent name change
+22d243d Removed obsolete internet APN for Indosat
+
+===================================
+Since Sun May  3 17:43:30 UTC 2015
+===================================
+
+   * external/libpng
+abd737d Backport of fix for CVE-2015-0973 to libpng 1.2.
+
+   * packages/apps/Browser
+68230fa browser: Fix build
+d6cb94d Forbid javascript- and file-scheme intents
+4b7fd66 Revert "browser: allow to load browser internal assets"
+
+   * vendor/cm
+b217427 Fix typo and build
+bc7e1a7 Fixed typo in APN config for Nicaraguan networks.
+a7fe183 apns-conf.xml: (DK) merge BiBob and Telenor APNs. remove mvno values.
+0a6ce7b Added Eagle Mobile MMS apn configuration.
+
+===================================
+Since Sun Apr 26 19:39:27 UTC 2015
+===================================
+
+   * external/koush/Superuser
+a04c654 Automatic translation import
+
+   * bionic
+a989f04 bionic: Provide both mmap64 and K-compatible mmap
+87cfbd3 Add mmap64()
+
+   * bootable/recovery-cm
+720908e recovery: fix mismerge in block device memory mapping
+
+   * frameworks/base
+290a698 Automatic translation import
+
+   * packages/apps/Apollo
+22a1c04 Automatic translation import
+
+   * packages/apps/Browser
+405458c Automatic translation import
+
+   * packages/apps/CMAccount
+ccfe3cf Automatic translation import
+
+   * packages/apps/Contacts
+d11712c Automatic translation import
+
+   * packages/apps/ContactsCommon
+71ca912 Automatic translation import
+
+   * packages/apps/DeskClock
+d38ac8d Automatic translation import
+
+   * packages/apps/Gallery2
+500d82d Automatic translation import
+
+   * packages/apps/LockClock
+4443e1f Automatic translation import
+
+   * packages/apps/Mms
+1518b62 Automatic translation import
+
+   * packages/apps/Settings
+15efb5b Automatic translation import
+13ec45e Settings : Disable javascript for cm license
+74b891c Settings : Fix CMLicenseActivity
+f7f8191 Revert "Settings: use correct default value for backlight brightness"
+
+   * packages/apps/Stk
+a861c43 Automatic translation import
+
+   * packages/providers/DownloadProvider
+4ad9ea3 Automatic translation import
+
+   * system/core
+e46f4b4 libsparse: Use BIONIC implementation of mmap64()
+
+   * vendor/cm
+e4a1ee6 Vendor: Update Privacy policy URL
+
+===================================
+Since Sun Apr 12 07:51:33 UTC 2015
+===================================
+
+   * external/koush/Superuser
+c0506e2 Automatic translation import
+
+   * external/stagefright-plugins
+db2951d mediatek: Always resample audio streams
+
+   * external/whispersystems/WhisperPush
+9237a31 Automatic translation import
+
+   * external/wpa_supplicant_8
+b9922ea P2P: Validate SSID element length before copying it
+
+   * external/wpa_supplicant_8_ti
+4ad3e29 P2P: Validate SSID element length before copying it
+
+   * frameworks/av
+289d8a8 OMXNodeInstance: Don't perform buffer alignment on mediatek hardware
+
+   * frameworks/base
+c925b69 Automatic translation import
+01f7e27 Automatic translation import
+3a0751a Fix set pattern screen after rotating the device 1/2
+
+   * kernel/samsung/smdk4412
+e2f984e Add a new device: sc02c
+40eeddf mach-u1.c: Fix a compile bug
+
+   * packages/apps/Apollo
+fedab94 Automatic translation import
+1039bd0 Automatic translation import
+
+   * packages/apps/Bluetooth
+13926d1 Automatic translation import
+9f6f707 Automatic translation import
+
+   * packages/apps/BluetoothExt
+f32e468 Automatic translation import
+
+   * packages/apps/Browser
+a9ba102 Automatic translation import
+
+   * packages/apps/CMAccount
+c1b568f Automatic translation import
+a0ece45 Automatic translation import
+
+   * packages/apps/CMBugReport
+8612fce Automatic translation import
+
+   * packages/apps/CMFileManager
+29dda15 Automatic translation import
+
+   * packages/apps/CMHome
+ddd400c Automatic translation import
+
+   * packages/apps/CMUpdater
+308924f Automatic translation import
+
+   * packages/apps/CMWallpapers
+8ece6e7 Automatic translation import
+
+   * packages/apps/Calculator
+629eda2 Automatic translation import
+
+   * packages/apps/Calendar
+84c1901 Automatic translation import
+
+   * packages/apps/Camera2
+dae0620 Automatic translation import
+
+   * packages/apps/CellBroadcastReceiver
+d02ee61 CellBroadcastReceiver : Show alerts in FIFO order
+8ef4a3b Automatic translation import
+
+   * packages/apps/Contacts
+c42970d Automatic translation import
+0e6ac32 Automatic translation import
+9171b81 Improve contact copy string
+
+   * packages/apps/ContactsCommon
+af02d89 Automatic translation import
+61cb499 Automatic translation import
+
+   * packages/apps/DSPManager
+993e8bf Automatic translation import
+
+   * packages/apps/DeskClock
+69f5345 Automatic translation import
+
+   * packages/apps/Dialer
+822700b Automatic translation import
+176b6ab Split out textColor to its own separate value.
+
+   * packages/apps/Email
+d51d39f Automatic translation import
+1eec364 Automatic translation import
+
+   * packages/apps/Gallery2
+0824f2a Automatic translation import
+
+   * packages/apps/InCallUI
+740ea73 Automatic translation import
+
+   * packages/apps/LockClock
+26587ef Automatic translation import
+
+   * packages/apps/Mms
+0f6f460 Automatic translation import
+ef58c58 Automatic translation import
+5274131 Mms: fix quick popup unlock screen state management
+
+   * packages/apps/Settings
+5caca43 Automatic translation import
+8815ce0 Settings: use correct default value for backlight brightness
+257e1f9 Automatic translation import
+37c121d Fix set pattern screen after rotating the device 2/2
+b8edaf5 Expose values for notification icon in NotificationStation.
+
+   * packages/apps/SoundRecorder
+ff912d5 Automatic translation import
+
+   * packages/apps/Stk
+f936f91 Automatic translation import
+
+   * packages/apps/ThemeChooser
+85ed98b Automatic translation import
+
+   * packages/apps/Torch
+cb9cf5d Automatic translation import
+
+   * packages/apps/Trebuchet
+850bc41 Automatic translation import
+
+   * packages/apps/UnifiedEmail
+2100a14 Automatic translation import
+
+   * packages/apps/VoicePlus
+2563bca Automatic translation import
+
+   * packages/inputmethods/LatinIME
+263e57f Automatic translation import
+
+   * packages/providers/ContactsProvider
+4a1064e Automatic translation import
+
+   * packages/providers/DownloadProvider
+754b841 Automatic translation import
+
+   * packages/providers/ThemesProvider
+3559002 Automatic translation import
+
+   * packages/providers/UserDictionaryProvider
+1789604 Automatic translation import
+
+   * packages/services/Telephony
+5febacb Automatic translation import
+9b38b0c Automatic translation import
+
+   * packages/wallpapers/Galaxy4
+de00845 Automatic translation import
+
+   * packages/wallpapers/PhaseBeam
+f58b89a Automatic translation import
+
+   * packages/wallpapers/PhotoPhase
+cdf9ec0 strings: Fix translation error
+326afb0 Automatic translation import
+
+   * vendor/cm
+d7aa978 Updated Free Mobile APN
+30ac837 Add hipri to ATT Phone APN
+d248399 cm: add FreedomPop APN
+711552e APNs: Remove leading whitespace for a couple mmsc
+

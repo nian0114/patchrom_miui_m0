@@ -4205,7 +4205,7 @@
 
     iget-object v2, p0, Lcom/android/server/ThemeService;->mWallpaperChangeReceiver:Landroid/content/BroadcastReceiver;
 
-    #invoke-virtual {v1, v2, v0}, Landroid/content/Context;->registerReceiver(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;
+    invoke-virtual {v1, v2, v0}, Landroid/content/Context;->registerReceiver(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;
 
     iget-object v1, p0, Lcom/android/server/ThemeService;->mContext:Landroid/content/Context;
 
@@ -4215,7 +4215,7 @@
 
     iput-object v1, p0, Lcom/android/server/ThemeService;->mPM:Landroid/content/pm/PackageManager;
 
-    #invoke-direct {p0}, Lcom/android/server/ThemeService;->processInstalledThemes()V
+    invoke-direct {p0}, Lcom/android/server/ThemeService;->processInstalledThemes()V
 
     return-void
 .end method

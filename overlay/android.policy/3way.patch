@@ -1,0 +1,96 @@
+From 28cc6a1b5ece78c6b7ed928dd744905038b4858b Mon Sep 17 00:00:00 2001
+From: nian0114 <268078545@qq.com>
+Date: Tue, 2 Jun 2015 22:51:38 +0800
+Subject: [PATCH] 3-way reboot
+
+---
+ .../internal/policy/impl/MiuiGlobalActions$1.smali | 54 ++++++++++++++++++++--
+ 1 file changed, 51 insertions(+), 3 deletions(-)
+
+--- a/android.policy/smali/com/android/internal/policy/impl/MiuiGlobalActions$1.smali
++++ b/android.policy/smali/com/android/internal/policy/impl/MiuiGlobalActions$1.smali
+@@ -36,7 +36,7 @@
+ 
+ # virtual methods
+ .method public onCommand(Ljava/lang/String;Ljava/lang/Double;Ljava/lang/String;)V
+-    .locals 2
++    .locals 3
+     .param p1, "command"    # Ljava/lang/String;
+     .param p2, "para1"    # Ljava/lang/Double;
+     .param p3, "para2"    # Ljava/lang/String;
+@@ -110,7 +110,7 @@
+     goto :goto_0
+ 
+     :cond_3
+-    const-string v0, "shutdown"
++    const-string v0, "recovery"
+ 
+     invoke-virtual {v0, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+ 
+@@ -118,6 +118,54 @@
+ 
+     if-eqz v0, :cond_4
+ 
++    iget-object v0, p0, Lcom/android/internal/policy/impl/MiuiGlobalActions$1;->this$0:Lcom/android/internal/policy/impl/MiuiGlobalActions;
++
++    # getter for: Lcom/android/internal/policy/impl/MiuiGlobalActions;->mContext:Landroid/content/Context;
++    invoke-static {v0}, Lcom/android/internal/policy/impl/MiuiGlobalActions;->access$100(Lcom/android/internal/policy/impl/MiuiGlobalActions;)Landroid/content/Context;
++
++    move-result-object v0
++
++    const-string v1, "recovery"
++
++    const/4 v2, 0x0
++
++    invoke-static {v0, v1, v2}, Lcom/android/server/power/ShutdownThread;->reboot(Landroid/content/Context;Ljava/lang/String;Z)V
++
++    goto :goto_0
++
++    :cond_4
++    const-string v0, "bootloader"
++
++    invoke-virtual {v0, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
++
++    move-result v0
++
++    if-eqz v0, :cond_5
++
++    iget-object v0, p0, Lcom/android/internal/policy/impl/MiuiGlobalActions$1;->this$0:Lcom/android/internal/policy/impl/MiuiGlobalActions;
++
++    # getter for: Lcom/android/internal/policy/impl/MiuiGlobalActions;->mContext:Landroid/content/Context;
++    invoke-static {v0}, Lcom/android/internal/policy/impl/MiuiGlobalActions;->access$100(Lcom/android/internal/policy/impl/MiuiGlobalActions;)Landroid/content/Context;
++
++    move-result-object v0
++
++    const-string v1, "bootloader"
++
++    const/4 v2, 0x0
++
++    invoke-static {v0, v1, v2}, Lcom/android/server/power/ShutdownThread;->reboot(Landroid/content/Context;Ljava/lang/String;Z)V
++
++    goto :goto_0
++
++    :cond_5
++    const-string v0, "shutdown"
++
++    invoke-virtual {v0, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
++
++    move-result v0
++
++    if-eqz v0, :cond_6
++
+     new-instance v0, Lcom/android/internal/policy/impl/MiuiGlobalActions$1$1;
+ 
+     const-string v1, "ShutdownThread"
+@@ -128,7 +176,7 @@
+ 
+     goto :goto_0
+ 
+-    :cond_4
++    :cond_6
+     const-string v0, "dismiss"
+ 
+     invoke-virtual {v0, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+-- 
+1.9.1
+

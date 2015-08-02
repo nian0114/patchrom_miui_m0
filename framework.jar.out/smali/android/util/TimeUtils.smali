@@ -888,7 +888,7 @@
     move-result-object v8
 
     .local v8, "r":Landroid/content/res/Resources;
-    const v10, 0x10f0013
+    const v10, 0x10f0012
 
     invoke-virtual {v8, v10}, Landroid/content/res/Resources;->getXml(I)Landroid/content/res/XmlResourceParser;
 
@@ -1062,7 +1062,7 @@
     move-result-object v4
 
     .local v4, "r":Landroid/content/res/Resources;
-    const v8, 0x10f0013
+    const v8, 0x10f0012
 
     invoke-virtual {v4, v8}, Landroid/content/res/Resources;->getXml(I)Landroid/content/res/XmlResourceParser;
 

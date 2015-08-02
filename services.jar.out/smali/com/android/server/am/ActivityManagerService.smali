@@ -54,8 +54,6 @@
 
 .field static final CANCEL_HEAVY_NOTIFICATION_MSG:I = 0x19
 
-.field static final CANCEL_PRIVACY_NOTIFICATION_MSG:I = 0x29
-
 .field static final CHECK_EXCESSIVE_WAKE_LOCKS_MSG:I = 0x1b
 
 .field static final CLEAR_DNS_CACHE_MSG:I = 0x1c
@@ -203,8 +201,6 @@
 .field static final PERSIST_URI_GRANTS_MSG:I = 0x26
 
 .field static final POST_HEAVY_NOTIFICATION_MSG:I = 0x18
-
-.field static final POST_PRIVACY_NOTIFICATION_MSG:I = 0x28
 
 .field static final POWER_CHECK_DELAY:I = 0xdbba0
 
@@ -3552,6 +3548,22 @@
     iget-object v5, v0, Lcom/android/server/am/ActivityManagerService;->mBackupAppName:Ljava/lang/String;
 
     invoke-virtual {v5, v6}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v5
+
+    if-eqz v5, :cond_a
+
+    move-object/from16 v0, p0
+
+    iget-object v5, v0, Lcom/android/server/am/ActivityManagerService;->mContext:Landroid/content/Context;
+
+    move-object/from16 v0, p0
+
+    iget-object v9, v0, Lcom/android/server/am/ActivityManagerService;->mBackupAppName:Ljava/lang/String;
+
+    move-object/from16 v0, v25
+
+    invoke-static {v5, v9, v0}, Lcom/android/server/am/ActivityManagerServiceInjector;->isStartWithBackupRestriction(Landroid/content/Context;Ljava/lang/String;Lcom/android/server/am/ProcessRecord;)Z
 
     move-result v5
 

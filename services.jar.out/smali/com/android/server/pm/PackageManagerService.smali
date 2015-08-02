@@ -245,8 +245,6 @@
 
 .field private mAppLibInstallDir:Ljava/io/File;
 
-.field private mAppOps:Landroid/app/AppOpsManager;
-
 .field final mAsecInternalPath:Ljava/lang/String;
 
 .field private mAvailableCommonResources:Ljava/util/Map;
@@ -1133,20 +1131,6 @@
     const/4 v4, 0x1
 
     invoke-static {v3, v4}, Lcom/android/server/pm/MiuiPackageManagerService;->addMiuiSharedUids(Lcom/android/server/pm/Settings;Z)V
-
-    const-string v3, "appops"
-
-    move-object/from16 v0, p1
-
-    invoke-virtual {v0, v3}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
-
-    move-result-object v3
-
-    check-cast v3, Landroid/app/AppOpsManager;
-
-    move-object/from16 v0, p0
-
-    iput-object v3, v0, Lcom/android/server/pm/PackageManagerService;->mAppOps:Landroid/app/AppOpsManager;
 
     const-string v3, "debug.separate_processes"
 
@@ -2246,6 +2230,26 @@
     if-eqz v3, :cond_14
 
     :cond_13
+    const-string v3, "data@app@com.miui.core"
+
+    move-object/from16 v0, v27
+
+    invoke-virtual {v0, v3}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
+
+    move-result v3
+
+    if-nez v3, :cond_14
+
+    const-string v3, "data@app@com.miui.system"
+
+    move-object/from16 v0, v27
+
+    invoke-virtual {v0, v3}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
+
+    move-result v3
+
+    if-nez v3, :cond_14
+
     const-string v3, "PackageManager"
 
     new-instance v6, Ljava/lang/StringBuilder;
@@ -4384,16 +4388,6 @@
     move-result v0
 
     return v0
-.end method
-
-.method static synthetic access$900(Lcom/android/server/pm/PackageManagerService;)Landroid/app/AppOpsManager;
-    .locals 1
-    .param p0, "x0"    # Lcom/android/server/pm/PackageManagerService;
-
-    .prologue
-    iget-object v0, p0, Lcom/android/server/pm/PackageManagerService;->mAppOps:Landroid/app/AppOpsManager;
-
-    return-object v0
 .end method
 
 .method private addPackageHoldingPermissions(Ljava/util/ArrayList;Lcom/android/server/pm/PackageSetting;[Ljava/lang/String;[ZII)V
@@ -9029,42 +9023,7 @@
 
     move-result v2
 
-    goto :cond_0
-
-    const-string v2, "PackageManager"
-
-    new-instance v3, Ljava/lang/StringBuilder;
-
-    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v4, "Not removing package "
-
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v3
-
-    move-object/from16 v0, p1
-
-    invoke-virtual {v3, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v3
-
-    const-string v4, ": has active device admin"
-
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v3
-
-    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v3
-
-    invoke-static {v2, v3}, Landroid/util/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
-
-    const/4 v2, -0x2
-
-    :goto_0
-    return v2
+    if-eqz v2, :cond_0
 
     :cond_0
     const/16 v23, 0x0
@@ -9323,7 +9282,8 @@
 
     const/4 v2, 0x1
 
-    goto/16 :goto_0
+    :goto_wxl
+    return v2
 
     .end local v6    # "allUsers":[I
     .end local v7    # "perUserInstalled":[Z
@@ -9384,7 +9344,7 @@
     :cond_9
     const/4 v2, -0x1
 
-    goto/16 :goto_0
+    goto :goto_wxl
 .end method
 
 .method private deleteSystemPackageLI(Lcom/android/server/pm/PackageSetting;[I[ZILcom/android/server/pm/PackageManagerService$PackageRemovedInfo;Z)Z
@@ -16784,45 +16744,6 @@
     return-void
 .end method
 
-.method private protectAppFromDeleting(Ljava/lang/String;Landroid/content/pm/IPackageDeleteObserver;)Z
-    .locals 3
-    .param p1, "packageName"    # Ljava/lang/String;
-    .param p2, "observer"    # Landroid/content/pm/IPackageDeleteObserver;
-
-    .prologue
-    iget-object v2, p0, Lcom/android/server/pm/PackageManagerService;->mPackages:Ljava/util/HashMap;
-
-    monitor-enter v2
-
-    :try_start_0
-    iget-object v1, p0, Lcom/android/server/pm/PackageManagerService;->mPackages:Ljava/util/HashMap;
-
-    invoke-virtual {v1, p1}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
-
-    move-result-object v0
-
-    check-cast v0, Landroid/content/pm/PackageParser$Package;
-
-    .local v0, "p":Landroid/content/pm/PackageParser$Package;
-    invoke-static {v0, p2}, Lcom/android/server/pm/PackageManagerServiceInjector;->protectAppFromDeleting(Landroid/content/pm/PackageParser$Package;Ljava/lang/Object;)Z
-
-    move-result v1
-
-    monitor-exit v2
-
-    return v1
-
-    .end local v0    # "p":Landroid/content/pm/PackageParser$Package;
-    :catchall_0
-    move-exception v1
-
-    monitor-exit v2
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
-
-    throw v1
-.end method
-
 .method private readPermissionsFromXml(Ljava/io/File;)V
     .locals 23
     .param p1, "permFile"    # Ljava/io/File;
@@ -20202,6 +20123,19 @@
     .restart local p1    # "pkg":Landroid/content/pm/PackageParser$Package;
     :cond_e
     :try_start_3
+    invoke-direct/range {p0 .. p1}, Lcom/android/server/pm/PackageManagerService;->checkMiuiSdk(Landroid/content/pm/PackageParser$Package;)Z
+
+    move-result v3
+
+    if-nez v3, :cond_miui_d
+
+    const/16 p1, 0x0
+
+    monitor-exit v15
+
+    goto/16 :goto_0
+
+    :cond_miui_d
     move-object/from16 v0, p1
 
     iget-object v3, v0, Landroid/content/pm/PackageParser$Package;->mSharedUserId:Ljava/lang/String;
@@ -33295,7 +33229,7 @@
     return-void
 
     :cond_1
-    invoke-direct {p0, p1, p2}, Lcom/android/server/pm/PackageManagerService;->protectAppFromDeleting(Ljava/lang/String;Landroid/content/pm/IPackageDeleteObserver;)Z
+    invoke-static {p0, p1, p2}, Lcom/android/server/pm/MiuiPackageManagerService;->protectAppFromDeleting(Lcom/android/server/pm/PackageManagerService;Ljava/lang/String;Landroid/content/pm/IPackageDeleteObserver;)Z
 
     move-result v0
 
@@ -47232,4 +47166,42 @@
     invoke-virtual {v2, v0}, Lcom/android/server/pm/PackageManagerService$PackageHandler;->sendMessage(Landroid/os/Message;)Z
 
     return-void
+.end method
+
+.method private checkMiuiSdk(Landroid/content/pm/PackageParser$Package;)Z
+    .locals 3
+    .param p1, "pkg"    # Landroid/content/pm/PackageParser$Package;
+
+    .prologue
+    :try_start_0
+    invoke-static {p1, p0}, Lcom/android/server/pm/PackageManagerServiceInjector;->checkMiuiSdk(Landroid/content/pm/PackageParser$Package;Lcom/android/server/pm/PackageManagerService;)Z
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+
+    move-result v1
+
+    if-nez v1, :cond_0
+
+    const/4 v1, 0x0
+
+    :goto_0
+    return v1
+
+    :catch_0
+    move-exception v0
+
+    .local v0, "ex":Ljava/lang/Exception;
+    const-string v1, "PackageManager"
+
+    invoke-virtual {v0}, Ljava/lang/Exception;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-static {v1, v2}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    .end local v0    # "ex":Ljava/lang/Exception;
+    :cond_0
+    const/4 v1, 0x1
+
+    goto :goto_0
 .end method

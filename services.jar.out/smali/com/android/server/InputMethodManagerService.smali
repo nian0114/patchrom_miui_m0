@@ -2753,9 +2753,9 @@
     .param p1, "showSubtypes"    # Z
 
     .prologue
-    move-object/from16 v0, p0
+    invoke-direct/range {p0 .. p0}, Lcom/android/server/InputMethodManagerService;->getUiContext()Landroid/content/Context;
 
-    iget-object v8, v0, Lcom/android/server/InputMethodManagerService;->mContext:Landroid/content/Context;
+    move-result-object v8
 
     .local v8, "context":Landroid/content/Context;
     invoke-direct/range {p0 .. p0}, Lcom/android/server/InputMethodManagerService;->isScreenLocked()Z
@@ -3098,18 +3098,12 @@
     iput-object v0, v1, Lcom/android/server/InputMethodManagerService;->mDialogBuilder:Landroid/app/AlertDialog$Builder;
 
     invoke-virtual {v5}, Landroid/content/res/TypedArray;->recycle()V
-    move-object/from16 v0, p0
 
-    iget-object v0, v0, Lcom/android/server/InputMethodManagerService;->mContext:Landroid/content/Context;
-
-    move-object/from16 v24, v0
     const-string v22, "layout_inflater"
 
-    move-object/from16 v0, v24
+    move-object/from16 v0, v22
 
-    move-object/from16 v1, v22
-
-    invoke-virtual {v0, v1}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+    invoke-virtual {v8, v0}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
 
     move-result-object v15
 

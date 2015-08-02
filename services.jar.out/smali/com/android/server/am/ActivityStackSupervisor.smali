@@ -111,8 +111,6 @@
 
 .field private final mPm:Landroid/os/PowerManager;
 
-.field mPrivacyGuardPackageName:Ljava/lang/String;
-
 .field final mService:Lcom/android/server/am/ActivityManagerService;
 
 .field mSleepTimeout:Z
@@ -279,10 +277,6 @@
     invoke-direct {v0, v1}, Landroid/util/SparseIntArray;-><init>(I)V
 
     iput-object v0, p0, Lcom/android/server/am/ActivityStackSupervisor;->mUserStackInFront:Landroid/util/SparseIntArray;
-
-    const/4 v0, 0x0
-
-    iput-object v0, p0, Lcom/android/server/am/ActivityStackSupervisor;->mPrivacyGuardPackageName:Ljava/lang/String;
 
     iput-object p1, p0, Lcom/android/server/am/ActivityStackSupervisor;->mService:Lcom/android/server/am/ActivityManagerService;
 

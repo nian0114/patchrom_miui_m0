@@ -52,7 +52,7 @@
 
 .field static final TRANSACTION_setLong:I = 0x2
 
-.field static final TRANSACTION_setRawLockPassword:I = 0xf
+.field static final TRANSACTION_setRawLockPassword:I = 0xe
 
 .field static final TRANSACTION_setString:I = 0x3
 

@@ -2285,23 +2285,9 @@
     .restart local v155    # "serial":Lcom/android/server/SerialService;
     :cond_19
     :goto_32
-    const-string v7, "security"
-
-    new-instance v9, Lcom/miui/server/SecurityManagerService;
-
     move/from16 v0, v24
 
-    invoke-direct {v9, v5, v0}, Lcom/miui/server/SecurityManagerService;-><init>(Landroid/content/Context;Z)V
-
-    invoke-static {v7, v9}, Landroid/os/ServiceManager;->addService(Ljava/lang/String;Landroid/os/IBinder;)V
-
-    const-string v7, "MiuiInit"
-
-    new-instance v9, Lcom/miui/server/MiuiInitServer;
-
-    invoke-direct {v9, v5}, Lcom/miui/server/MiuiInitServer;-><init>(Landroid/content/Context;)V
-
-    invoke-static {v7, v9}, Landroid/os/ServiceManager;->addService(Ljava/lang/String;Landroid/os/IBinder;)V
+    invoke-static {v5, v0}, Lcom/android/server/SystemServerInjector;->addExtraServices(Landroid/content/Context;Z)V
 
     :try_start_4a
     const-string v7, "SystemServer"
@@ -2715,11 +2701,13 @@
 
     invoke-static {v7, v9}, Landroid/util/Slog;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    new-instance v164, Lcom/android/server/ThemeService;
+    #new-instance v164, Lcom/android/server/ThemeService;
 
-    move-object/from16 v0, v164
+    #move-object/from16 v0, v164
 
-    invoke-direct {v0, v5}, Lcom/android/server/ThemeService;-><init>(Landroid/content/Context;)V
+    #invoke-direct {v0, v5}, Lcom/android/server/ThemeService;-><init>(Landroid/content/Context;)V
+
+    const/16 v164, 0x0
     :try_end_5f
     .catch Ljava/lang/Throwable; {:try_start_5f .. :try_end_5f} :catch_37
 
@@ -2730,7 +2718,7 @@
 
     move-object/from16 v0, v164
 
-    invoke-static {v7, v0}, Landroid/os/ServiceManager;->addService(Ljava/lang/String;Landroid/os/IBinder;)V
+    #invoke-static {v7, v0}, Landroid/os/ServiceManager;->addService(Ljava/lang/String;Landroid/os/IBinder;)V
     :try_end_60
     .catch Ljava/lang/Throwable; {:try_start_60 .. :try_end_60} :catch_49
 

@@ -3,7 +3,6 @@ local-phone-priv-apps = $(private-phone-priv-apps)
 
 private-phone-apps := \
 BasicDreams \
-Bluetooth \
 BluetoothExt \
 CellBroadcastReceiver \
 CertInstaller \

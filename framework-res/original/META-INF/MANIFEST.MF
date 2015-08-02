@@ -3057,7 +3057,7 @@ Name: res/drawable-xhdpi/stat_sys_battery_0.png
 SHA1-Digest: ZA9xTtNTwkHsAFXgohfGpn5wha8=
 
 Name: AndroidManifest.xml
-SHA1-Digest: Xw8R5fk7t6otMfgDggyY03+9iWE=
+SHA1-Digest: 3vGMhl1WPvm9mKTInH36QQqzwzk=
 
 Name: res/drawable-xhdpi/btn_cab_done_pressed_holo_light.9.png
 SHA1-Digest: NVWxb2hr7f0Z5MGsTE4O0g/8fZQ=
@@ -8408,7 +8408,7 @@ Name: res/drawable/settings_header.xml
 SHA1-Digest: PNGDWpfWhj4J4NR+2e3nSQrgiGQ=
 
 Name: resources.arsc
-SHA1-Digest: sTiOgq2o9EZlNb61udazOC5LmG0=
+SHA1-Digest: 4ldnbu4eIHtH6wKeG3W8OYpLOr4=
 
 Name: res/drawable-xxhdpi/list_selector_background_pressed.9.png
 SHA1-Digest: +Yps7YGGyiVL+7n2rbfrEd4/bqQ=
