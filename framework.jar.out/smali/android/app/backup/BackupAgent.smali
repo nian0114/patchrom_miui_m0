@@ -1424,8 +1424,11 @@
     const/4 v15, 0x0
 
     .local v15, "basePath":Ljava/lang/String;
-    if-eqz p1, :cond_0
+    if-nez p1, :cond_miui_00
 
+    return-void
+
+    :cond_miui_00
     const-string v1, "f"
 
     move-object/from16 v0, p5
@@ -1434,7 +1437,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_2
+    if-eqz v1, :cond_1
 
     invoke-virtual/range {p0 .. p0}, Landroid/app/backup/BackupAgent;->getFilesDir()Ljava/io/File;
 
@@ -1446,7 +1449,7 @@
 
     :cond_0
     :goto_0
-    if-eqz v15, :cond_8
+    if-eqz v15, :cond_7
 
     new-instance v5, Ljava/io/File;
 
@@ -1484,7 +1487,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_8
+    if-eqz v1, :cond_7
 
     move-object/from16 v1, p0
 
@@ -1505,7 +1508,7 @@
     :goto_1
     return-void
 
-    :cond_2
+    :cond_1
     const-string v1, "db"
 
     move-object/from16 v0, p5
@@ -1514,7 +1517,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_3
+    if-eqz v1, :cond_2
 
     const-string v1, "foo"
 
@@ -1534,7 +1537,7 @@
 
     goto :goto_0
 
-    :cond_3
+    :cond_2
     const-string v1, "r"
 
     move-object/from16 v0, p5
@@ -1543,7 +1546,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_4
+    if-eqz v1, :cond_3
 
     new-instance v1, Ljava/io/File;
 
@@ -1561,7 +1564,7 @@
 
     goto :goto_0
 
-    :cond_4
+    :cond_3
     const-string v1, "sp"
 
     move-object/from16 v0, p5
@@ -1570,7 +1573,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_5
+    if-eqz v1, :cond_4
 
     const-string v1, "foo"
 
@@ -1590,7 +1593,7 @@
 
     goto/16 :goto_0
 
-    :cond_5
+    :cond_4
     const-string v1, "c"
 
     move-object/from16 v0, p5
@@ -1599,7 +1602,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_6
+    if-eqz v1, :cond_5
 
     invoke-virtual/range {p0 .. p0}, Landroid/app/backup/BackupAgent;->getCacheDir()Ljava/io/File;
 
@@ -1611,7 +1614,7 @@
 
     goto/16 :goto_0
 
-    :cond_6
+    :cond_5
     const-string v1, "ef"
 
     move-object/from16 v0, p5
@@ -1658,7 +1661,7 @@
     goto/16 :goto_0
 
     .end local v16    # "efLocation":Ljava/io/File;
-    :cond_7
+    :cond_6
     const-string v1, "BackupAgent"
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -1685,7 +1688,7 @@
 
     goto/16 :goto_0
 
-    :cond_8
+    :cond_7
     const/4 v14, 0x0
 
     move-object/from16 v6, p1
