@@ -1,0 +1,411 @@
+From 86ef0d6e5e3f1a9ca487467d00dd5304885e03a9 Mon Sep 17 00:00:00 2001
+From: nian0114 <268078545@qq.com>
+Date: Sat, 8 Aug 2015 15:22:53 +0800
+Subject: [PATCH 1/2] add wakelocker
+
+---
+ .../android/os/IPowerManager$Stub$Proxy.smali      | 689 ++++++++++++---------
+ .../smali/android/os/IPowerManager$Stub.smali      |  28 +-
+ .../smali/android/os/IPowerManager.smali           |   8 +
+ .../smali/android/os/PowerManager$WakeLock$1.smali |   6 +-
+ .../smali/android/os/PowerManager$WakeLock.smali   | 152 ++---
+ .../smali/android/os/PowerManager.smali            |  90 ++-
+ .../android/provider/Settings$Bookmarks.smali      |  82 +--
+ .../smali/android/provider/Settings$Global.smali   | 116 ++--
+ .../smali/android/provider/Settings$Secure.smali   | 504 +++++++--------
+ .../smali/android/provider/Settings$System.smali   |   6 +-
+ .../smali/android/provider/Settings.smali          |   4 +-
+ 11 files changed, 913 insertions(+), 772 deletions(-)
+
+--- a/framework/smali/android/os/IPowerManager$Stub$Proxy.smali
++++ b/framework/smali/android/os/IPowerManager$Stub$Proxy.smali
+@@ -375,6 +375,64 @@
+     throw v3
+ .end method
+ 
++.method public getSeenWakeLocks()Ljava/lang/String;
++    .locals 6
++    .annotation system Ldalvik/annotation/Throws;
++        value = {
++            Landroid/os/RemoteException;
++        }
++    .end annotation
++
++    .prologue
++    invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
++
++    move-result-object v0
++
++    .local v0, "_data":Landroid/os/Parcel;
++    invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
++
++    move-result-object v1
++
++    .local v1, "_reply":Landroid/os/Parcel;
++    :try_start_0
++    const-string v3, "android.os.IPowerManager"
++
++    invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
++
++    iget-object v3, p0, Landroid/os/IPowerManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
++
++    const/16 v4, 0x1a
++
++    const/4 v5, 0x0
++
++    invoke-interface {v3, v4, v0, v1, v5}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
++
++    invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
++
++    invoke-virtual {v1}, Landroid/os/Parcel;->readString()Ljava/lang/String;
++    :try_end_0
++    .catchall {:try_start_0 .. :try_end_0} :catchall_0
++
++    move-result-object v2
++
++    .local v2, "_result":Ljava/lang/String;
++    invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
++
++    invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
++
++    return-object v2
++
++    .end local v2    # "_result":Ljava/lang/String;
++    :catchall_0
++    move-exception v3
++
++    invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
++
++    invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
++
++    throw v3
++.end method
++
+ .method public goToSleep(JI)V
+     .locals 5
+     .param p1, "time"    # J
+--- a/framework/smali/android/os/IPowerManager$Stub.smali
++++ b/framework/smali/android/os/IPowerManager$Stub.smali
+@@ -36,6 +36,8 @@
+ 
+ .field static final TRANSACTION_getPowerProfile:I = 0x18
+ 
++.field static final TRANSACTION_getSeenWakeLocks:I = 0x1a
++
+ .field static final TRANSACTION_goToSleep:I = 0x9
+ 
+ .field static final TRANSACTION_isScreenOn:I = 0xb
+@@ -842,6 +844,25 @@
+ 
+     goto/16 :goto_0
+ 
++    .end local v6    # "_arg0":J
++    :sswitch_1a
++    const-string v0, "android.os.IPowerManager"
++
++    invoke-virtual {p2, v0}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
++
++    invoke-virtual {p0}, Landroid/os/IPowerManager$Stub;->getSeenWakeLocks()Ljava/lang/String;
++
++    move-result-object v8
++
++    .restart local v8    # "_result":Ljava/lang/String;
++    invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
++
++    invoke-virtual {p3, v8}, Landroid/os/Parcel;->writeString(Ljava/lang/String;)V
++
++    goto/16 :goto_0
++
++    nop
++
+     :sswitch_data_0
+     .sparse-switch
+         0x1 -> :sswitch_1
+@@ -869,6 +890,7 @@
+         0x17 -> :sswitch_17
+         0x18 -> :sswitch_18
+         0x19 -> :sswitch_19
++        0x1a -> :sswitch_1a
+         0x5f4e5446 -> :sswitch_0
+     .end sparse-switch
+ .end method
+--- a/framework/smali/android/os/IPowerManager.smali
++++ b/framework/smali/android/os/IPowerManager.smali
+@@ -55,6 +55,14 @@
+     .end annotation
+ .end method
+ 
++.method public abstract getSeenWakeLocks()Ljava/lang/String;
++    .annotation system Ldalvik/annotation/Throws;
++        value = {
++            Landroid/os/RemoteException;
++        }
++    .end annotation
++.end method
++
+ .method public abstract goToSleep(JI)V
+     .annotation system Ldalvik/annotation/Throws;
+         value = {
+--- a/framework/smali/android/os/PowerManager.smali
++++ b/framework/smali/android/os/PowerManager.smali
+@@ -366,6 +366,35 @@
+     goto :goto_0
+ .end method
+ 
++.method public getSeenWakeLocks()Ljava/lang/String;
++    .locals 1
++
++    .prologue
++    :try_start_0
++    iget-object v0, p0, Landroid/os/PowerManager;->mService:Landroid/os/IPowerManager;
++
++    if-eqz v0, :cond_0
++
++    iget-object v0, p0, Landroid/os/PowerManager;->mService:Landroid/os/IPowerManager;
++
++    invoke-interface {v0}, Landroid/os/IPowerManager;->getSeenWakeLocks()Ljava/lang/String;
++    :try_end_0
++    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
++
++    move-result-object v0
++
++    :goto_0
++    return-object v0
++
++    :catch_0
++    move-exception v0
++
++    :cond_0
++    const/4 v0, 0x0
++
++    goto :goto_0
++.end method
++
+ .method public goToSleep(J)V
+     .locals 2
+     .param p1, "time"    # J
+--- a/framework/smali/android/provider/Settings$System.smali
++++ b/framework/smali/android/provider/Settings$System.smali
+@@ -815,6 +815,10 @@
+     .end annotation
+ .end field
+ 
++.field public static final WAKELOCK_BLOCKING_ENABLED:Ljava/lang/String; = "wakelock_blocking_enabled"
++
++.field public static final WAKELOCK_BLOCKING_LIST:Ljava/lang/String; = "wakelock_blocking_list"
++
+ .field public static final WALLPAPER_ACTIVITY:Ljava/lang/String; = "wallpaper_activity"
+     .annotation runtime Ljava/lang/Deprecated;
+     .end annotation
+-- 
+1.9.1
+
+
+From 9d9e6b6f87de93b36bf096fd0bb9aebc0e0825ba Mon Sep 17 00:00:00 2001
+From: nian0114 <268078545@qq.com>
+Date: Sat, 8 Aug 2015 21:20:28 +0800
+Subject: [PATCH 2/2] remove sensor
+
+---
+ .../android/os/IPowerManager$Stub$Proxy.smali      | 688 ++++++++++-----------
+ .../smali/android/os/IPowerManager$Stub.smali      |  36 +-
+ .../smali/android/os/IPowerManager.smali           |   8 -
+ .../smali/android/os/PowerManager$WakeLock$1.smali |   6 +-
+ .../smali/android/os/PowerManager$WakeLock.smali   | 152 ++---
+ .../smali/android/os/PowerManager.smali            | 124 ++--
+ .../android/provider/Settings$Bookmarks.smali      |  82 +--
+ .../smali/android/provider/Settings$Global.smali   | 116 ++--
+ .../smali/android/provider/Settings$Secure.smali   | 504 +++++++--------
+ .../smali/android/provider/Settings$System.smali   |   6 +-
+ .../smali/android/provider/Settings.smali          |   4 +-
+ 11 files changed, 800 insertions(+), 926 deletions(-)
+
+--- a/framework/smali/android/os/IPowerManager$Stub$Proxy.smali
++++ b/framework/smali/android/os/IPowerManager$Stub$Proxy.smali
+@@ -401,7 +401,7 @@
+ 
+     iget-object v3, p0, Landroid/os/IPowerManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
+ 
+-    const/16 v4, 0x1a
++    const/16 v4, 0x19
+ 
+     const/4 v5, 0x0
+ 
+@@ -1596,61 +1596,6 @@
+ 
+     const/4 v4, 0x0
+ 
+-    invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
+-
+-    invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
+-    :try_end_0
+-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+-
+-    invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
+-
+-    invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
+-
+-    return-void
+-
+-    :catchall_0
+-    move-exception v2
+-
+-    invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
+-
+-    invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
+-
+-    throw v2
+-.end method
+-
+-.method public wakeUpWithProximityCheck(J)V
+-    .locals 5
+-    .param p1, "time"    # J
+-    .annotation system Ldalvik/annotation/Throws;
+-        value = {
+-            Landroid/os/RemoteException;
+-        }
+-    .end annotation
+-
+-    .prologue
+-    invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
+-
+-    move-result-object v0
+-
+-    .local v0, "_data":Landroid/os/Parcel;
+-    invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
+-
+-    move-result-object v1
+-
+-    .local v1, "_reply":Landroid/os/Parcel;
+-    :try_start_0
+-    const-string v2, "android.os.IPowerManager"
+-
+-    invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
+-
+-    invoke-virtual {v0, p1, p2}, Landroid/os/Parcel;->writeLong(J)V
+-
+-    iget-object v2, p0, Landroid/os/IPowerManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
+-
+-    const/16 v3, 0x19
+-
+-    const/4 v4, 0x0
+-
+     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
+ 
+     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
+--- a/framework/smali/android/os/IPowerManager$Stub.smali
++++ b/framework/smali/android/os/IPowerManager$Stub.smali
+@@ -36,7 +36,7 @@
+ 
+ .field static final TRANSACTION_getPowerProfile:I = 0x18
+ 
+-.field static final TRANSACTION_getSeenWakeLocks:I = 0x1a
++.field static final TRANSACTION_getSeenWakeLocks:I = 0x19
+ 
+ .field static final TRANSACTION_goToSleep:I = 0x9
+ 
+@@ -76,8 +76,6 @@
+ 
+ .field static final TRANSACTION_wakeUp:I = 0x8
+ 
+-.field static final TRANSACTION_wakeUpWithProximityCheck:I = 0x19
+-
+ 
+ # direct methods
+ .method public constructor <init>()V
+@@ -833,23 +831,6 @@
+ 
+     invoke-virtual {p2, v0}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
+ 
+-    invoke-virtual {p2}, Landroid/os/Parcel;->readLong()J
+-
+-    move-result-wide v6
+-
+-    .restart local v6    # "_arg0":J
+-    invoke-virtual {p0, v6, v7}, Landroid/os/IPowerManager$Stub;->wakeUpWithProximityCheck(J)V
+-
+-    invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
+-
+-    goto/16 :goto_0
+-
+-    .end local v6    # "_arg0":J
+-    :sswitch_1a
+-    const-string v0, "android.os.IPowerManager"
+-
+-    invoke-virtual {p2, v0}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
+-
+     invoke-virtual {p0}, Landroid/os/IPowerManager$Stub;->getSeenWakeLocks()Ljava/lang/String;
+ 
+     move-result-object v8
+@@ -861,8 +842,6 @@
+ 
+     goto/16 :goto_0
+ 
+-    nop
+-
+     :sswitch_data_0
+     .sparse-switch
+         0x1 -> :sswitch_1
+@@ -890,7 +869,6 @@
+         0x17 -> :sswitch_17
+         0x18 -> :sswitch_18
+         0x19 -> :sswitch_19
+-        0x1a -> :sswitch_1a
+         0x5f4e5446 -> :sswitch_0
+     .end sparse-switch
+ .end method
+--- a/framework/smali/android/os/IPowerManager.smali
++++ b/framework/smali/android/os/IPowerManager.smali
+@@ -214,11 +214,3 @@
+         }
+     .end annotation
+ .end method
+-
+-.method public abstract wakeUpWithProximityCheck(J)V
+-    .annotation system Ldalvik/annotation/Throws;
+-        value = {
+-            Landroid/os/RemoteException;
+-        }
+-    .end annotation
+-.end method
+--- a/framework/smali/android/os/PowerManager.smali
++++ b/framework/smali/android/os/PowerManager.smali
+@@ -744,24 +744,3 @@
+ 
+     goto :goto_0
+ .end method
+-
+-.method public wakeUpWithProximityCheck(J)V
+-    .locals 1
+-    .param p1, "time"    # J
+-
+-    .prologue
+-    :try_start_0
+-    iget-object v0, p0, Landroid/os/PowerManager;->mService:Landroid/os/IPowerManager;
+-
+-    invoke-interface {v0, p1, p2}, Landroid/os/IPowerManager;->wakeUpWithProximityCheck(J)V
+-    :try_end_0
+-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+-
+-    :goto_0
+-    return-void
+-
+-    :catch_0
+-    move-exception v0
+-
+-    goto :goto_0
+-.end method
+--- a/framework/smali/android/provider/Settings$System.smali
++++ b/framework/smali/android/provider/Settings$System.smali
+@@ -533,8 +533,6 @@
+     .end annotation
+ .end field
+ 
+-.field public static final PROXIMITY_ON_WAKE:Ljava/lang/String; = "proximity_on_wake"
+-
+ .field public static final QS_COLLAPSE_PANEL:Ljava/lang/String; = "qs_collapse_panel"
+ 
+ .field public static final QS_DYNAMIC_ALARM:Ljava/lang/String; = "qs_dyanmic_alarm"
+-- 
+1.9.1
+

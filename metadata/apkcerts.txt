@@ -100,4 +100,4 @@ name="StockSettings.apk" certificate="build/target/product/security/platform.x50
 name="CMSettings.apk"  certificate="build/target/product/security/platform.x509.pem" private_key="build/target/product/security/platform.pk8"
 name="MIPop.apk" certificate="PRESIGNED" private_key=""
 name="AMAPNetworkLocation.apk" certificate="PRESIGNED" private_key=""
-name="ota-miui-ProwerKeep.apk" certificate="PRESIGNED" private_key=""
+name="miui_camera.apk" certificate="build/target/product/security/platform.x509.pem" private_key="build/target/product/security/platform.pk8"

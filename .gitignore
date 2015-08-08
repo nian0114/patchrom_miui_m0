@@ -1,4 +1,5 @@
 out
 temp
 stockrom.zip
-/home/nian/patchrom/m3/.gitignore
+ThemeManager/*
+miuisystem/1.patch

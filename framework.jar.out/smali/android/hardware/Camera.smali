@@ -136,7 +136,7 @@
     return-void
 .end method
 
-.method constructor <init>(I)V
+.method protected constructor <init>(I)V
     .locals 5
     .param p1, "cameraId"    # I
 
@@ -1036,6 +1036,17 @@
 
     .local v1, "s":Ljava/lang/String;
     invoke-virtual {v0, v1}, Landroid/hardware/Camera$Parameters;->unflatten(Ljava/lang/String;)V
+
+    return-object v0
+.end method
+
+.method protected getParametersString()Ljava/lang/String;
+    .locals 1
+
+    .prologue
+    invoke-direct {p0}, Landroid/hardware/Camera;->native_getParameters()Ljava/lang/String;
+
+    move-result-object v0
 
     return-object v0
 .end method

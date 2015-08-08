@@ -44,6 +44,7 @@ function applyPatch() {
 
 if [ $2 = "$BUILD_OUT/framework" ]
 then
+    applyPatch "overlay/framework"
     # remove all files at out/framework those exist in framework2.jar.out
 	for file2 in `find framework2.jar.out -name *.smali`; do
 			file=${file2/framework2.jar.out/$BUILD_OUT\/framework}
