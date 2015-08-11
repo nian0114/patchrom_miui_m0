@@ -95,10 +95,9 @@
     .locals 3
 
     .prologue
-    const-string v0, "qemu.sf.lcd_density"
+    const-string v0, "persist.nian.density"
 
-    #const-string v1, "ro.sf.lcd_density"
-    const-string v1, "persist.xsdensity" 
+    const-string v1, "qemu.sf.lcd_density"
 
     const/16 v2, 0xa0
 
