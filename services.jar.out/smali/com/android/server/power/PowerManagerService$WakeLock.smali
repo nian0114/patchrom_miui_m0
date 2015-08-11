@@ -20,6 +20,8 @@
 # instance fields
 .field public mFlags:I
 
+.field private mIsBlocked:Z
+
 .field public final mLock:Landroid/os/IBinder;
 
 .field public mNotifiedAcquired:Z
@@ -265,6 +267,25 @@
     move-result v0
 
     return v0
+.end method
+
+.method public isBlocked()Z
+    .locals 1
+
+    .prologue
+    iget-boolean v0, p0, Lcom/android/server/power/PowerManagerService$WakeLock;->mIsBlocked:Z
+
+    return v0
+.end method
+
+.method public setIsBlocked(Z)V
+    .locals 0
+    .param p1, "value"    # Z
+
+    .prologue
+    iput-boolean p1, p0, Lcom/android/server/power/PowerManagerService$WakeLock;->mIsBlocked:Z
+
+    return-void
 .end method
 
 .method public toString()Ljava/lang/String;
