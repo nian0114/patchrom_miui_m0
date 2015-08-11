@@ -63,7 +63,7 @@
     check-cast v0, Lcom/android/server/NotificationManagerService$ToastRecord;
 
     # invokes: Lcom/android/server/NotificationManagerService;->handleTimeout(Lcom/android/server/NotificationManagerService$ToastRecord;)V
-    invoke-static {v1, v0}, Lcom/android/server/NotificationManagerService;->access$3100(Lcom/android/server/NotificationManagerService;Lcom/android/server/NotificationManagerService$ToastRecord;)V
+    invoke-static {v1, v0}, Lcom/android/server/NotificationManagerService;->access$2900(Lcom/android/server/NotificationManagerService;Lcom/android/server/NotificationManagerService$ToastRecord;)V
 
     goto :goto_0
 
