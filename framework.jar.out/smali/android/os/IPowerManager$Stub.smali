@@ -74,8 +74,6 @@
 
 .field static final TRANSACTION_wakeUp:I = 0x8
 
-.field static final TRANSACTION_wakeUpWithProximityCheck:I = 0x19
-
 
 # direct methods
 .method public constructor <init>()V
@@ -825,22 +823,6 @@
 
     goto/16 :goto_0
 
-    .end local v8    # "_result":Ljava/lang/String;
-    :sswitch_19
-    const-string v0, "android.os.IPowerManager"
-
-    invoke-virtual {p2, v0}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
-
-    invoke-virtual {p2}, Landroid/os/Parcel;->readLong()J
-
-    move-result-wide v6
-
-    .restart local v6    # "_arg0":J
-    invoke-virtual {p0, v6, v7}, Landroid/os/IPowerManager$Stub;->wakeUpWithProximityCheck(J)V
-
-    invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
-
-    goto/16 :goto_0
 
     :sswitch_data_0
     .sparse-switch
@@ -868,7 +850,6 @@
         0x16 -> :sswitch_16
         0x17 -> :sswitch_17
         0x18 -> :sswitch_18
-        0x19 -> :sswitch_19
         0x5f4e5446 -> :sswitch_0
     .end sparse-switch
 .end method

@@ -206,11 +206,3 @@
         }
     .end annotation
 .end method
-
-.method public abstract wakeUpWithProximityCheck(J)V
-    .annotation system Ldalvik/annotation/Throws;
-        value = {
-            Landroid/os/RemoteException;
-        }
-    .end annotation
-.end method

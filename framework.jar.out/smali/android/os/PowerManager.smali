@@ -715,24 +715,3 @@
 
     goto :goto_0
 .end method
-
-.method public wakeUpWithProximityCheck(J)V
-    .locals 1
-    .param p1, "time"    # J
-
-    .prologue
-    :try_start_0
-    iget-object v0, p0, Landroid/os/PowerManager;->mService:Landroid/os/IPowerManager;
-
-    invoke-interface {v0, p1, p2}, Landroid/os/IPowerManager;->wakeUpWithProximityCheck(J)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
-
-    :goto_0
-    return-void
-
-    :catch_0
-    move-exception v0
-
-    goto :goto_0
-.end method

@@ -533,8 +533,6 @@
     .end annotation
 .end field
 
-.field public static final PROXIMITY_ON_WAKE:Ljava/lang/String; = "proximity_on_wake"
-
 .field public static final QS_COLLAPSE_PANEL:Ljava/lang/String; = "qs_collapse_panel"
 
 .field public static final QS_DYNAMIC_ALARM:Ljava/lang/String; = "qs_dyanmic_alarm"

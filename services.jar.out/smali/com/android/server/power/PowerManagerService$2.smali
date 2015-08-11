@@ -3,12 +3,12 @@
 .source "PowerManagerService.java"
 
 # interfaces
-.implements Landroid/hardware/SensorEventListener;
+.implements Ljava/lang/Runnable;
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/android/server/power/PowerManagerService;->runPostProximityCheck(Ljava/lang/Runnable;)V
+    value = Lcom/android/server/power/PowerManagerService;->shutdownOrRebootInternal(ZZLjava/lang/String;Z)V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -20,17 +20,25 @@
 # instance fields
 .field final synthetic this$0:Lcom/android/server/power/PowerManagerService;
 
-.field final synthetic val$r:Ljava/lang/Runnable;
+.field final synthetic val$confirm:Z
+
+.field final synthetic val$reason:Ljava/lang/String;
+
+.field final synthetic val$shutdown:Z
 
 
 # direct methods
-.method constructor <init>(Lcom/android/server/power/PowerManagerService;Ljava/lang/Runnable;)V
+.method constructor <init>(Lcom/android/server/power/PowerManagerService;ZZLjava/lang/String;)V
     .locals 0
 
     .prologue
     iput-object p1, p0, Lcom/android/server/power/PowerManagerService$2;->this$0:Lcom/android/server/power/PowerManagerService;
 
-    iput-object p2, p0, Lcom/android/server/power/PowerManagerService$2;->val$r:Ljava/lang/Runnable;
+    iput-boolean p2, p0, Lcom/android/server/power/PowerManagerService$2;->val$shutdown:Z
+
+    iput-boolean p3, p0, Lcom/android/server/power/PowerManagerService$2;->val$confirm:Z
+
+    iput-object p4, p0, Lcom/android/server/power/PowerManagerService$2;->val$reason:Ljava/lang/String;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -39,92 +47,55 @@
 
 
 # virtual methods
-.method public onAccuracyChanged(Landroid/hardware/Sensor;I)V
-    .locals 0
-    .param p1, "sensor"    # Landroid/hardware/Sensor;
-    .param p2, "accuracy"    # I
-
-    .prologue
-    return-void
-.end method
-
-.method public onSensorChanged(Landroid/hardware/SensorEvent;)V
+.method public run()V
     .locals 3
-    .param p1, "event"    # Landroid/hardware/SensorEvent;
 
     .prologue
-    const/4 v2, 0x5
+    monitor-enter p0
 
-    iget-object v1, p0, Lcom/android/server/power/PowerManagerService$2;->this$0:Lcom/android/server/power/PowerManagerService;
+    :try_start_0
+    iget-boolean v0, p0, Lcom/android/server/power/PowerManagerService$2;->val$shutdown:Z
 
-    # invokes: Lcom/android/server/power/PowerManagerService;->cleanupProximity()V
-    invoke-static {v1}, Lcom/android/server/power/PowerManagerService;->access$800(Lcom/android/server/power/PowerManagerService;)V
+    if-eqz v0, :cond_0
 
-    iget-object v1, p0, Lcom/android/server/power/PowerManagerService$2;->this$0:Lcom/android/server/power/PowerManagerService;
+    iget-object v0, p0, Lcom/android/server/power/PowerManagerService$2;->this$0:Lcom/android/server/power/PowerManagerService;
 
-    # getter for: Lcom/android/server/power/PowerManagerService;->mHandler:Lcom/android/server/power/PowerManagerService$PowerManagerHandler;
-    invoke-static {v1}, Lcom/android/server/power/PowerManagerService;->access$900(Lcom/android/server/power/PowerManagerService;)Lcom/android/server/power/PowerManagerService$PowerManagerHandler;
+    # getter for: Lcom/android/server/power/PowerManagerService;->mContext:Landroid/content/Context;
+    invoke-static {v0}, Lcom/android/server/power/PowerManagerService;->access$1200(Lcom/android/server/power/PowerManagerService;)Landroid/content/Context;
 
-    move-result-object v1
+    move-result-object v0
 
-    invoke-virtual {v1, v2}, Lcom/android/server/power/PowerManagerService$PowerManagerHandler;->hasMessages(I)Z
+    iget-boolean v1, p0, Lcom/android/server/power/PowerManagerService$2;->val$confirm:Z
 
-    move-result v1
+    invoke-static {v0, v1}, Lcom/android/server/power/ShutdownThread;->shutdown(Landroid/content/Context;Z)V
 
-    if-nez v1, :cond_1
+    :goto_0
+    monitor-exit p0
 
-    const-string v1, "PowerManagerService"
-
-    const-string v2, "The proximity sensor took too long, wake event already triggered!"
-
-    invoke-static {v1, v2}, Landroid/util/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
+    return-void
 
     :cond_0
-    :goto_0
-    return-void
+    iget-object v0, p0, Lcom/android/server/power/PowerManagerService$2;->this$0:Lcom/android/server/power/PowerManagerService;
 
-    :cond_1
-    iget-object v1, p0, Lcom/android/server/power/PowerManagerService$2;->this$0:Lcom/android/server/power/PowerManagerService;
+    # getter for: Lcom/android/server/power/PowerManagerService;->mContext:Landroid/content/Context;
+    invoke-static {v0}, Lcom/android/server/power/PowerManagerService;->access$1200(Lcom/android/server/power/PowerManagerService;)Landroid/content/Context;
 
-    # getter for: Lcom/android/server/power/PowerManagerService;->mHandler:Lcom/android/server/power/PowerManagerService$PowerManagerHandler;
-    invoke-static {v1}, Lcom/android/server/power/PowerManagerService;->access$900(Lcom/android/server/power/PowerManagerService;)Lcom/android/server/power/PowerManagerService$PowerManagerHandler;
+    move-result-object v0
 
-    move-result-object v1
+    iget-object v1, p0, Lcom/android/server/power/PowerManagerService$2;->val$reason:Ljava/lang/String;
 
-    invoke-virtual {v1, v2}, Lcom/android/server/power/PowerManagerService$PowerManagerHandler;->removeMessages(I)V
+    iget-boolean v2, p0, Lcom/android/server/power/PowerManagerService$2;->val$confirm:Z
 
-    iget-object v1, p1, Landroid/hardware/SensorEvent;->values:[F
-
-    const/4 v2, 0x0
-
-    aget v0, v1, v2
-
-    .local v0, "distance":F
-    const/high16 v1, 0x40a00000    # 5.0f
-
-    cmpl-float v1, v0, v1
-
-    if-gez v1, :cond_2
-
-    iget-object v1, p0, Lcom/android/server/power/PowerManagerService$2;->this$0:Lcom/android/server/power/PowerManagerService;
-
-    # getter for: Lcom/android/server/power/PowerManagerService;->mProximitySensor:Landroid/hardware/Sensor;
-    invoke-static {v1}, Lcom/android/server/power/PowerManagerService;->access$1000(Lcom/android/server/power/PowerManagerService;)Landroid/hardware/Sensor;
-
-    move-result-object v1
-
-    invoke-virtual {v1}, Landroid/hardware/Sensor;->getMaximumRange()F
-
-    move-result v1
-
-    cmpl-float v1, v0, v1
-
-    if-ltz v1, :cond_0
-
-    :cond_2
-    iget-object v1, p0, Lcom/android/server/power/PowerManagerService$2;->val$r:Ljava/lang/Runnable;
-
-    invoke-interface {v1}, Ljava/lang/Runnable;->run()V
+    invoke-static {v0, v1, v2}, Lcom/android/server/power/ShutdownThread;->reboot(Landroid/content/Context;Ljava/lang/String;Z)V
 
     goto :goto_0
+
+    :catchall_0
+    move-exception v0
+
+    monitor-exit p0
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    throw v0
 .end method

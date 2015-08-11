@@ -62,7 +62,7 @@
     iput-object p5, p0, Lcom/android/server/power/PowerManagerService$WakeLock;->mPackageName:Ljava/lang/String;
 
     # invokes: Lcom/android/server/power/PowerManagerService;->copyWorkSource(Landroid/os/WorkSource;)Landroid/os/WorkSource;
-    invoke-static {p6}, Lcom/android/server/power/PowerManagerService;->access$2600(Landroid/os/WorkSource;)Landroid/os/WorkSource;
+    invoke-static {p6}, Lcom/android/server/power/PowerManagerService;->access$2200(Landroid/os/WorkSource;)Landroid/os/WorkSource;
 
     move-result-object v0
 
@@ -202,7 +202,7 @@
     iget-object v0, p0, Lcom/android/server/power/PowerManagerService$WakeLock;->this$0:Lcom/android/server/power/PowerManagerService;
 
     # invokes: Lcom/android/server/power/PowerManagerService;->handleWakeLockDeath(Lcom/android/server/power/PowerManagerService$WakeLock;)V
-    invoke-static {v0, p0}, Lcom/android/server/power/PowerManagerService;->access$2700(Lcom/android/server/power/PowerManagerService;Lcom/android/server/power/PowerManagerService$WakeLock;)V
+    invoke-static {v0, p0}, Lcom/android/server/power/PowerManagerService;->access$2300(Lcom/android/server/power/PowerManagerService;Lcom/android/server/power/PowerManagerService$WakeLock;)V
 
     return-void
 .end method
@@ -510,7 +510,7 @@
 
     .prologue
     # invokes: Lcom/android/server/power/PowerManagerService;->copyWorkSource(Landroid/os/WorkSource;)Landroid/os/WorkSource;
-    invoke-static {p1}, Lcom/android/server/power/PowerManagerService;->access$2600(Landroid/os/WorkSource;)Landroid/os/WorkSource;
+    invoke-static {p1}, Lcom/android/server/power/PowerManagerService;->access$2200(Landroid/os/WorkSource;)Landroid/os/WorkSource;
 
     move-result-object v0
 

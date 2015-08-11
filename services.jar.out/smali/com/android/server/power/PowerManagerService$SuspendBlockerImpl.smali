@@ -64,7 +64,7 @@
     iget-object v0, p0, Lcom/android/server/power/PowerManagerService$SuspendBlockerImpl;->mName:Ljava/lang/String;
 
     # invokes: Lcom/android/server/power/PowerManagerService;->nativeAcquireSuspendBlocker(Ljava/lang/String;)V
-    invoke-static {v0}, Lcom/android/server/power/PowerManagerService;->access$2900(Ljava/lang/String;)V
+    invoke-static {v0}, Lcom/android/server/power/PowerManagerService;->access$2500(Ljava/lang/String;)V
 
     :cond_0
     monitor-exit p0
@@ -132,7 +132,7 @@
     iget-object v0, p0, Lcom/android/server/power/PowerManagerService$SuspendBlockerImpl;->mName:Ljava/lang/String;
 
     # invokes: Lcom/android/server/power/PowerManagerService;->nativeReleaseSuspendBlocker(Ljava/lang/String;)V
-    invoke-static {v0}, Lcom/android/server/power/PowerManagerService;->access$2800(Ljava/lang/String;)V
+    invoke-static {v0}, Lcom/android/server/power/PowerManagerService;->access$2400(Ljava/lang/String;)V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
@@ -169,7 +169,7 @@
     iget-object v0, p0, Lcom/android/server/power/PowerManagerService$SuspendBlockerImpl;->mName:Ljava/lang/String;
 
     # invokes: Lcom/android/server/power/PowerManagerService;->nativeReleaseSuspendBlocker(Ljava/lang/String;)V
-    invoke-static {v0}, Lcom/android/server/power/PowerManagerService;->access$2800(Ljava/lang/String;)V
+    invoke-static {v0}, Lcom/android/server/power/PowerManagerService;->access$2400(Ljava/lang/String;)V
 
     :cond_0
     :goto_0

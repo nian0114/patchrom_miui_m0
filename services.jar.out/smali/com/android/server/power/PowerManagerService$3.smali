@@ -1,14 +1,11 @@
 .class Lcom/android/server/power/PowerManagerService$3;
-.super Ljava/lang/Object;
+.super Ljava/lang/Thread;
 .source "PowerManagerService.java"
-
-# interfaces
-.implements Ljava/lang/Runnable;
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/android/server/power/PowerManagerService;->wakeUpFromNative(J)V
+    value = Lcom/android/server/power/PowerManagerService;->crashInternal(Ljava/lang/String;)V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -20,19 +17,20 @@
 # instance fields
 .field final synthetic this$0:Lcom/android/server/power/PowerManagerService;
 
-.field final synthetic val$eventTime:J
+.field final synthetic val$message:Ljava/lang/String;
 
 
 # direct methods
-.method constructor <init>(Lcom/android/server/power/PowerManagerService;J)V
+.method constructor <init>(Lcom/android/server/power/PowerManagerService;Ljava/lang/String;Ljava/lang/String;)V
     .locals 0
+    .param p2, "x0"    # Ljava/lang/String;
 
     .prologue
     iput-object p1, p0, Lcom/android/server/power/PowerManagerService$3;->this$0:Lcom/android/server/power/PowerManagerService;
 
-    iput-wide p2, p0, Lcom/android/server/power/PowerManagerService$3;->val$eventTime:J
+    iput-object p3, p0, Lcom/android/server/power/PowerManagerService$3;->val$message:Ljava/lang/String;
 
-    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+    invoke-direct {p0, p2}, Ljava/lang/Thread;-><init>(Ljava/lang/String;)V
 
     return-void
 .end method
@@ -40,15 +38,14 @@
 
 # virtual methods
 .method public run()V
-    .locals 3
+    .locals 2
 
     .prologue
-    iget-object v0, p0, Lcom/android/server/power/PowerManagerService$3;->this$0:Lcom/android/server/power/PowerManagerService;
+    new-instance v0, Ljava/lang/RuntimeException;
 
-    iget-wide v1, p0, Lcom/android/server/power/PowerManagerService$3;->val$eventTime:J
+    iget-object v1, p0, Lcom/android/server/power/PowerManagerService$3;->val$message:Ljava/lang/String;
 
-    # invokes: Lcom/android/server/power/PowerManagerService;->wakeUpInternal(J)V
-    invoke-static {v0, v1, v2}, Lcom/android/server/power/PowerManagerService;->access$700(Lcom/android/server/power/PowerManagerService;J)V
+    invoke-direct {v0, v1}, Ljava/lang/RuntimeException;-><init>(Ljava/lang/String;)V
 
-    return-void
+    throw v0
 .end method

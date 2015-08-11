@@ -62,7 +62,7 @@
     iget-object v0, p0, Lcom/android/server/power/PowerManagerService$DisplayBlankerImpl;->this$0:Lcom/android/server/power/PowerManagerService;
 
     # getter for: Lcom/android/server/power/PowerManagerService;->mDisplayManagerService:Lcom/android/server/display/DisplayManagerService;
-    invoke-static {v0}, Lcom/android/server/power/PowerManagerService;->access$3000(Lcom/android/server/power/PowerManagerService;)Lcom/android/server/display/DisplayManagerService;
+    invoke-static {v0}, Lcom/android/server/power/PowerManagerService;->access$2700(Lcom/android/server/power/PowerManagerService;)Lcom/android/server/display/DisplayManagerService;
 
     move-result-object v0
 
@@ -71,12 +71,12 @@
     const/4 v0, 0x0
 
     # invokes: Lcom/android/server/power/PowerManagerService;->nativeSetInteractive(Z)V
-    invoke-static {v0}, Lcom/android/server/power/PowerManagerService;->access$3100(Z)V
+    invoke-static {v0}, Lcom/android/server/power/PowerManagerService;->access$2800(Z)V
 
     const/4 v0, 0x1
 
     # invokes: Lcom/android/server/power/PowerManagerService;->nativeSetAutoSuspend(Z)V
-    invoke-static {v0}, Lcom/android/server/power/PowerManagerService;->access$3200(Z)V
+    invoke-static {v0}, Lcom/android/server/power/PowerManagerService;->access$2900(Z)V
 
     monitor-exit p0
 
@@ -143,17 +143,17 @@
 
     :try_start_0
     # invokes: Lcom/android/server/power/PowerManagerService;->nativeSetAutoSuspend(Z)V
-    invoke-static {v0}, Lcom/android/server/power/PowerManagerService;->access$3200(Z)V
+    invoke-static {v0}, Lcom/android/server/power/PowerManagerService;->access$2900(Z)V
 
     const/4 v0, 0x1
 
     # invokes: Lcom/android/server/power/PowerManagerService;->nativeSetInteractive(Z)V
-    invoke-static {v0}, Lcom/android/server/power/PowerManagerService;->access$3100(Z)V
+    invoke-static {v0}, Lcom/android/server/power/PowerManagerService;->access$2800(Z)V
 
     iget-object v0, p0, Lcom/android/server/power/PowerManagerService$DisplayBlankerImpl;->this$0:Lcom/android/server/power/PowerManagerService;
 
     # getter for: Lcom/android/server/power/PowerManagerService;->mDisplayManagerService:Lcom/android/server/display/DisplayManagerService;
-    invoke-static {v0}, Lcom/android/server/power/PowerManagerService;->access$3000(Lcom/android/server/power/PowerManagerService;)Lcom/android/server/display/DisplayManagerService;
+    invoke-static {v0}, Lcom/android/server/power/PowerManagerService;->access$2700(Lcom/android/server/power/PowerManagerService;)Lcom/android/server/display/DisplayManagerService;
 
     move-result-object v0
 
