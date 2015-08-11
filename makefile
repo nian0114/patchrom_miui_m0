@@ -48,9 +48,6 @@ include $(PORT_BUILD)/porting.mk
 #updater := $(ZIP_DIR)/META-INF/com/google/android/updater-script
 #pre_install_data_packages := $(TMP_DIR)/pre_install_apk_pkgname.txt
 local-pre-zip-misc:
-	@echo replace libsurfaceflinger.so with dpi
-	sed -i 's/ro.sf.lcd_density/persist.xsdensity/g' $(ZIP_DIR)/system/lib/libsurfaceflinger.so
-	
 	@echo Update boot.img
 	cp -rf other/boot.img $(ZIP_DIR)/boot.img
 
