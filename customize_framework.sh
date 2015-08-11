@@ -97,9 +97,7 @@ fi
 if [ $2 = "$BUILD_OUT/services" ]
 then
     applyPatch "overlay/services"
-    rm -rf $BUILD_OUT/services/smali/com/android/server/NotificationManagerService*
     rm $BUILD_OUT/services/smali/com/android/server/am/ActivityManagerService\$13\$1.smali
-    cp -rf overlay/services/smali/* $BUILD_OUT/services/smali
 fi
 
 if [ $2 = "$BUILD_OUT/android.policy" ]
