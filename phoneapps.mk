@@ -4,7 +4,6 @@ local-phone-priv-apps = $(private-phone-priv-apps)
 private-phone-apps := \
 BasicDreams \
 BluetoothExt \
-CellBroadcastReceiver \
 CertInstaller \
 DocumentsUI \
 SamsungServiceMode \
@@ -18,8 +17,7 @@ PrintSpooler \
 PicoTts \
 Stk \
 UserDictionaryProvider \
-WAPPushManager \
-LockClock
+WAPPushManager 
 
 private-phone-priv-apps := \
 BackupRestoreConfirmation \
