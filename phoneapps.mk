@@ -9,7 +9,6 @@ DocumentsUI \
 SamsungServiceMode \
 HTMLViewer \
 KeyChain \
-LatinIME \
 Nfc \
 PacProcessor \
 PhotoTable \
