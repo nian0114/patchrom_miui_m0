@@ -17,7 +17,7 @@
     <!--whether the device supports led light-->
     <bool name="support_led_light">true</bool>
     <!--whether the device supports button light-->
-    <bool name="support_button_light">false</bool>
+    <bool name="support_button_light">true</bool>
     <!--whether the device supports emulated storage-->
     <bool name="support_emulated_storage">true</bool>
     <!--whether the device supports internal sdcard-->

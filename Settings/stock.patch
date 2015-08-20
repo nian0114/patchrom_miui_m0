@@ -8,4 +8,4 @@
 +    <header android:icon="@drawable/ic_launcher_settings" android:id="@id/manufacturer_settings" android:title="@string/galaxy_settings">
          <intent android:action="com.android.settings.MANUFACTURER_APPLICATION_SETTING" />
      </header>
-     <header android:id="@id/system_section" android:title="@string/system_app_settings" />
+     <header android:icon="@drawable/ic_date_time_settings" android:id="@id/date_time_settings" android:title="@string/date_and_time_settings_title"
