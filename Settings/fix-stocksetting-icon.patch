@@ -1,0 +1,33 @@
+From 5ac2bdb2ed8fa99a49a2ef4cf020950c2d8b5ff4 Mon Sep 17 00:00:00 2001
+From: kin-cheng <kin912@gmail.com>
+Date: Thu, 20 Aug 2015 19:43:17 +0800
+Subject: [PATCH] fix stocksetting icon
+
+Signed-off-by: kin-cheng <kin912@gmail.com>
+---
+ Settings/res/xml/settings_headers.xml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Settings/res/xml/settings_headers.xml b/Settings/res/xml/settings_headers.xml
+index 9848b72..a87a5ec 100644
+--- a/Settings/res/xml/settings_headers.xml
++++ b/Settings/res/xml/settings_headers.xml
+@@ -57,7 +57,7 @@
+     <header android:icon="@drawable/ic_key_settings" android:id="@id/key_settings" android:title="@string/key_settings_title" android:fragment="com.android.settings.KeySettings" />
+     <header android:icon="@drawable/ic_led_settings" android:id="@id/led_settings" android:title="@string/led_settings" android:fragment="com.android.settings.LedSettings" />
+     <header android:icon="@drawable/music_ic_headset_settings" android:id="@id/headset_settings" android:title="@string/music_headset_settings" android:fragment="com.android.settings.HeadsetSettings" />
+-    <header android:id="@id/manufacturer_settings">
++    <header android:icon="@drawable/ic_launcher_settings" android:id="@id/manufacturer_settings">
+         <intent android:action="com.android.settings.MANUFACTURER_APPLICATION_SETTING" />
+     </header>
+     <header android:icon="@drawable/ic_date_time_settings" android:id="@id/date_time_settings" android:title="@string/date_and_time_settings_title" android:fragment="com.android.settings.DateTimeSettings" />
+@@ -72,4 +72,4 @@
+     <header />
+     <header android:icon="@drawable/ic_development_settings" android:id="@id/development_settings" android:title="@string/development_settings_title" android:fragment="com.android.settings.DevelopmentSettings" />
+     <header android:icon="@drawable/ic_about_settings" android:id="@id/about_settings" android:title="@string/about_settings" android:fragment="com.android.settings.MiuiDeviceInfoSettings" />
+-</preference-headers>
+\ No newline at end of file
++</preference-headers>
+-- 
+1.9.1
+
