@@ -1,0 +1,156 @@
+From ac7b353567ced11bfb2e8697a29e563f7a456e17 Mon Sep 17 00:00:00 2001
+From: X-s <xsmumu@gmail.com>
+Date: Mon, 15 Jun 2015 21:47:07 +0800
+Subject: [PATCH] add juelian changelog
+
+---
+ Updater/res/layout/activity_main2.xml              |  3 +-
+ Updater/res/values/ids.xml            				 |  1 +
+ .../updater/MainActivity$UpdateObserver.smali      | 23 +++++++++++++-
+ .../smali/com/android/updater/MainActivity.smali   | 35 +++++++++++++++-------
+ Updater/smali/com/android/updater/RomInfo.smali    |  8 +++++
+ 5 files changed, 57 insertions(+), 13 deletions(-)
+
+--- a/Updater/res/layout/activity_main2.xml
++++ b/Updater/res/layout/activity_main2.xml
+@@ -17,7 +17,8 @@
+                 <TextView android:textSize="14.699982sp" android:textColor="#99000000" android:layout_gravity="center_vertical" android:id="@id/version_summary" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="6.0dip" />
+             </LinearLayout>
+             <View android:id="@id/split_line" android:background="#ffbfbfbf" android:layout_width="fill_parent" android:layout_height="1.0px" />
+-            <ListView android:id="@id/update_log_list" android:layout_width="fill_parent" android:layout_height="fill_parent" />
++            <ListView android:visibility="gone" android:id="@id/update_log_list" android:layout_width="fill_parent" android:layout_height="fill_parent"/>
++            <WebView android:id="@+id/mijl" android:layout_width="match_parent" android:layout_height="match_parent"/>
+             <LinearLayout android:layout_gravity="center" android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="fill_parent">
+                 <TextView android:textSize="10.599976sp" android:textColor="#73000000" android:layout_gravity="center" android:id="@id/no_log" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/no_log" />
+             </LinearLayout>
+--- a/Updater/res/values/ids.xml
++++ b/Updater/res/values/ids.xml
+@@ -1,5 +1,6 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <resources>
++    <item type="id" name="mijl">false</item>
+     <item type="id" name="htmlContent">false</item>
+     <item type="id" name="emptyview">false</item>
+     <item type="id" name="nonetwork">false</item>
+--- a/Updater/smali/com/android/updater/MainActivity$UpdateObserver.smali
++++ b/Updater/smali/com/android/updater/MainActivity$UpdateObserver.smali
+@@ -347,6 +347,27 @@
+ 
+     invoke-virtual {v12, v13}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+ 
++    # add by juelian
++    iget-object v14, p0, Lcom/android/updater/MainActivity$UpdateObserver;->this$0:Lcom/android/updater/MainActivity;
++
++    # getter for: Lcom/android/updater/MainActivity;->mInfo:Lcom/android/updater/UpdateInfo;
++    invoke-static {v14}, Lcom/android/updater/MainActivity;->access$1900(Lcom/android/updater/MainActivity;)Lcom/android/updater/UpdateInfo;
++
++    move-result-object v14
++
++    iget-object v14, v14, Lcom/android/updater/UpdateInfo;->incremental:Lcom/android/updater/RomInfo;
++
++    iget-object v14, v14, Lcom/android/updater/RomInfo;->version:Ljava/lang/String;
++
++    new-instance v6, Lcom/android/updater/JuelianUtils;
++
++    iget-object v7, p0, Lcom/android/updater/MainActivity$UpdateObserver;->this$0:Lcom/android/updater/MainActivity;
++
++    iget-object v7, v7, Lcom/android/updater/MainActivity;->mWebView:Landroid/webkit/WebView;
++
++    invoke-direct {v6, v7, v14}, Lcom/android/updater/JuelianUtils;-><init>(Landroid/webkit/WebView;Ljava/lang/String;)V
++    # end add by juelian
++
+     # getter for: Lcom/android/updater/MainActivity;->TAG:Ljava/lang/String;
+     invoke-static {}, Lcom/android/updater/MainActivity;->access$800()Ljava/lang/String;
+ 
+--- a/Updater/smali/com/android/updater/MainActivity.smali
++++ b/Updater/smali/com/android/updater/MainActivity.smali
+@@ -134,6 +134,8 @@
+ 
+ .field private mVersionTitleView:Landroid/widget/TextView;
+ 
++.field public mWebView:Landroid/webkit/WebView;
++
+ 
+ # direct methods
+ .method static constructor <clinit>()V
+@@ -2720,21 +2722,32 @@
+ 
+     iput-object v5, p0, Lcom/android/updater/MainActivity;->mVersionSummaryView:Landroid/widget/TextView;
+ 
+-    const v5, 0x7f0b000d
++    #const v5, 0x7f0b000d
+ 
+-    invoke-virtual {p0, v5}, Lcom/android/updater/MainActivity;->findViewById(I)Landroid/view/View;
++    #invoke-virtual {p0, v5}, Lcom/android/updater/MainActivity;->findViewById(I)Landroid/view/View;
+ 
+-    move-result-object v5
++    #move-result-object v5
+ 
+-    check-cast v5, Landroid/widget/ListView;
++    #check-cast v5, Landroid/widget/ListView;
+ 
+-    iput-object v5, p0, Lcom/android/updater/MainActivity;->mUpdaterLogListView:Landroid/widget/ListView;
++    #iput-object v5, p0, Lcom/android/updater/MainActivity;->mUpdaterLogListView:Landroid/widget/ListView;
+ 
+-    iget-object v5, p0, Lcom/android/updater/MainActivity;->mUpdaterLogListView:Landroid/widget/ListView;
++    #.line 797
++    #iget-object v5, p0, Lcom/android/updater/MainActivity;->mUpdaterLogListView:Landroid/widget/ListView;
+ 
+-    iget-object v6, p0, Lcom/android/updater/MainActivity;->mOnTouchListener:Landroid/view/View$OnTouchListener;
++    #iget-object v6, p0, Lcom/android/updater/MainActivity;->mOnTouchListener:Landroid/view/View$OnTouchListener;
++
++    #invoke-virtual {v5, v6}, Landroid/widget/ListView;->setOnTouchListener(Landroid/view/View$OnTouchListener;)V
++
++    const v5, 0x7f0b0069#resource id
++
++    invoke-virtual {p0, v5}, Lcom/android/updater/MainActivity;->findViewById(I)Landroid/view/View;
++
++    move-result-object v5
++
++    check-cast v5, Landroid/webkit/WebView;
+ 
+-    invoke-virtual {v5, v6}, Landroid/widget/ListView;->setOnTouchListener(Landroid/view/View$OnTouchListener;)V
++    iput-object v5, p0, Lcom/android/updater/MainActivity;->mWebView:Landroid/webkit/WebView;
+ 
+     const v5, 0x7f0b0015
+ 
+@@ -4357,7 +4370,8 @@
+ 
+     if-eqz v0, :cond_2
+ 
+-    iget-object v3, p0, Lcom/android/updater/MainActivity;->mUpdaterLogListView:Landroid/widget/ListView;
++    #iget-object v3, p0, Lcom/android/updater/MainActivity;->mUpdaterLogListView:Landroid/widget/ListView;
++    iget-object v3, p0, Lcom/android/updater/MainActivity;->mWebView:Landroid/webkit/WebView;
+ 
+     iget-boolean v0, p0, Lcom/android/updater/MainActivity;->mDetail:Z
+ 
+@@ -4366,7 +4380,7 @@
+     move v0, v1
+ 
+     :goto_2
+-    invoke-virtual {v3, v0}, Landroid/widget/ListView;->setVisibility(I)V
++    invoke-virtual {v3, v0}, Landroid/webkit/WebView;->setVisibility(I)V
+ 
+     iget-object v0, p0, Lcom/android/updater/MainActivity;->mContentContainer:Landroid/widget/LinearLayout;
+ 
+--- a/Updater/smali/com/android/updater/RomInfo.smali
++++ b/Updater/smali/com/android/updater/RomInfo.smali
+@@ -420,6 +420,14 @@
+ 
+     move-object/from16 v1, p0
+ 
++    # add by juelian, show right now version log url file path
++    #iget-object v0, v1, Lcom/android/updater/RomInfo;->version:Ljava/lang/String;
++
++    invoke-static {}, Lcom/android/updater/JuelianUtils;->getOldVersionUrl()Ljava/lang/String;
++
++    move-result-object v0
++    # end add by juelian
++
+     iput-object v0, v1, Lcom/android/updater/RomInfo;->descriptionUrl:Ljava/lang/String;
+ 
+     const-string v17, "branch"
+-- 
+1.9.1
+
+

@@ -21,7 +21,7 @@ Subject: [PATCH] fix camera icon
 +
 +    sget-object v0, Lmiui/content/res/IconCustomizer;->sIconMapping:Ljava/util/Map;
 +    
-+    const-string v1, "com.motorola.camera.png"
++    const-string v1, "com.meizu.camera.png"
 +
 +    const-string v2, "com.android.camera.png"
 +

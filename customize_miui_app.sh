@@ -40,11 +40,6 @@ function mergyXmlPart() {
 	done
 }
 
-if [ $1 = "BarcodeScanner" ];then
-        rm  -rf out/$1/smali/com/zxing/camera/CameraManager\$FlashAsyncTask.smali
-	applyPatch $1 $2
-fi
-
 if [ $1 = "MiuiSystemUI" ];then
     applyPatch $1 $2
 fi
