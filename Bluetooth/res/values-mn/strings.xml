@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="map_session_key_dialog_title">%1$s-н горимын түлхүүрийг оруулна уу</string>
+    <string name="map_session_key_dialog_header">Блютүүт горимын түлхүүр шаардлагатай</string>
+    <string name="map_acceptance_timeout_message">%1$s-тай холболт хийхийг зөвшөөрөх явцад хугацаа хэтэрсэн байна</string>
+    <string name="map_authentication_timeout_message">%1$s-д горимын түлхүүр оруулах явцад хугацаа хэтэрсэн байна</string>
+    <string name="map_auth_notif_ticker">Obex гэрчлэлтийн хүсэлт</string>
+    <string name="map_auth_notif_title">Горимын Түлхүүр</string>
+    <string name="map_auth_notif_message">%1$s-н горимын түлхүүрийг оруулна уу</string>
+    <string name="map_defaultname">Carkit</string>
+    <string name="map_unknownName">Тодорхойгүй нэр</string>
+    <string name="map_localPhoneName">Миний нэр</string>
+    <string name="map_defaultnumber">000000</string>
+</resources>

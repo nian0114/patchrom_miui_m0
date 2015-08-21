@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="map_session_key_dialog_title">%1$s üçün seans açarı daxil edin</string>
+    <string name="map_session_key_dialog_header">Bluetooth seans açarı tələb olunur</string>
+    <string name="map_acceptance_timeout_message">%1$s ilə bağlantı qəbul edərkən fasilə yarandı</string>
+    <string name="map_authentication_timeout_message">%1$s ilə seans açarını daxil edərkən fasilə yarandı</string>
+    <string name="map_auth_notif_ticker">Obex təsdiqləmə sorğusu</string>
+    <string name="map_auth_notif_title">Seans Açarı</string>
+    <string name="map_auth_notif_message">%1$s üçün seans açarı daxil edin</string>
+    <string name="map_defaultname">Maşın dəsti</string>
+    <string name="map_unknownName">Naməlum ad</string>
+    <string name="map_localPhoneName">Mənim adım</string>
+    <string name="map_defaultnumber">000000</string>
+    <item type="string" name="APKTOOL_DUMMY_00ae">false</item>
+    <item type="string" name="APKTOOL_DUMMY_00af">false</item>
+    <item type="string" name="APKTOOL_DUMMY_00b0">false</item>
+    <item type="string" name="APKTOOL_DUMMY_00b1">false</item>
+    <item type="string" name="APKTOOL_DUMMY_00b2">false</item>
+    <item type="string" name="APKTOOL_DUMMY_00b3">false</item>
+    <item type="string" name="APKTOOL_DUMMY_00b4">false</item>
+    <item type="string" name="APKTOOL_DUMMY_00b5">false</item>
+    <item type="string" name="APKTOOL_DUMMY_00b6">false</item>
+    <item type="string" name="APKTOOL_DUMMY_00b7">false</item>
+    <item type="string" name="APKTOOL_DUMMY_00b8">false</item>
+    <item type="string" name="APKTOOL_DUMMY_00b9">false</item>
+    <item type="string" name="APKTOOL_DUMMY_00ba">false</item>
+</resources>

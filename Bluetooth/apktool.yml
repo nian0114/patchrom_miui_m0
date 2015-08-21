@@ -1,0 +1,17 @@
+version: 2.0.0-RC4
+apkFileName: Bluetooth.apk
+isFrameworkApk: false
+usesFramework:
+  ids:
+  - 1
+  - 16
+sdkInfo:
+  minSdkVersion: '19'
+  targetSdkVersion: '19'
+packageInfo:
+  rename-manifest-package: com.android.bluetooth
+  forced-package-id: '16'
+versionInfo:
+  versionCode: '19'
+  versionName: 4.4.4-560
+compressionType: false

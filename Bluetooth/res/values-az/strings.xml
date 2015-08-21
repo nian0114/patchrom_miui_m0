@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="map_session_key_dialog_title">%1$s üçün seans açarı daxil edin</string>
+    <string name="map_session_key_dialog_header">Bluetooth seans açarı tələb olunur</string>
+    <string name="map_acceptance_timeout_message">%1$s ilə bağlantı qəbul edərkən fasilə yarandı</string>
+    <string name="map_authentication_timeout_message">%1$s ilə seans açarını daxil edərkən fasilə yarandı</string>
+    <string name="map_auth_notif_ticker">Obex təsdiqləmə sorğusu</string>
+    <string name="map_auth_notif_title">Seans Açarı</string>
+    <string name="map_auth_notif_message">%1$s üçün seans açarı daxil edin</string>
+    <string name="map_defaultname">Maşın dəsti</string>
+    <string name="map_unknownName">Naməlum ad</string>
+    <string name="map_localPhoneName">Mənim adım</string>
+    <string name="map_defaultnumber">000000</string>
+</resources>

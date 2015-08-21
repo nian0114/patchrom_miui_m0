@@ -12,14 +12,14 @@ local-out-zip-file := MIUI_m0.zip
 local-previous-target-dir := 
 
 # All apps from original ZIP, but has smali files chanded
-local-modified-apps := 
+local-modified-apps := Bluetooth
 
 local-modified-jars :=
 
 # All apks from MIUI
 local-miui-removed-apps := 
 
-local-miui-modified-apps := AntiSpam ApplicationsProvider AuthManager Backup Browser BugReport Calculator Calendar CalendarProvider CloudService Contacts DocumentsUI DownloadProvider DownloadProviderUi Email FileExplorer GuardProvider InCallUI LiveWallpapersPicker MediaProvider MiAssistant MiuiCompass MiuiGallery MiuiHome MiuiKeyguard MiLinkService MiuiVideo MiuiSystemUI MiWallpaper Mms NetworkAssistant2 Notes PackageInstaller  Provision QuickSearchBox SettingsProvider SoundRecorder TeleService TelephonyProvider Weather WeatherProvider XiaomiAccount XiaomiServiceFramework YellowPage BarcodeScanner ContactsProvider DeskClock miuisystem Music Settings SecurityCenter ThemeManager Updater 
+local-miui-modified-apps := AntiSpam ApplicationsProvider AuthManager Backup Browser BugReport Calculator Calendar CalendarProvider CloudService Contacts DocumentsUI DownloadProvider DownloadProviderUi Email FileExplorer GuardProvider InCallUI LiveWallpapersPicker MediaProvider MiAssistant MiuiCompass MiuiGallery MiuiHome MiuiKeyguard MiLinkService MiuiVideo MiuiSystemUI MiWallpaper Mms NetworkAssistant2 Notes PackageInstaller  Provision QuickSearchBox SettingsProvider SoundRecorder TeleService TelephonyProvider Weather WeatherProvider XiaomiAccount XiaomiServiceFramework YellowPage ContactsProvider DeskClock miuisystem Music Settings SecurityCenter ThemeManager Updater 
 
 local-phone-apps := Bluetooth HTMLViewer KeyChain Nfc PacProcessor \
         UserDictionaryProvider WAPPushManager SamsungServiceMode PicoTts Stk CertInstaller
@@ -45,9 +45,6 @@ include $(PORT_BUILD)/porting.mk
 
 # To define any local-target
 local-zip-misc:
-	@echo replace libsurfaceflinger.so with dpi
-	sed -i 's/ro.sf.lcd_density/persist.xsdensity/g' $(ZIP_DIR)/system/lib/libsurfaceflinger.so
-	mv $(ZIP_DIR)/system/app/QuickSearchBox.apk $(ZIP_DIR)/system/priv-app/QuickSearchBox.apk
 	cp -rf other/system $(ZIP_DIR)/
 	cp -rf other/tg/system $(ZIP_DIR)/
 	echo "mijl.changelog.ftpPath=http://www.nianrom.cn/miui/nian/omni/" >> $(ZIP_DIR)/system/build.prop 

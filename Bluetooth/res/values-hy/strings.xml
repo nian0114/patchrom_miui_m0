@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="map_session_key_dialog_title">Մուտքագրեք աշխատաշրջանի բանալին %1$s-ի համար</string>
+    <string name="map_session_key_dialog_header">Պահանջվում է Bluetooth-ի աշխատաշրջանի բանալի</string>
+    <string name="map_acceptance_timeout_message">%1$s-ի հետ կապի ընդունման ժամանակը սպառվեց</string>
+    <string name="map_authentication_timeout_message">%1$s-ով աշխատաշրջանի բանալու մուտքագրման ժամանակը սպառվեց</string>
+    <string name="map_auth_notif_ticker">Կասեցնել նույնականացման հարցումը</string>
+    <string name="map_auth_notif_title">Աշխատաշրջանի բանալի</string>
+    <string name="map_auth_notif_message">Մուտքագրեք աշխատաշրջանի բանալին %1$s-ի համար</string>
+    <string name="map_defaultname">Carkit</string>
+    <string name="map_unknownName">Անհայտ անուն</string>
+    <string name="map_localPhoneName">Իմ անունը</string>
+    <string name="map_defaultnumber">000000</string>
+</resources>

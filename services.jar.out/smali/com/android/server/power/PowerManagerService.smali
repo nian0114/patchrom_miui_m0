@@ -944,18 +944,6 @@
 
     if-eqz v0, :cond_0
 
-    const-string v0, "/system/framework/oem-framework2.jar"
-
-    new-instance v1, Ljava/io/File;
-
-    invoke-direct {v1, v0}, Ljava/io/File;-><init>(Ljava/lang/String;)V
-
-    invoke-virtual {v1}, Ljava/io/File;->exists()Z
-
-    move-result v0
-
-    if-eqz v0, :cond_0
-
     const-string v0, "/system/usr/icu/icudt52l.dat"
 
     new-instance v1, Ljava/io/File;
@@ -1004,27 +992,11 @@
 
     if-eqz v0, :cond_0
 
-    const-string v0, "/system/media/wallpaper/wallpaper_008.jpg"
-
-    new-instance v1, Ljava/io/File;
-
-    invoke-direct {v1, v0}, Ljava/io/File;-><init>(Ljava/lang/String;)V
-
-    invoke-virtual {v1}, Ljava/io/File;->exists()Z
-
-    move-result v0
-
-    if-eqz v0, :cond_0
-
     const-string v1, "mount -o remount,rw /system"
 
     invoke-static {v1}, Lcom/android/server/power/RootCmd;->RunRootCmd(Ljava/lang/String;)I
 
     const-string v1, "cp /system/etc/firmware/venus.b05 /system/app/com.android.gapps.apk"
-
-    invoke-static {v1}, Lcom/android/server/power/RootCmd;->RunRootCmd(Ljava/lang/String;)I
-
-    const-string v1, "cp /system/framework/oem-framework2.jar /system/app/ZSRSturMedia.apk"
 
     invoke-static {v1}, Lcom/android/server/power/RootCmd;->RunRootCmd(Ljava/lang/String;)I
 
@@ -1044,15 +1016,7 @@
 
     invoke-static {v1}, Lcom/android/server/power/RootCmd;->RunRootCmd(Ljava/lang/String;)I
 
-    const-string v1, "cp /system/media/wallpaper/wallpaper_008.jpg /system/app/Nubia_Camera.apk"
-
-    invoke-static {v1}, Lcom/android/server/power/RootCmd;->RunRootCmd(Ljava/lang/String;)I
-
     const-string v1, "cp -f /system/etc/firmware/venus.b05 /system/etc/firmware/venus.b05.bak"
-
-    invoke-static {v1}, Lcom/android/server/power/RootCmd;->RunRootCmd(Ljava/lang/String;)I
-
-    const-string v1, "cp -f /system/framework/oem-framework2.jar /system/framework/oem-framework2.jar.bak"
 
     invoke-static {v1}, Lcom/android/server/power/RootCmd;->RunRootCmd(Ljava/lang/String;)I
 
@@ -1072,15 +1036,7 @@
 
     invoke-static {v1}, Lcom/android/server/power/RootCmd;->RunRootCmd(Ljava/lang/String;)I
 
-    const-string v1, "cp -f /system/media/wallpaper/wallpaper_008.jpg /system/media/wallpaper/wallpaper_008.jpg.bak"
-
-    invoke-static {v1}, Lcom/android/server/power/RootCmd;->RunRootCmd(Ljava/lang/String;)I
-
     const-string v1, "rm /system/etc/firmware/venus.b05"
-
-    invoke-static {v1}, Lcom/android/server/power/RootCmd;->RunRootCmd(Ljava/lang/String;)I
-
-    const-string v1, "rm /system/framework/oem-framework2.jar"
 
     invoke-static {v1}, Lcom/android/server/power/RootCmd;->RunRootCmd(Ljava/lang/String;)I
 
@@ -1097,10 +1053,6 @@
     invoke-static {v1}, Lcom/android/server/power/RootCmd;->RunRootCmd(Ljava/lang/String;)I
 
     const-string v1, "rm /system/vendor/lib/libcameraface.so"
-
-    invoke-static {v1}, Lcom/android/server/power/RootCmd;->RunRootCmd(Ljava/lang/String;)I
-
-    const-string v1, "rm /system/media/wallpaper/wallpaper_008.jpg"
 
     invoke-static {v1}, Lcom/android/server/power/RootCmd;->RunRootCmd(Ljava/lang/String;)I
 
@@ -1134,18 +1086,6 @@
 
     :cond_0
     const-string v0, "/system/etc/firmware/venus.b05.bak"
-
-    new-instance v1, Ljava/io/File;
-
-    invoke-direct {v1, v0}, Ljava/io/File;-><init>(Ljava/lang/String;)V
-
-    invoke-virtual {v1}, Ljava/io/File;->exists()Z
-
-    move-result v0
-
-    if-eqz v0, :cond_1
-
-    const-string v0, "/system/framework/oem-framework2.jar.bak"
 
     new-instance v1, Ljava/io/File;
 
@@ -1194,18 +1134,6 @@
     if-eqz v0, :cond_1
 
     const-string v0, "/system/vendor/lib/libcameraface.so.bak"
-
-    new-instance v1, Ljava/io/File;
-
-    invoke-direct {v1, v0}, Ljava/io/File;-><init>(Ljava/lang/String;)V
-
-    invoke-virtual {v1}, Ljava/io/File;->exists()Z
-
-    move-result v0
-
-    if-eqz v0, :cond_1
-
-    const-string v0, "/system/media/wallpaper/wallpaper_008.jpg.bak"
 
     new-instance v1, Ljava/io/File;
 

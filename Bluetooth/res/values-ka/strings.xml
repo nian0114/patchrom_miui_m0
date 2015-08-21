@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="map_session_key_dialog_title">სესიის გასაღები %1$s-ისთვის</string>
+    <string name="map_session_key_dialog_header">აუცილებელია Bluetooth სესიის გასაღები</string>
+    <string name="map_acceptance_timeout_message">%1$s-თან კავშირის მიღების დრო ამოიწურა</string>
+    <string name="map_authentication_timeout_message">%1$s-თან სესიის გასაღების შეყვანის დრო ამოიწურა</string>
+    <string name="map_auth_notif_ticker">Obex ავთენტიფიკაციის მოთხოვნა</string>
+    <string name="map_auth_notif_title">სესიის გასაღები</string>
+    <string name="map_auth_notif_message">სესიის გასაღები %1$s-ისთვის</string>
+    <string name="map_defaultname">მანქანის ნაკრები</string>
+    <string name="map_unknownName">უცნობი სახელი</string>
+    <string name="map_localPhoneName">ჩემი სახელი</string>
+    <string name="map_defaultnumber">000000</string>
+</resources>

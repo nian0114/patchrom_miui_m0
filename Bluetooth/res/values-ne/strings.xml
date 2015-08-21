@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="map_session_key_dialog_title">%1$s का लागि सत्र कुञ्जी टाइप गर्नुहोस्</string>
+    <string name="map_session_key_dialog_header">ब्लूटूथ सत्र कुञ्जी आवश्यक</string>
+    <string name="map_acceptance_timeout_message">%1$s सँग जडान स्वीकार गर्न समय सकियो</string>
+    <string name="map_authentication_timeout_message">%1$s का साथ सत्र कुञ्जी इनपुट गर्ने समय सकियो</string>
+    <string name="map_auth_notif_ticker">Obex प्रमाणिकरण अनुरोध</string>
+    <string name="map_auth_notif_title">सत्र कुञ्जी</string>
+    <string name="map_auth_notif_message">%1$s का लागि सत्र कुञ्जी टाइप गर्नुहोस्</string>
+    <string name="map_defaultname">Carkit</string>
+    <string name="map_unknownName">अज्ञात नाम</string>
+    <string name="map_localPhoneName">मेरो नाम</string>
+    <string name="map_defaultnumber">००००००</string>
+</resources>

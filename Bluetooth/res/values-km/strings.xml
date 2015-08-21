@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="map_session_key_dialog_title">បញ្ចូល​សោ​សម័យ​សម្រាប់ %1$s</string>
+    <string name="map_session_key_dialog_header">បាន​ទាមទារ​សោ​សម័យ​ប៊្លូធូស</string>
+    <string name="map_acceptance_timeout_message">អស់​ពេល​វេលា​ក្នុង​ការ​ទទួល​យក​ការ​តភ្ជាប់​ជាមួយ %1$s</string>
+    <string name="map_authentication_timeout_message">អស់​ពេល​​ដើម្បី​បញ្ចូល​សោ​សម័យ​ជាមួយ %1$s</string>
+    <string name="map_auth_notif_ticker">សំណើ​ការ​ផ្ទៀងផ្ទាត់ Obex</string>
+    <string name="map_auth_notif_title">សោ​សម័យ</string>
+    <string name="map_auth_notif_message">បញ្ចូល​សោ​សម័យ​សម្រាប់ %1$s</string>
+    <string name="map_defaultname">Carkit</string>
+    <string name="map_unknownName">មិន​ស្គាល់​ឈ្មោះ</string>
+    <string name="map_localPhoneName">ឈ្មោះ​របស់​ខ្ញុំ</string>
+    <string name="map_defaultnumber">000000</string>
+</resources>

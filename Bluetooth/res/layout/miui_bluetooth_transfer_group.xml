@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:paddingRight="?android:scrollbarSize" android:layout_height="wrap_content" style="@miui:style/Widget.ExpandableListView.GroupItem"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:ellipsize="marquee" android:layout_gravity="center_vertical" android:id="@id/group_title" android:background="@null" android:paddingLeft="0.0dip" android:duplicateParentState="true" android:layout_width="fill_parent" android:layout_height="wrap_content" android:singleLine="true" style="@miui:style/Widget.ExpandableListView.GroupItem" />
+</LinearLayout>

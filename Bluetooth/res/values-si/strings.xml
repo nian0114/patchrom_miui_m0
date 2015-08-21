@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="map_session_key_dialog_title">%1$s සඳහා සැසි යතුර ටයිප් කරන්න</string>
+    <string name="map_session_key_dialog_header">බ්ලූටූත් සැසි යතුර අවශ්‍යයි</string>
+    <string name="map_acceptance_timeout_message">"%1$s හා සම්බන්ධය පිළිගැනීමට කාල නිමාවක්  විය"</string>
+    <string name="map_authentication_timeout_message">%1$s හා සැසි යතුර ආදානය කිරීමට කාල නිමාවක් විය</string>
+    <string name="map_auth_notif_ticker">Obex සත්‍යාපන ඉල්ලීම</string>
+    <string name="map_auth_notif_title">සැසි යතුර</string>
+    <string name="map_auth_notif_message">%1$s සඳහා සැසි යතුර ටයිප් කරන්න</string>
+    <string name="map_defaultname">Carkit</string>
+    <string name="map_unknownName">නොදන්නා නමකි</string>
+    <string name="map_localPhoneName">මගේ නම</string>
+    <string name="map_defaultnumber">000000</string>
+</resources>

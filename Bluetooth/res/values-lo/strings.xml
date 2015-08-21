@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="map_session_key_dialog_title">ພິມລະຫັດເຊສຊັນສຳລັບ %1$s</string>
+    <string name="map_session_key_dialog_header">ຕ້ອງມີ Bluetooth ລະຫັດເຊສຊັນ</string>
+    <string name="map_acceptance_timeout_message">ໝົດເວລາທີ່ຈະຮັບການເຊື່ອມຕໍ່ກັບ %1$s</string>
+    <string name="map_authentication_timeout_message">ເກີດໝົດເວລາກ່ອນທີ່ຈະໃສ່ລະຫັດເຊສຊັນກັບ %1$s</string>
+    <string name="map_auth_notif_ticker">ການຮ້ອງຂໍພິສູດຢືນຢັນໂຕ Obex</string>
+    <string name="map_auth_notif_title">ກະແຈເຊສຊັສ</string>
+    <string name="map_auth_notif_message">ພິມລະຫັດເຊສຊັນສຳລັບ %1$s</string>
+    <string name="map_defaultname">Carkit</string>
+    <string name="map_unknownName">ບໍ່ຮູ້ຊື່</string>
+    <string name="map_localPhoneName">ຊື່ຂອງຂ້ອຍ</string>
+    <string name="map_defaultnumber">000000</string>
+</resources>
