@@ -457,7 +457,7 @@
 
 
 # direct methods
-.method private constructor <init>(Landroid/hardware/Camera;)V
+.method protected constructor <init>(Landroid/hardware/Camera;)V
     .locals 2
 
     .prologue
