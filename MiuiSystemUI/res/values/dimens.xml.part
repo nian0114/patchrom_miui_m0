@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="expanded_status_bar_toggle_min_width">35.0dip</dimen>
+    <dimen name="expanded_status_bar_toggle_max_width">60.0dip</dimen>
+    <dimen name="expanded_status_bar_toggle_max_height">75.0dip</dimen>
+</resources>

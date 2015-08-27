@@ -81,8 +81,6 @@
 
 .field private mCameraDataCallback:Landroid/hardware/Camera$CameraDataCallback;
 
-.field private mCameraId:I
-
 .field private mCameraMetaDataCallback:Landroid/hardware/Camera$CameraMetaDataCallback;
 
 .field private mErrorCallback:Landroid/hardware/Camera$ErrorCallback;
@@ -106,8 +104,6 @@
 .field private mRawImageCallback:Landroid/hardware/Camera$PictureCallback;
 
 .field private mShutterCallback:Landroid/hardware/Camera$ShutterCallback;
-
-.field private mTorchToken:Landroid/os/Binder;
 
 .field private mUsingPreviewAllocation:Z
 
@@ -155,8 +151,6 @@
 
     iput-object v2, p0, Landroid/hardware/Camera;->mAutoFocusCallbackLock:Ljava/lang/Object;
 
-    iput p1, p0, Landroid/hardware/Camera;->mCameraId:I
-
     iput-object v3, p0, Landroid/hardware/Camera;->mShutterCallback:Landroid/hardware/Camera$ShutterCallback;
 
     iput-object v3, p0, Landroid/hardware/Camera;->mRawImageCallback:Landroid/hardware/Camera$PictureCallback;
@@ -174,12 +168,6 @@
     iput-object v3, p0, Landroid/hardware/Camera;->mCameraDataCallback:Landroid/hardware/Camera$CameraDataCallback;
 
     iput-object v3, p0, Landroid/hardware/Camera;->mCameraMetaDataCallback:Landroid/hardware/Camera$CameraMetaDataCallback;
-
-    new-instance v2, Landroid/os/Binder;
-
-    invoke-direct {v2}, Landroid/os/Binder;-><init>()V
-
-    iput-object v2, p0, Landroid/hardware/Camera;->mTorchToken:Landroid/os/Binder;
 
     invoke-static {}, Landroid/os/Looper;->myLooper()Landroid/os/Looper;
 
@@ -200,10 +188,6 @@
     move-result-object v1
 
     .local v1, "packageName":Ljava/lang/String;
-    const/4 v2, 0x1
-
-    invoke-direct {p0, v2}, Landroid/hardware/Camera;->notifyTorch(Z)V
-
     new-instance v2, Ljava/lang/ref/WeakReference;
 
     invoke-direct {v2, p0}, Ljava/lang/ref/WeakReference;-><init>(Ljava/lang/Object;)V
@@ -637,52 +621,6 @@
 .method private final native native_takePicture(I)V
 .end method
 
-.method private notifyTorch(Z)V
-    .locals 4
-    .param p1, "inUse"    # Z
-
-    .prologue
-    const-string v2, "torch"
-
-    invoke-static {v2}, Landroid/os/ServiceManager;->getService(Ljava/lang/String;)Landroid/os/IBinder;
-
-    move-result-object v0
-
-    .local v0, "b":Landroid/os/IBinder;
-    invoke-static {v0}, Landroid/hardware/ITorchService$Stub;->asInterface(Landroid/os/IBinder;)Landroid/hardware/ITorchService;
-
-    move-result-object v1
-
-    .local v1, "torchService":Landroid/hardware/ITorchService;
-    if-eqz p1, :cond_0
-
-    :try_start_0
-    iget-object v2, p0, Landroid/hardware/Camera;->mTorchToken:Landroid/os/Binder;
-
-    iget v3, p0, Landroid/hardware/Camera;->mCameraId:I
-
-    invoke-interface {v1, v2, v3}, Landroid/hardware/ITorchService;->onCameraOpened(Landroid/os/IBinder;I)V
-
-    :goto_0
-    return-void
-
-    :cond_0
-    iget-object v2, p0, Landroid/hardware/Camera;->mTorchToken:Landroid/os/Binder;
-
-    iget v3, p0, Landroid/hardware/Camera;->mCameraId:I
-
-    invoke-interface {v1, v2, v3}, Landroid/hardware/ITorchService;->onCameraClosed(Landroid/os/IBinder;I)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
-
-    goto :goto_0
-
-    :catch_0
-    move-exception v2
-
-    goto :goto_0
-.end method
-
 .method public static open()Landroid/hardware/Camera;
     .locals 4
 
@@ -1069,13 +1007,11 @@
     .locals 1
 
     .prologue
-    const/4 v0, 0x0
-
     invoke-direct {p0}, Landroid/hardware/Camera;->native_release()V
 
-    iput-boolean v0, p0, Landroid/hardware/Camera;->mFaceDetectionRunning:Z
+    const/4 v0, 0x0
 
-    invoke-direct {p0, v0}, Landroid/hardware/Camera;->notifyTorch(Z)V
+    iput-boolean v0, p0, Landroid/hardware/Camera;->mFaceDetectionRunning:Z
 
     return-void
 .end method

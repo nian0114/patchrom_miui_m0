@@ -116,7 +116,7 @@ Subject: [PATCH] add juelian changelog
  
 @@ -4357,7 +4370,8 @@
  
-     if-eqz v0, :cond_2
+     if-eqz v0, :cond_0
  
 -    iget-object v3, p0, Lcom/android/updater/MainActivity;->mUpdaterLogListView:Landroid/widget/ListView;
 +    #iget-object v3, p0, Lcom/android/updater/MainActivity;->mUpdaterLogListView:Landroid/widget/ListView;
@@ -127,7 +127,7 @@ Subject: [PATCH] add juelian changelog
 @@ -4366,7 +4380,7 @@
      move v0, v1
  
-     :goto_2
+     :goto_0
 -    invoke-virtual {v3, v0}, Landroid/widget/ListView;->setVisibility(I)V
 +    invoke-virtual {v3, v0}, Landroid/webkit/WebView;->setVisibility(I)V
  
