@@ -338,7 +338,7 @@
 
     iget-object v2, p1, Landroid/content/res/ThemeConfig;->mThemes:Ljava/util/Map;
 
-    invoke-interface {v1, v2}, Ljava/util/Map;->equals(Ljava/lang/Object;)Z
+    invoke-virtual {v1, v2}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
 
     move-result v1
 
@@ -421,7 +421,7 @@
 
     .local v1, "newThemes":Ljava/util/Map;, "Ljava/util/Map<Ljava/lang/String;Landroid/content/res/ThemeConfig$AppTheme;>;"
     :goto_2
-    invoke-interface {v0, v1}, Ljava/util/Map;->equals(Ljava/lang/Object;)Z
+    invoke-virtual {v0, v1}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
 
     move-result v3
 

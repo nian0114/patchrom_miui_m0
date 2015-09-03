@@ -52,8 +52,7 @@ local-pre-zip-misc:
 	cp -rf other/boot.img $(ZIP_DIR)/boot.img
 
 	cp -rf other/system $(ZIP_DIR)/
-
-	mv $(ZIP_DIR)/system/app/QuickSearchBox.apk $(ZIP_DIR)/system/priv-app/QuickSearchBox.apk
+	cp -rf ../miui_other/system $(ZIP_DIR)/
 
 	@echo goodbye! miui prebuilt binaries!
 	cp -rf stockrom/system/bin/app_process $(ZIP_DIR)/system/bin/app_process

@@ -25,7 +25,7 @@
 
 .field public static final config_allowAllRotations:I = 0x1110022
 
-.field public static final config_alwaysRequestAudioFocusForCalls:I = 0x111007a
+.field public static final config_alwaysRequestAudioFocusForCalls:I = 0x1110079
 
 .field public static final config_alwaysUseCdmaRssi:I = 0x111004f
 
@@ -138,8 +138,6 @@
 .field public static final config_multiColorBatteryLed:I = 0x111002f
 
 .field public static final config_multiColorNotificationLed:I = 0x111002d
-
-.field public static final config_proximityCheckOnWake:I = 0x1110079
 
 .field public static final config_radio_reset_on_regular_deactivation:I = 0x1110074
 

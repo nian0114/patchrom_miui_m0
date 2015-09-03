@@ -125,8 +125,6 @@
 
 .field public static final config_panelAutoBrightnessValue:I = 0x10e004e
 
-.field public static final config_proximityCheckTimeout:I = 0x10e0051
-
 .field public static final config_radioScanningTimeout:I = 0x10e000c
 
 .field public static final config_safe_media_volume_index:I = 0x10e0047
@@ -173,7 +171,7 @@
 
 .field public static final db_wal_autocheckpoint:I = 0x10e003a
 
-.field public static final max_action_buttons:I = 0x10e0052
+.field public static final max_action_buttons:I = 0x10e0051
 
 .field public static final status_bar_notification_info_maxnum:I = 0x10e0003
 

@@ -2790,7 +2790,9 @@
 
     iget-object v1, p0, Lcom/android/internal/telephony/cat/CatService;->mContext:Landroid/content/Context;
 
-    invoke-virtual {v1, v0}, Landroid/content/Context;->sendBroadcast(Landroid/content/Intent;)V
+    const-string v2, "android.permission.RECEIVE_STK_COMMANDS"
+
+    invoke-virtual {v1, v0, v2}, Landroid/content/Context;->sendBroadcast(Landroid/content/Intent;Ljava/lang/String;)V
 
     return-void
 .end method
@@ -2893,7 +2895,9 @@
 
     iget-object v2, p0, Lcom/android/internal/telephony/cat/CatService;->mContext:Landroid/content/Context;
 
-    invoke-virtual {v2, v1}, Landroid/content/Context;->sendBroadcast(Landroid/content/Intent;)V
+    const-string v3, "android.permission.RECEIVE_STK_COMMANDS"
+
+    invoke-virtual {v2, v1, v3}, Landroid/content/Context;->sendBroadcast(Landroid/content/Intent;Ljava/lang/String;)V
 
     return-void
 
@@ -2905,7 +2909,7 @@
 .end method
 
 .method protected broadcastCatCmdIntent(Lcom/android/internal/telephony/cat/CatCmdMessage;)V
-    .locals 2
+    .locals 3
     .param p1, "cmdMsg"    # Lcom/android/internal/telephony/cat/CatCmdMessage;
 
     .prologue
@@ -2926,7 +2930,9 @@
 
     iget-object v1, p0, Lcom/android/internal/telephony/cat/CatService;->mContext:Landroid/content/Context;
 
-    invoke-virtual {v1, v0}, Landroid/content/Context;->sendBroadcast(Landroid/content/Intent;)V
+    const-string v2, "android.permission.RECEIVE_STK_COMMANDS"
+
+    invoke-virtual {v1, v0, v2}, Landroid/content/Context;->sendBroadcast(Landroid/content/Intent;Ljava/lang/String;)V
 
     return-void
 .end method
@@ -3664,7 +3670,7 @@
 .end method
 
 .method protected handleSessionEnd()V
-    .locals 2
+    .locals 3
 
     .prologue
     const-string v1, "SESSION END"
@@ -3688,7 +3694,9 @@
 
     iget-object v1, p0, Lcom/android/internal/telephony/cat/CatService;->mContext:Landroid/content/Context;
 
-    invoke-virtual {v1, v0}, Landroid/content/Context;->sendBroadcast(Landroid/content/Intent;)V
+    const-string v2, "android.permission.RECEIVE_STK_COMMANDS"
+
+    invoke-virtual {v1, v0, v2}, Landroid/content/Context;->sendBroadcast(Landroid/content/Intent;Ljava/lang/String;)V
 
     return-void
 .end method
