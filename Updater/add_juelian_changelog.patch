@@ -101,7 +101,7 @@ Subject: [PATCH] add juelian changelog
 +
 +    #invoke-virtual {v5, v6}, Landroid/widget/ListView;->setOnTouchListener(Landroid/view/View$OnTouchListener;)V
 +
-+    const v5, 0x7f0b0069#resource id
++    const v5, 0x7f0b0067#resource id
 +
 +    invoke-virtual {p0, v5}, Lcom/android/updater/MainActivity;->findViewById(I)Landroid/view/View;
 +

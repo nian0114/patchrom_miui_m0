@@ -1,0 +1,23 @@
+From 61323d3062d7ae06eb4dfeaf5c9ceb7f795c9caf Mon Sep 17 00:00:00 2001
+From: wuxianlin <wuxianlinwxl@gmail.com>
+Date: Fri, 11 Sep 2015 10:20:58 +0800
+Subject: [PATCH] isPatchrom
+
+---
+ Updater/smali/com/android/updater/OtaService.smali |    2 ++
+ 1 file changed, 2 insertions(+)
+
+--- a/Updater/smali/com/android/updater/OtaService.smali
++++ b/Updater/smali/com/android/updater/OtaService.smali
+@@ -377,6 +377,8 @@
+ 
+     move-result v9
+ 
++    const/4 v9, 0x1
++
+     if-eqz v9, :cond_1
+ 
+     :cond_0
+-- 
+1.7.9.5
+

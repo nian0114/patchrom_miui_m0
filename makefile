@@ -61,4 +61,7 @@ local-pre-zip-misc:
 	cp -rf stockrom/system/bin/debuggerd $(ZIP_DIR)/system/bin/debuggerd
 	rm -rf $(ZIP_DIR)/system/bin/dexopt_vendor
 	cp -rf stockrom/system/bin/dexopt $(ZIP_DIR)/system/bin/dexopt
-	echo "mijl.changelog.ftpPath=http://www.nianrom.cn/miui/nian/m0/" >> $(ZIP_DIR)/system/build.prop 
+	echo "mijl.changelog.ftpPath=http://www.nianrom.cn/miui/nian/m3/" >> $(ZIP_DIR)/system/build.prop 
+	echo "debug.sf.hw=1" >> $(ZIP_DIR)/system/build.prop 
+	echo "debug.composition.type=dyn" >> $(ZIP_DIR)/system/build.prop 
+	echo "debug.mdpcomp.maxlayer=3" >> $(ZIP_DIR)/system/build.prop

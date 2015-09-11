@@ -100,5 +100,4 @@ ro.config.notification_sound=pixiedust.ogg
 ro.config.alarm_alert=Alarm_Classic.ogg
 persist.power.useautobrightadj=true
 ro.miui.has_handy_mode_sf=0
-ro.miui.has_real_blur=0
  

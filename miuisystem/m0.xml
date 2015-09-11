@@ -36,4 +36,6 @@
     <bool name="support_agps_paras">true</bool>
     <!--whether the device supports agps roaming-->
     <bool name="support_agps_roaming">false</bool>
+    <!--whether the device is port by patchrom-->
+    <bool name="is_patchrom">true</bool>
 </features>
