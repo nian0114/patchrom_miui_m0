@@ -20,8 +20,7 @@ local-miui-removed-apps :=
 
 local-miui-removed-priv-apps :=
 
-local-miui-modified-apps := Music miuisystem SecurityCenter DeskClock Settings MiuiHome MiuiSystemUI Updater TeleService DownloadProvider ThemeManager \
- AntiSpam ApplicationsProvider AuthManager Backup Browser BugReport Calculator Calendar CalendarProvider CloudService Contacts ContactsProvider DocumentsUI DownloadProviderUi Email FileExplorer GuardProvider InCallUI LiveWallpapersPicker MediaProvider MiAssistant MiuiCompass MiuiGallery MiuiKeyguard MiLinkService MiWallpaper Mms NetworkAssistant2 Notes PackageInstaller PaymentService Provision QuickSearchBox SettingsProvider SoundRecorder TelephonyProvider Weather WeatherProvider XiaomiAccount XiaomiServiceFramework YellowPage
+local-miui-modified-apps := Music miuisystem SecurityCenter DeskClock Settings MiuiHome MiuiSystemUI Updater TeleService DownloadProvider ThemeManager 
 PORT_PRODUCT := nian_i9300
 
 # Config density for co-developers to use the aaps with HDPI or XHDPI resource,
@@ -61,7 +60,7 @@ local-pre-zip-misc:
 	cp -rf stockrom/system/bin/debuggerd $(ZIP_DIR)/system/bin/debuggerd
 	rm -rf $(ZIP_DIR)/system/bin/dexopt_vendor
 	cp -rf stockrom/system/bin/dexopt $(ZIP_DIR)/system/bin/dexopt
-	echo "mijl.changelog.ftpPath=http://www.nianrom.cn/miui/nian/m3/" >> $(ZIP_DIR)/system/build.prop 
+	echo "mijl.changelog.ftpPath=http://www.nianrom.cn/miui/nian/m0/" >> $(ZIP_DIR)/system/build.prop 
 	echo "debug.sf.hw=1" >> $(ZIP_DIR)/system/build.prop 
 	echo "debug.composition.type=dyn" >> $(ZIP_DIR)/system/build.prop 
 	echo "debug.mdpcomp.maxlayer=3" >> $(ZIP_DIR)/system/build.prop
