@@ -20,7 +20,9 @@ local-miui-removed-apps :=
 
 local-miui-removed-priv-apps :=
 
-local-miui-modified-apps := Music miuisystem SecurityCenter DeskClock Settings MiuiHome MiuiSystemUI Updater TeleService DownloadProvider ThemeManager 
+local-miui-modified-apps := Music miuisystem SecurityCenter DeskClock Settings MiuiHome MiuiSystemUI Updater TeleService DownloadProvider ThemeManager \
+AntiSpam ApplicationsProvider AuthManager Backup Browser BugReport Calculator Calendar CalendarProvider CloudService Contacts ContactsProvider DocumentsUI DownloadProviderUi Email FileExplorer GuardProvider InCallUI LiveWallpapersPicker MediaProvider MiAssistant MiuiCompass MiuiGallery MiuiKeyguard MiLinkService MiWallpaper Mms NetworkAssistant2 Notes PackageInstaller PaymentService Provision QuickSearchBox SettingsProvider SoundRecorder TelephonyProvider Weather WeatherProvider XiaomiAccount XiaomiServiceFramework YellowPage
+
 PORT_PRODUCT := nian_i9300
 
 # Config density for co-developers to use the aaps with HDPI or XHDPI resource,
