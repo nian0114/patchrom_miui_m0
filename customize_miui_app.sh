@@ -145,231 +145,329 @@ function add() {
 
 if [ $1 = "AntiSpam" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "ApplicationsProvider" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "AuthManager" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "Backup" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 	applyPatch $1 $2
-fi
-
-if [ $1 = "BarcodeScanner" ];then
-	rm  -rf out/$1/smali/com/zxing/camera/CameraManager\$FlashAsyncTask.smali
-	applyPatch $1 $2
-	add $1
 fi
 
 if [ $1 = "Browser" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "BugReport" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "Calculator" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "Calendar" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "CalendarProvider" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "CloudService" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "Contacts" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "ContactsProvider" ];then
-	applyPatch $1 $2
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "DeskClock" ];then
-	other/tools/idtoname.py other/tools/public-miui.xml $2/smali
-	other/tools/nametoid.py framework-res/res/values/public.xml $2/smali
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "DocumentsUI" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "DownloadProvider" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "DownloadProviderUi" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "Email" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "FileExplorer" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "GuardProvider" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "InCallUI" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "LiveWallpapersPicker" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "MediaProvider" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "MiAssistant" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "MiuiCompass" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "MiuiGallery" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "MiuiHome" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "MiuiKeyguard" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 	applyPatch $1 $2
 fi
 
 if [ $1 = "MiLinkService" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "MiuiVideo" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "miuisystem" ];then
 	applyPatch $1 $2
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 	cp $1/m0.xml $2/assets/device_features/
 fi
 
 if [ $1 = "MiuiSystemUI" ];then
 	add $1
+	applyPatch $1 $2
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "Music" ];then
 	applyPatch $1 $2
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "MiWallpaper" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "Mms" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "NetworkAssistant2" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "Notes" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "PackageInstaller" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "PaymentService" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "Provision" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "QuickSearchBox" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "Settings" ];then
 	applyPatch $1 $2
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 	$XMLMERGYTOOL $1/res/values $2/res/values
 	$XMLMERGYTOOL $1/res/values-zh-rCN $2/res/values-zh-rCN
 fi
 
 if [ $1 = "SettingsProvider" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "SoundRecorder" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "TeleService" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "SecurityCenter" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 	applyPatch $1 $2
 fi
 
 if [ $1 = "TelephonyProvider" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "ThemeManager" ];then
 	applyPatch $1 $2
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "Updater" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 	applyPatch $1 $2
 fi
 
 if [ $1 = "Weather" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "WeatherProvider" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "XiaomiAccount" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "XiaomiServiceFramework" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "YellowPage" ];then
 	add $1
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi

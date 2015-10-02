@@ -1,4 +1,7 @@
+*~
 out
 temp
 other/tg
 stockrom.zip
+ThemeManager
+.delete-zip-file-when-clean

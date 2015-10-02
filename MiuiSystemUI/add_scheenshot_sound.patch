@@ -1,0 +1,30 @@
+From 5a19169eb812a00aacf9a11d6fa69f11e1b6af2e Mon Sep 17 00:00:00 2001
+From: X-s <imxs1107@gmail.com>
+Date: Tue, 25 Aug 2015 20:50:44 +0800
+Subject: [PATCH] add screehshot sounds
+
+---
+ .../com/android/systemui/screenshot/GlobalScreenshot$3.smali   | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+--- a/MiuiSystemUI/smali/com/android/systemui/screenshot/GlobalScreenshot$3.smali
++++ b/MiuiSystemUI/smali/com/android/systemui/screenshot/GlobalScreenshot$3.smali
+@@ -47,6 +47,16 @@
+     move-result-object v0
+
+     if-eqz v0, :cond_0
++
++    const-string v0, "persist.nian.screenshot.sound"
++
++    const/4 v1, 0x1
++
++    invoke-static {v0, v1}, Landroid/os/SystemProperties;->getInt(Ljava/lang/String;I)I
++
++    move-result v0
++
++    if-ne v0, v1, :cond_0
+
+     iget-object v0, p0, Lcom/android/systemui/screenshot/GlobalScreenshot$3;->this$0:Lcom/android/systemui/screenshot/GlobalScreenshot;
+
+--
+1.9.1

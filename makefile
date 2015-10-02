@@ -8,9 +8,6 @@ local-zip-file     := stockrom.zip
 # The output zip file of MIUI rom, the default is porting_miui.zip if not specified
 local-out-zip-file := MIUI_m0.zip
 
-# the location for local-ota to save target-file
-local-previous-target-dir := 
-
 # All apps from original ZIP, but has smali files chanded
 local-modified-apps := Bluetooth
 
@@ -29,7 +26,7 @@ local-phone-priv-apps := BackupRestoreConfirmation DefaultContainerService Fused
         Shell Tag VpnDialogs 
 
 local-density := XHDPI
-PORT_PRODUCT := nian_i9305
+PORT_PRODUCT := nian_m7
 
 # To include the local targets before and after zip the final ZIP file, 
 # and the local-targets should:
@@ -47,6 +44,7 @@ include $(PORT_BUILD)/porting.mk
 local-zip-misc:
 	cp -rf other/system $(ZIP_DIR)/
 	cp -rf other/tg/system $(ZIP_DIR)/
+	cp -rf ../miui_other/system $(ZIP_DIR)/
 	echo "mijl.changelog.ftpPath=http://www.nianrom.cn/miui/nian/omni/" >> $(ZIP_DIR)/system/build.prop 
 	@echo goodbye! miui prebuilt binaries!
 	cp -rf stockrom/system/bin/app_process $(ZIP_DIR)/system/bin/app_process
