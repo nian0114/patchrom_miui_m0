@@ -1,6 +1,6 @@
 MIUI patchrom for Samsung S3 开源说明
 
-1.开源的代码由nian基于I9300 CM11.0 Final版本 ROM适配MIUI6 v6-kitkat分支的代码
+1.开源的代码由nian基于I9300 CM11.0 Final版本 ROM适配MIUI7 v6-kitkat分支的代码
 
 2.目前MIUI官网的MIUI for GT-I9300 合作版是我发布在MIUI官网的MIUI
 
