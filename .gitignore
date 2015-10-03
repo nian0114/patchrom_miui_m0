@@ -5,4 +5,5 @@ stockrom.zip
 ThemeManager
 miuisystem/1.patch
 .delete-zip-file-when-clean
-Settings/own.patch
+Settings/jm.patch
+Settings/cpuinfo.patch
