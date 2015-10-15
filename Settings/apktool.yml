@@ -1,0 +1,30 @@
+version: 2.0.0-RC4
+apkFileName: Settings.apk
+isFrameworkApk: false
+usesFramework:
+  ids:
+  - 1
+  - 16
+  - 17
+  - 18
+sdkInfo:
+  minSdkVersion: '19'
+  targetSdkVersion: '19'
+packageInfo:
+versionInfo:
+  versionCode: '19'
+  versionName: 4.4.4-eng.mochangming.20151008.193620
+compressionType: false
+unknownFiles:
+  miui_push_version: '8'
+  com/xiaomi/smack/package.html: '8'
+  com/xiaomi/smack/debugger/package.html: '8'
+  com/xiaomi/smack/filter/package.html: '8'
+  com/xiaomi/smack/packet/package.html: '8'
+  com/xiaomi/smack/provider/package.html: '8'
+  com/xiaomi/smack/util/package.html: '8'
+  org/htmlparser/beans/BeanyBaby.form: '8'
+  org/htmlparser/beans/images/Chain16.gif: '8'
+  org/htmlparser/beans/images/Chain32.gif: '8'
+  org/htmlparser/beans/images/Knot16.gif: '8'
+  org/htmlparser/beans/images/Knot32.gif: '8'

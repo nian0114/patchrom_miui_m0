@@ -1333,7 +1333,7 @@
     .locals 1
 
     .prologue
-    iget v0, p0, Landroid/telephony/CellBroadcastMessage;->mSubId:I
+    const/4 v0, 0x0
 
     return v0
 .end method
@@ -1506,8 +1506,6 @@
     .param p1, "subId"    # I
 
     .prologue
-    iput p1, p0, Landroid/telephony/CellBroadcastMessage;->mSubId:I
-
     return-void
 .end method
 

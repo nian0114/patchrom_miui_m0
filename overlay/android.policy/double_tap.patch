@@ -4,8 +4,8 @@ Date: Tue, 12 May 2015 17:36:54 +0800
 Subject: [PATCH] add double tap action, thanks YeGui
 
 ---
- .../policy/impl/BaseMiuiPhoneWindowManager.smali   | 22 +++++++++++++++++++++-
- 1 file changed, 21 insertions(+), 1 deletion(-)
+ .../policy/impl/BaseMiuiPhoneWindowManager.smali   | 9 +++++++++
+ 1 file changed, 9 insertions(+), 0 deletion(-)
 
 --- a/android.policy/smali/com/android/internal/policy/impl/BaseMiuiPhoneWindowManager.smali
 +++ b/android.policy/smali/com/android/internal/policy/impl/BaseMiuiPhoneWindowManager.smali
@@ -13,7 +13,7 @@ Subject: [PATCH] add double tap action, thanks YeGui
  
      .end local v7    # "sbm":Landroid/app/StatusBarManager;
      :cond_d
-+    invoke-super {p0}, Lcom/android/internal/policy/impl/PhoneWindowManager;->setMyhomeKeyAction()Z
++    invoke-super {p0}, Lcom/android/internal/policy/impl/PhoneWindowManager;->MyhomeKeyAction()Z
 +
 +    move-result v11
 +
@@ -25,33 +25,5 @@ Subject: [PATCH] add double tap action, thanks YeGui
      invoke-virtual {p0}, Lcom/android/internal/policy/impl/BaseMiuiPhoneWindowManager;->launchHomeFromHotKey()V
      :try_end_0
      .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
-@@ -1941,7 +1950,7 @@
- 
-     .local v4, "i":I
-     :goto_5
--    if-ge v4, v10, :cond_b
-+    if-ge v4, v10, :cond_miui_10
- 
-     sget-object v11, Lcom/android/internal/policy/impl/BaseMiuiPhoneWindowManager;->WINDOW_TYPES_WHERE_HOME_DOESNT_WORK:[I
- 
-@@ -1969,6 +1978,17 @@
- 
-     goto/16 :goto_1
- 
-+    :cond_miui_10
-+    if-eqz v2, :cond_b
-+
-+    if-nez v6, :cond_b
-+
-+    invoke-super {p0}, Lcom/android/internal/policy/impl/PhoneWindowManager;->resetMyhomeKeyAction()V
-+
-+    const-wide/16 v11, -0x1
-+
-+    goto/16 :goto_1
-+    
-     :sswitch_data_0
-     .sparse-switch
-         0x3 -> :sswitch_0
 -- 
-1.9.1
 

@@ -96,6 +96,8 @@
 
 .field public static final VOICEMAIL_URI:Ljava/lang/String; = "voicemail_uri"
 
+.field public static final SUBSCRIPTION:Ljava/lang/String;
+
 
 # direct methods
 .method static constructor <clinit>()V
@@ -137,6 +139,10 @@
     move-result-object v0
 
     sput-object v0, Landroid/provider/CallLog$Calls;->CONTENT_URI_WITH_VOICEMAIL:Landroid/net/Uri;
+    
+    sget-object v0, Lmiui/telephony/SubscriptionManager;->SLOT_KEY:Ljava/lang/String;
+
+    sput-object v0, Landroid/provider/CallLog$Calls;->SUBSCRIPTION:Ljava/lang/String;
 
     return-void
 .end method
@@ -151,7 +157,7 @@
 .end method
 
 .method public static addCall(Lcom/android/internal/telephony/CallerInfo;Landroid/content/Context;Ljava/lang/String;IIJI)Landroid/net/Uri;
-    .locals 10
+    .locals 9
     .param p0, "ci"    # Lcom/android/internal/telephony/CallerInfo;
     .param p1, "context"    # Landroid/content/Context;
     .param p2, "number"    # Ljava/lang/String;
@@ -161,9 +167,13 @@
     .param p7, "duration"    # I
 
     .prologue
-    const/4 v8, 0x0
+    invoke-static {}, Lmiui/telephony/SubscriptionManager;->getDefault()Lmiui/telephony/SubscriptionManager;
 
-    const/4 v9, 0x0
+    move-result-object v0
+
+    invoke-virtual {v0}, Lmiui/telephony/SubscriptionManager;->getDefaultSlotId()I
+
+    move-result v8
 
     move-object v0, p0
 
@@ -179,7 +189,7 @@
 
     move/from16 v7, p7
 
-    invoke-static/range {v0 .. v9}, Landroid/provider/CallLog$Calls;->addCall(Lcom/android/internal/telephony/CallerInfo;Landroid/content/Context;Ljava/lang/String;IIJIII)Landroid/net/Uri;
+    invoke-static/range {v0 .. v8}, Landroid/provider/CallLog$Calls;->addCall(Lcom/android/internal/telephony/CallerInfo;Landroid/content/Context;Ljava/lang/String;IIJII)Landroid/net/Uri;
 
     move-result-object v0
 
@@ -525,9 +535,6 @@
     invoke-virtual {v1, v2, v13}, Landroid/content/ContentResolver;->insert(Landroid/net/Uri;Landroid/content/ContentValues;)Landroid/net/Uri;
 
     move-result-object v12
-
-    .local v12, "result":Landroid/net/Uri;
-    invoke-static/range {p1 .. p1}, Landroid/provider/CallLog$Calls;->removeExpiredEntries(Landroid/content/Context;)V
 
     return-object v12
 

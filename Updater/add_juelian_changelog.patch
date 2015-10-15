@@ -1,20 +1,20 @@
-From ac7b353567ced11bfb2e8697a29e563f7a456e17 Mon Sep 17 00:00:00 2001
-From: X-s <xsmumu@gmail.com>
-Date: Mon, 15 Jun 2015 21:47:07 +0800
+From 51ed98fa6c9d47f33ee8a72e211b4bc5f725c93c Mon Sep 17 00:00:00 2001
+From: X-s <imxs1107@gmail.com>
+Date: Sat, 10 Oct 2015 21:00:20 +0800
 Subject: [PATCH] add juelian changelog
 
 ---
  Updater/res/layout/activity_main2.xml              |  3 +-
- Updater/res/values/ids.xml            				 |  1 +
- .../updater/MainActivity$UpdateObserver.smali      | 23 +++++++++++++-
- .../smali/com/android/updater/MainActivity.smali   | 35 +++++++++++++++-------
+ Updater/res/values/ids.xml                         |  1 +
+ .../updater/MainActivity$UpdateObserver.smali      | 21 +++++++++++++
+ .../smali/com/android/updater/MainActivity.smali   | 36 ++++++++++++++--------
  Updater/smali/com/android/updater/RomInfo.smali    |  8 +++++
- 5 files changed, 57 insertions(+), 13 deletions(-)
+ 5 files changed, 55 insertions(+), 14 deletions(-)
 
 --- a/Updater/res/layout/activity_main2.xml
 +++ b/Updater/res/layout/activity_main2.xml
 @@ -17,7 +17,8 @@
-                 <TextView android:textSize="14.699982sp" android:textColor="#99000000" android:layout_gravity="center_vertical" android:id="@id/version_summary" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="6.0dip" />
+                 <TextView android:textSize="14.699982sp" android:textColor="#99000000" android:id="@id/version_summary" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="6.0dip" />
              </LinearLayout>
              <View android:id="@id/split_line" android:background="#ffbfbfbf" android:layout_width="fill_parent" android:layout_height="1.0px" />
 -            <ListView android:id="@id/update_log_list" android:layout_width="fill_parent" android:layout_height="fill_parent" />
@@ -34,7 +34,7 @@ Subject: [PATCH] add juelian changelog
      <item type="id" name="nonetwork">false</item>
 --- a/Updater/smali/com/android/updater/MainActivity$UpdateObserver.smali
 +++ b/Updater/smali/com/android/updater/MainActivity$UpdateObserver.smali
-@@ -347,6 +347,27 @@
+@@ -351,6 +351,27 @@
  
      invoke-virtual {v12, v13}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
  
@@ -42,7 +42,7 @@ Subject: [PATCH] add juelian changelog
 +    iget-object v14, p0, Lcom/android/updater/MainActivity$UpdateObserver;->this$0:Lcom/android/updater/MainActivity;
 +
 +    # getter for: Lcom/android/updater/MainActivity;->mInfo:Lcom/android/updater/UpdateInfo;
-+    invoke-static {v14}, Lcom/android/updater/MainActivity;->access$1900(Lcom/android/updater/MainActivity;)Lcom/android/updater/UpdateInfo;
++    invoke-static {v14}, Lcom/android/updater/MainActivity;->access$2100(Lcom/android/updater/MainActivity;)Lcom/android/updater/UpdateInfo;
 +
 +    move-result-object v14
 +
@@ -58,22 +58,21 @@ Subject: [PATCH] add juelian changelog
 +
 +    invoke-direct {v6, v7, v14}, Lcom/android/updater/JuelianUtils;-><init>(Landroid/webkit/WebView;Ljava/lang/String;)V
 +    # end add by juelian
-+
++    
      # getter for: Lcom/android/updater/MainActivity;->TAG:Ljava/lang/String;
-     invoke-static {}, Lcom/android/updater/MainActivity;->access$800()Ljava/lang/String;
+     invoke-static {}, Lcom/android/updater/MainActivity;->access$1000()Ljava/lang/String;
  
 --- a/Updater/smali/com/android/updater/MainActivity.smali
 +++ b/Updater/smali/com/android/updater/MainActivity.smali
-@@ -134,6 +134,8 @@
+@@ -138,6 +138,7 @@
  
  .field private mVersionTitleView:Landroid/widget/TextView;
  
 +.field public mWebView:Landroid/webkit/WebView;
-+
  
  # direct methods
  .method static constructor <clinit>()V
-@@ -2720,21 +2722,32 @@
+@@ -2647,21 +2648,32 @@
  
      iput-object v5, p0, Lcom/android/updater/MainActivity;->mVersionSummaryView:Landroid/widget/TextView;
  
@@ -114,7 +113,7 @@ Subject: [PATCH] add juelian changelog
  
      const v5, 0x7f0b0015
  
-@@ -4357,7 +4370,8 @@
+@@ -4333,7 +4345,8 @@
  
      if-eqz v0, :cond_0
  
@@ -124,7 +123,7 @@ Subject: [PATCH] add juelian changelog
  
      iget-boolean v0, p0, Lcom/android/updater/MainActivity;->mDetail:Z
  
-@@ -4366,7 +4380,7 @@
+@@ -4342,7 +4355,7 @@
      move v0, v1
  
      :goto_0
@@ -152,5 +151,4 @@ Subject: [PATCH] add juelian changelog
      const-string v17, "branch"
 -- 
 1.9.1
-
 
