@@ -22365,7 +22365,7 @@
     .end packed-switch
 .end method
 
-.method public setMyhomeKeyAction()Z
+.method public MyhomeKeyAction()Z
     .locals 6
 
     .prologue
@@ -22377,12 +22377,35 @@
 
     if-eqz v0, :cond_0
 
+    const/4 v0, 0x1
+
+    iput-boolean v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mHomePressed:Z
+
+    iget-boolean v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mHomeDoubleTapPending:Z
+
+    if-eqz v0, :cond_1
+
+    const/4 v0, 0x0
+
+    iput-boolean v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mHomeDoubleTapPending:Z
+
     iget-object v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mHandler:Landroid/os/Handler;
 
     iget-object v1, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mHomeDoubleTapTimeoutRunnable:Ljava/lang/Runnable;
 
     invoke-virtual {v0, v1}, Landroid/os/Handler;->removeCallbacks(Ljava/lang/Runnable;)V
 
+    iget v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mDoubleTapOnHomeBehavior:I
+
+    invoke-direct {p0, v0}, Lcom/android/internal/policy/impl/PhoneWindowManager;->performKeyAction(I)V
+
+    :goto_0
+    move v4, v5
+
+    :cond_0
+    return v4
+
+    :cond_1
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mHomeDoubleTapPending:Z
@@ -22399,42 +22422,5 @@
 
     invoke-virtual {v0, v1, v2, v3}, Landroid/os/Handler;->postDelayed(Ljava/lang/Runnable;J)Z
 
-    move v4, v5
-
-    :cond_0
-    return v4
-.end method
-
-.method public resetMyhomeKeyAction()V
-    .locals 2
-
-    .prologue
-    const/4 v0, 0x1
-
-    iput-boolean v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mHomePressed:Z
-
-    iget-boolean v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mHomeDoubleTapPending:Z
-
-    if-eqz v0, :cond_0
-
-    const/4 v0, 0x0
-
-    iput-boolean v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mHomeDoubleTapPending:Z
-
-    iget-object v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mHandler:Landroid/os/Handler;
-
-    iget-object v1, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mHomeDoubleTapTimeoutRunnable:Ljava/lang/Runnable;
-
-    invoke-virtual {v0, v1}, Landroid/os/Handler;->removeCallbacks(Ljava/lang/Runnable;)V
-
-    iget v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mDoubleTapOnHomeBehavior:I
-
-    invoke-direct {p0, v0}, Lcom/android/internal/policy/impl/PhoneWindowManager;->performKeyAction(I)V
-
-    const/4 v0, 0x1
-
-    iput-boolean v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mHomeConsumed:Z
-
-    :cond_0
-    return-void
+    goto :goto_0
 .end method
