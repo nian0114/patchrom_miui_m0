@@ -64,6 +64,7 @@ if [ $1 = "TeleService" ];then
     applyPatch $1 $2
     ../tools/idtoname.py ../tools/public-miui.xml $2/smali
     ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
+sed -i 's/MiuiIccProvider/IccProvider/g' out/TeleService/smali/com/android/phone/IccProvider.smali
 fi
 
 if [ $1 = "SecurityCenter" ];then

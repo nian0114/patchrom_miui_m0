@@ -1,0 +1,161 @@
+From c80c30e82bc5cf84a5cf6c1a4cd1a72bfe1c20e3 Mon Sep 17 00:00:00 2001
+From: songweiquan96 <songweiquan96@gmail.com>
+Date: Sat, 17 Oct 2015 08:50:29 +0800
+Subject: [PATCH] add_advRebootMenu_quickRb_Rb2rec_new_Code
+
+---
+ .../internal/policy/impl/MiuiGlobalActions$1.smali |   30 ++++++
+ .../internal/policy/impl/MiuiGlobalActions.smali   |  111 ++++++++++++++++++++
+ 2 files changed, 141 insertions(+)
+
+--- a/android.policy/smali/com/android/internal/policy/impl/MiuiGlobalActions$1.smali
++++ b/android.policy/smali/com/android/internal/policy/impl/MiuiGlobalActions$1.smali
+@@ -114,6 +114,36 @@
+     goto :goto_0
+ 
+     :cond_3
++    const-string v0, "recovery"
++
++    invoke-virtual {v0, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
++
++    move-result v0
++
++    if-eqz v0, :cond_miui_0
++
++    const/4 v1, 0x0
++
++    invoke-static {v1}, Lcom/android/internal/policy/impl/MiuiGlobalActions;->rbAdvMenu(I)V
++
++    goto :goto_0
++
++    :cond_miui_0
++    const-string v0, "bootloader"
++
++    invoke-virtual {v0, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
++
++    move-result v0
++
++    if-eqz v0, :cond_miui_1
++
++    const/4 v1, 0x1
++
++    invoke-static {v1}, Lcom/android/internal/policy/impl/MiuiGlobalActions;->rbAdvMenu(I)V
++
++    goto :goto_0
++
++    :cond_miui_1
+     const-string v0, "shutdown"
+ 
+     invoke-virtual {v0, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+--- a/android.policy/smali/com/android/internal/policy/impl/MiuiGlobalActions.smali
++++ b/android.policy/smali/com/android/internal/policy/impl/MiuiGlobalActions.smali
+@@ -334,6 +334,106 @@
+     return-object v0
+ .end method
+ 
++.method public static rbAdvMenu(I)V
++    .registers 6
++    .param p0, "what"    # I
++
++    .prologue
++    invoke-static {}, Ljava/lang/Runtime;->getRuntime()Ljava/lang/Runtime;
++
++    move-result-object v1
++
++    .local v1, "runtime":Ljava/lang/Runtime;
++    if-nez p0, :cond_25
++
++    :try_start_6
++    const-string v2, "reboot recovery"
++
++    invoke-virtual {v1, v2}, Ljava/lang/Runtime;->exec(Ljava/lang/String;)Ljava/lang/Process;
++
++    const-string v2, "mijl-->"
++
++    new-instance v3, Ljava/lang/StringBuilder;
++
++    const-string v4, "reboot rec: "
++
++    invoke-direct {v3, v4}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
++
++    invoke-virtual {v3, p0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
++
++    move-result-object v3
++
++    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
++
++    move-result-object v3
++
++    invoke-static {v2, v3}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
++    :try_end_1f
++    .catch Ljava/io/IOException; {:try_start_6 .. :try_end_1f} :catch_20
++
++    :goto_1f
++    return-void
++
++    :catch_20
++    move-exception v0
++
++    .local v0, "e":Ljava/io/IOException;
++    invoke-virtual {v0}, Ljava/io/IOException;->printStackTrace()V
++
++    goto :goto_1f
++
++    .end local v0    # "e":Ljava/io/IOException;
++    :cond_25
++    const/4 v2, 0x2
++
++    :try_start_26
++    new-array v2, v2, [Ljava/lang/String;
++
++    const/4 v3, 0x0
++
++    const-string v4, "killall"
++
++    aput-object v4, v2, v3
++
++    const/4 v3, 0x1
++
++    const-string v4, "system_server"
++
++    aput-object v4, v2, v3
++
++    invoke-virtual {v1, v2}, Ljava/lang/Runtime;->exec([Ljava/lang/String;)Ljava/lang/Process;
++
++    const-string v2, "mijl-->"
++
++    new-instance v3, Ljava/lang/StringBuilder;
++
++    const-string v4, "quick reboot: "
++
++    invoke-direct {v3, v4}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
++
++    invoke-virtual {v3, p0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
++
++    move-result-object v3
++
++    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
++
++    move-result-object v3
++
++    invoke-static {v2, v3}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
++    :try_end_49
++    .catch Ljava/io/IOException; {:try_start_26 .. :try_end_49} :catch_4a
++
++    goto :goto_1f
++
++    :catch_4a
++    move-exception v0
++
++    .restart local v0    # "e":Ljava/io/IOException;
++    invoke-virtual {v0}, Ljava/io/IOException;->printStackTrace()V
++
++    goto :goto_1f
++.end method
++
+ .method private sendAction(I)V
+     .locals 2
+     .param p1, "toggleId"    # I
+-- 
+1.7.9.5
+

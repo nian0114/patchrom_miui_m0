@@ -91,6 +91,7 @@ then
             echo "rm file: $file"
             rm -rf "$file"
     done
+    cp -rf overlay/telephony-common/smali/* $BUILD_OUT/telephony-common/smali
 fi
 
 if [ $2 = "$BUILD_OUT/services" ]

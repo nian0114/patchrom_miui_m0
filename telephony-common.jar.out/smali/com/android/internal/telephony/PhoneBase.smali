@@ -134,8 +134,6 @@
 
 .field protected mLooper:Landroid/os/Looper;
 
-.field protected mMiuiIccPhoneBookInterfaceManager:Lcom/android/internal/telephony/MiuiIccPhoneBookInterfaceManager;
-
 .field protected final mMmiCompleteRegistrants:Landroid/os/RegistrantList;
 
 .field protected final mMmiRegistrants:Landroid/os/RegistrantList;
@@ -2961,15 +2959,6 @@
     const/4 v0, 0x0
 
     goto :goto_0
-.end method
-
-.method public getMiuiIccPhoneBookInterfaceManager()Lcom/android/internal/telephony/MiuiIccPhoneBookInterfaceManager;
-    .locals 1
-
-    .prologue
-    iget-object v0, p0, Lcom/android/internal/telephony/PhoneBase;->mMiuiIccPhoneBookInterfaceManager:Lcom/android/internal/telephony/MiuiIccPhoneBookInterfaceManager;
-
-    return-object v0
 .end method
 
 .method public getMsisdn()Ljava/lang/String;
