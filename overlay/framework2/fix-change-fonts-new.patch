@@ -1,0 +1,591 @@
+From 16fcb7ed7bc11a9e7671bd4ec58b216e4fd2f015 Mon Sep 17 00:00:00 2001
+From: jchjian <671346@qq.com>
+Date: Sat, 24 Oct 2015 03:34:31 +0800
+Subject: [PATCH 1/1] fix can't change fonts
+
+---
+ framework2/smali/miui/util/RootCmd.smali      |  99 +++++
+ .../smali/miui/util/TypefaceUtils.smali            | 449 ++++++++++++++++++++-
+ 2 files changed, 544 insertions(+), 4 deletions(-)
+ create mode 100644 framework2/smali/miui/util/RootCmd.smali
+
+--- a/framework2/smali/miui/util/RootCmd.smali
++++ b/framework2/smali/miui/util/RootCmd.smali
+@@ -0,0 +1,99 @@
++.class public Lmiui/util/RootCmd;
++.super Ljava/lang/Object;
++.source "RootCmd.java"
++
++
++# static fields
++.field private static final LOG_TAG:Ljava/lang/String; = "RootCmd"
++
++
++# direct methods
++.method public constructor <init>()V
++    .locals 0
++
++    .prologue
++    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
++
++    return-void
++.end method
++
++.method public static RunRootCmd(Ljava/lang/String;)I
++    .locals 6
++    .param p0, "String"    # Ljava/lang/String;
++
++    .prologue
++    :try_start_0
++    invoke-static {}, Ljava/lang/Runtime;->getRuntime()Ljava/lang/Runtime;
++
++    move-result-object v4
++
++    const-string v5, "su"
++
++    invoke-virtual {v4, v5}, Ljava/lang/Runtime;->exec(Ljava/lang/String;)Ljava/lang/Process;
++
++    move-result-object v2
++
++    .local v2, "localProcess":Ljava/lang/Process;
++    new-instance v0, Ljava/io/DataOutputStream;
++
++    invoke-virtual {v2}, Ljava/lang/Process;->getOutputStream()Ljava/io/OutputStream;
++
++    move-result-object v4
++
++    invoke-direct {v0, v4}, Ljava/io/DataOutputStream;-><init>(Ljava/io/OutputStream;)V
++
++    .local v0, "localDataOutputStream":Ljava/io/DataOutputStream;
++    new-instance v4, Ljava/lang/StringBuilder;
++
++    invoke-static {p0}, Ljava/lang/String;->valueOf(Ljava/lang/Object;)Ljava/lang/String;
++
++    move-result-object v5
++
++    invoke-direct {v4, v5}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
++
++    const-string v5, "\n"
++
++    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    move-result-object v4
++
++    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
++
++    move-result-object v3
++
++    .local v3, "str":Ljava/lang/String;
++    invoke-virtual {v0, v3}, Ljava/io/DataOutputStream;->writeBytes(Ljava/lang/String;)V
++
++    invoke-virtual {v0}, Ljava/io/DataOutputStream;->flush()V
++
++    const-string v4, "exit\n"
++
++    invoke-virtual {v0, v4}, Ljava/io/DataOutputStream;->writeBytes(Ljava/lang/String;)V
++
++    invoke-virtual {v0}, Ljava/io/DataOutputStream;->flush()V
++
++    invoke-virtual {v2}, Ljava/lang/Process;->waitFor()I
++
++    invoke-virtual {v2}, Ljava/lang/Process;->exitValue()I
++    :try_end_0
++    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
++
++    move-result v4
++
++    .end local v0           # "localDataOutputStream":Ljava/io/DataOutputStream;
++    .end local v2           # "localProcess":Ljava/lang/Process;
++    .end local v3           # "str":Ljava/lang/String;
++    :goto_0
++    return v4
++
++    :catch_0
++    move-exception v1
++
++    .local v1, "localException":Ljava/lang/Exception;
++    invoke-virtual {v1}, Ljava/lang/Exception;->printStackTrace()V
++
++    const/4 v4, 0x1
++
++    goto :goto_0
++.end method
++
+--- a/framework2/smali/miui/util/TypefaceUtils.smali
++++ b/framework2/smali/miui/util/TypefaceUtils.smali
+@@ -19,6 +19,12 @@
+ 
+ .field private static sCurrentTypefaces:[Landroid/graphics/Typeface;
+ 
++.field private static mCustomTypefaces:Landroid/graphics/Typeface;
++
++.field private static mLastModified:J
++
++.field private static sAllCompareTypefaces:[Landroid/graphics/Typeface;
++
+ 
+ # direct methods
+ .method public constructor <init>()V
+@@ -30,6 +36,439 @@
+     return-void
+ .end method
+ 
++.method public static finalTypeface(Landroid/graphics/Typeface;)Landroid/graphics/Typeface;
++    .locals 6
++    .param p0, "oldTypeface"    # Landroid/graphics/Typeface;
++
++    .prologue
++    if-eqz p0, :cond_2
++
++    const-string v0, "/data/system/theme/fonts/Roboto-Regular.ttf"
++
++    new-instance v1, Ljava/io/File;
++
++    invoke-direct {v1, v0}, Ljava/io/File;-><init>(Ljava/lang/String;)V
++
++    .local v1, "fontFile":Ljava/io/File;
++    invoke-virtual {v1}, Ljava/io/File;->exists()Z
++
++    move-result v2
++
++    if-eqz v2, :cond_2
++
++    sget-object v2, Lmiui/util/TypefaceUtils;->mCustomTypefaces:Landroid/graphics/Typeface;
++
++    if-nez v2, :cond_1
++
++    :cond_0
++    invoke-static {v0}, Landroid/graphics/Typeface;->createFromFile(Ljava/lang/String;)Landroid/graphics/Typeface;
++
++    move-result-object v2
++
++    sput-object v2, Lmiui/util/TypefaceUtils;->mCustomTypefaces:Landroid/graphics/Typeface;
++
++    invoke-virtual {v1}, Ljava/io/File;->lastModified()J
++
++    move-result-wide v2
++
++    sput-wide v2, Lmiui/util/TypefaceUtils;->mLastModified:J
++
++    :goto_0
++    invoke-static {p0}, Lmiui/util/TypefaceUtils;->compareTypeface(Landroid/graphics/Typeface;)Z
++
++    move-result v3
++
++    if-eqz v3, :cond_2
++
++    sget-object v2, Lmiui/util/TypefaceUtils;->mCustomTypefaces:Landroid/graphics/Typeface;
++
++    :goto_1
++    return-object v2
++
++    :cond_1
++    sget-wide v2, Lmiui/util/TypefaceUtils;->mLastModified:J
++
++    invoke-virtual {v1}, Ljava/io/File;->lastModified()J
++
++    move-result-wide v4
++
++    cmp-long v2, v2, v4
++
++    if-nez v2, :cond_0
++
++    goto :goto_0
++
++    :cond_2
++    move-object v2, p0
++
++    goto :goto_1
++.end method
++
++.method public static copySomeFiles()V
++    .locals 6
++
++    .prologue
++    const-string v0, "/data/system/theme/fonts/Roboto-Regular.ttf"
++
++    new-instance v1, Ljava/io/File;
++
++    invoke-direct {v1, v0}, Ljava/io/File;-><init>(Ljava/lang/String;)V
++
++    .local v1, "fontFile":Ljava/io/File;
++    invoke-virtual {v1}, Ljava/io/File;->exists()Z
++
++    move-result v2
++
++    if-eqz v2, :cond_4
++
++    const-string v2, "/system/fonts/bak"
++
++    new-instance v3, Ljava/io/File;
++
++    invoke-direct {v3, v2}, Ljava/io/File;-><init>(Ljava/lang/String;)V
++
++    invoke-virtual {v3}, Ljava/io/File;->exists()Z
++
++    move-result v3
++
++    if-nez v3, :cond_0
++
++    const-string v3, "mount -o remount,rw /system"
++
++    invoke-static {v3}, Lmiui/util/RootCmd;->RunRootCmd(Ljava/lang/String;)I
++
++    const-string v3, "mkdir -p /system/fonts/bak"
++
++    invoke-static {v3}, Lmiui/util/RootCmd;->RunRootCmd(Ljava/lang/String;)I
++
++    const-string v3, "cp -rf /system/fonts/Miui-Regular.ttf /system/fonts/bak/Miui-Regular.ttf"
++
++    invoke-static {v3}, Lmiui/util/RootCmd;->RunRootCmd(Ljava/lang/String;)I
++
++    const-string v3, "cp -rf /system/fonts/Roboto-Regular.ttf /system/fonts/bak/Roboto-Regular.ttf"
++
++    invoke-static {v3}, Lmiui/util/RootCmd;->RunRootCmd(Ljava/lang/String;)I
++
++    :cond_0
++    const-string v2, "persist.sys.fonts.data"
++
++    const/4 v3, 0x0
++
++    invoke-static {v2, v3}, Landroid/os/SystemProperties;->getInt(Ljava/lang/String;I)I
++
++    move-result v2
++
++    if-ne v2, v3, :cond_3
++
++    :cond_1
++    invoke-virtual {v1}, Ljava/io/File;->lastModified()J
++
++    move-result-wide v2
++
++    invoke-static {v2, v3}, Ljava/lang/Long;->toString(J)Ljava/lang/String;
++
++    move-result-object v3
++
++    const-string v2, "persist.sys.fonts.timeone"
++
++    invoke-static {v2, v3}, Landroid/os/SystemProperties;->set(Ljava/lang/String;Ljava/lang/String;)V
++
++    const-string v3, "mount -o remount,rw /system"
++
++    invoke-static {v3}, Lmiui/util/RootCmd;->RunRootCmd(Ljava/lang/String;)I
++
++    const-string v3, "cp -rf /data/system/theme/fonts/Roboto-Regular.ttf /system/fonts/Miui-Regular.ttf"
++
++    invoke-static {v3}, Lmiui/util/RootCmd;->RunRootCmd(Ljava/lang/String;)I
++
++    const-string v3, "cp -rf /data/system/theme/fonts/Roboto-Regular.ttf /system/fonts/Roboto-Regular.ttf"
++
++    invoke-static {v3}, Lmiui/util/RootCmd;->RunRootCmd(Ljava/lang/String;)I
++
++    const-string v3, "mount -o remount,ro /system"
++
++    invoke-static {v3}, Lmiui/util/RootCmd;->RunRootCmd(Ljava/lang/String;)I
++
++    const-string v2, "persist.sys.fonts.system"
++
++    const-string v3, "0"
++
++    invoke-static {v2, v3}, Landroid/os/SystemProperties;->set(Ljava/lang/String;Ljava/lang/String;)V
++
++    const-string v2, "persist.sys.fonts.data"
++
++    const-string v3, "1"
++
++    invoke-static {v2, v3}, Landroid/os/SystemProperties;->set(Ljava/lang/String;Ljava/lang/String;)V
++
++    :goto_0
++    :cond_2
++    return-void
++
++    :cond_3
++    const-string v2, "persist.sys.fonts.timeone"
++
++    const-string v3, "0"
++
++    invoke-static {v2, v3}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
++
++    move-result-object v3
++
++    invoke-virtual {v1}, Ljava/io/File;->lastModified()J
++
++    move-result-wide v4
++
++    invoke-static {v4, v5}, Ljava/lang/Long;->toString(J)Ljava/lang/String;
++
++    move-result-object v4
++
++    invoke-virtual {v3, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
++
++    move-result v2
++
++    if-eqz v2, :cond_1
++
++    goto :goto_0
++
++    :cond_4
++    const-string v2, "/system/fonts/bak"
++
++    new-instance v3, Ljava/io/File;
++
++    invoke-direct {v3, v2}, Ljava/io/File;-><init>(Ljava/lang/String;)V
++
++    invoke-virtual {v3}, Ljava/io/File;->exists()Z
++
++    move-result v3
++
++    if-eqz v3, :cond_2
++
++    const-string v2, "persist.sys.fonts.system"
++
++    const/4 v3, 0x0
++
++    invoke-static {v2, v3}, Landroid/os/SystemProperties;->getInt(Ljava/lang/String;I)I
++
++    move-result v2
++
++    if-ne v2, v3, :cond_2
++
++    const-string v3, "mount -o remount,rw /system"
++
++    invoke-static {v3}, Lmiui/util/RootCmd;->RunRootCmd(Ljava/lang/String;)I
++
++    const-string v3, "cp -rf /system/fonts/bak/Miui-Regular.ttf /system/fonts/Miui-Regular.ttf"
++
++    invoke-static {v3}, Lmiui/util/RootCmd;->RunRootCmd(Ljava/lang/String;)I
++
++    const-string v3, "cp -rf /system/fonts/bak/Roboto-Regular.ttf /system/fonts/Roboto-Regular.ttf"
++
++    invoke-static {v3}, Lmiui/util/RootCmd;->RunRootCmd(Ljava/lang/String;)I
++
++    const-string v3, "mount -o remount,ro /system"
++
++    invoke-static {v3}, Lmiui/util/RootCmd;->RunRootCmd(Ljava/lang/String;)I
++
++    const-string v2, "persist.sys.fonts.system"
++
++    const-string v3, "1"
++
++    invoke-static {v2, v3}, Landroid/os/SystemProperties;->set(Ljava/lang/String;Ljava/lang/String;)V
++
++    const-string v2, "persist.sys.fonts.data"
++
++    const-string v3, "0"
++
++    invoke-static {v2, v3}, Landroid/os/SystemProperties;->set(Ljava/lang/String;Ljava/lang/String;)V
++
++    goto :goto_0
++.end method
++
++.method public static compareTypeface(Landroid/graphics/Typeface;)Z
++    .locals 6
++    .param p0, "Typeface"    # Landroid/graphics/Typeface;
++
++    .prologue
++    const/4 v0, 0x0
++
++    const/4 v1, 0x1
++
++    sget-object v2, Lmiui/util/TypefaceUtils;->sAllCompareTypefaces:[Landroid/graphics/Typeface;
++
++    if-nez v2, :cond_0
++
++    const/16 v2, 0xf
++
++    new-array v2, v2, [Landroid/graphics/Typeface;
++
++    const-string v3, "miui"
++
++    invoke-static {v3, v0}, Landroid/graphics/Typeface;->create(Ljava/lang/String;I)Landroid/graphics/Typeface;
++
++    move-result-object v4
++
++    aput-object v4, v2, v0
++
++    invoke-static {v3, v1}, Landroid/graphics/Typeface;->create(Ljava/lang/String;I)Landroid/graphics/Typeface;
++
++    move-result-object v4
++
++    aput-object v4, v2, v1
++
++    const/4 v5, 0x2
++
++    const-string v3, "sans-serif"
++
++    invoke-static {v3, v0}, Landroid/graphics/Typeface;->create(Ljava/lang/String;I)Landroid/graphics/Typeface;
++
++    move-result-object v4
++
++    aput-object v4, v2, v5
++
++    const/4 v5, 0x3
++
++    invoke-static {v3, v1}, Landroid/graphics/Typeface;->create(Ljava/lang/String;I)Landroid/graphics/Typeface;
++
++    move-result-object v4
++
++    aput-object v4, v2, v5
++
++    const/4 v5, 0x4
++
++    const/4 v4, 0x2
++
++    invoke-static {v3, v4}, Landroid/graphics/Typeface;->create(Ljava/lang/String;I)Landroid/graphics/Typeface;
++
++    move-result-object v4
++
++    aput-object v4, v2, v5
++
++    const/4 v5, 0x5
++
++    const/4 v4, 0x3
++
++    invoke-static {v3, v4}, Landroid/graphics/Typeface;->create(Ljava/lang/String;I)Landroid/graphics/Typeface;
++
++    move-result-object v4
++
++    aput-object v4, v2, v5
++
++    const/4 v5, 0x6
++
++    const-string v3, "miuiex"
++
++    invoke-static {v3, v0}, Landroid/graphics/Typeface;->create(Ljava/lang/String;I)Landroid/graphics/Typeface;
++
++    move-result-object v4
++
++    aput-object v4, v2, v5
++
++    const/4 v5, 0x7
++
++    invoke-static {v3, v1}, Landroid/graphics/Typeface;->create(Ljava/lang/String;I)Landroid/graphics/Typeface;
++
++    move-result-object v4
++
++    aput-object v4, v2, v5
++
++    const/16 v5, 0x8
++
++    const-string v3, "miuiex-light"
++
++    invoke-static {v3, v0}, Landroid/graphics/Typeface;->create(Ljava/lang/String;I)Landroid/graphics/Typeface;
++
++    move-result-object v4
++
++    aput-object v4, v2, v5
++
++    const/16 v5, 0x9
++
++    const-string v3, "sans-serif-light"
++
++    invoke-static {v3, v0}, Landroid/graphics/Typeface;->create(Ljava/lang/String;I)Landroid/graphics/Typeface;
++
++    move-result-object v4
++
++    aput-object v4, v2, v5
++
++    const/16 v5, 0xa
++
++    invoke-static {v3, v1}, Landroid/graphics/Typeface;->create(Ljava/lang/String;I)Landroid/graphics/Typeface;
++
++    move-result-object v4
++
++    aput-object v4, v2, v5
++
++    const/16 v5, 0xb
++
++    const-string v3, "sans-serif-thin"
++
++    invoke-static {v3, v0}, Landroid/graphics/Typeface;->create(Ljava/lang/String;I)Landroid/graphics/Typeface;
++
++    move-result-object v4
++
++    aput-object v4, v2, v5
++
++    const/16 v5, 0xc
++
++    invoke-static {v3, v1}, Landroid/graphics/Typeface;->create(Ljava/lang/String;I)Landroid/graphics/Typeface;
++
++    move-result-object v4
++
++    aput-object v4, v2, v5
++
++    const/16 v5, 0xd
++
++    const-string v3, "Droid Sans"
++
++    invoke-static {v3, v0}, Landroid/graphics/Typeface;->create(Ljava/lang/String;I)Landroid/graphics/Typeface;
++
++    move-result-object v4
++
++    aput-object v4, v2, v5
++
++    const/16 v5, 0xe
++
++    invoke-static {v3, v1}, Landroid/graphics/Typeface;->create(Ljava/lang/String;I)Landroid/graphics/Typeface;
++
++    move-result-object v4
++
++    aput-object v4, v2, v5
++
++    sput-object v2, Lmiui/util/TypefaceUtils;->sAllCompareTypefaces:[Landroid/graphics/Typeface;
++
++    :cond_0
++    sget-object v2, Lmiui/util/TypefaceUtils;->sAllCompareTypefaces:[Landroid/graphics/Typeface;
++
++    array-length v3, v2
++
++    :goto_0
++    if-ge v0, v3, :cond_2
++
++    aget-object v4, v2, v0
++
++    invoke-virtual {p0, v4}, Landroid/graphics/Typeface;->equals(Ljava/lang/Object;)Z
++
++    move-result v4
++
++    if-nez v4, :cond_1
++
++    add-int/lit8 v0, v0, 0x1
++
++    goto :goto_0
++
++    :cond_1
++    const/4 v4, 0x1
++
++    :goto_1
++    return v4
++
++    :cond_2
++    const/4 v4, 0x0
++
++    goto :goto_1
++.end method
++
+ .method public static replaceTypeface(Landroid/content/Context;Landroid/graphics/Typeface;)Landroid/graphics/Typeface;
+     .locals 7
+     .param p0, "context"    # Landroid/content/Context;
+@@ -40,6 +479,8 @@
+ 
+     const/4 v0, 0x0
+ 
++    invoke-static {}, Lmiui/util/TypefaceUtils;->copySomeFiles()V
++
+     .local v0, "newTypeface":Landroid/graphics/Typeface;
+     invoke-static {p0}, Lmiui/util/TypefaceUtils;->usingMiuiFonts(Landroid/content/Context;)Z
+ 
+@@ -163,6 +604,10 @@
+ 
+     .end local p1    # "oldTypeface":Landroid/graphics/Typeface;
+     :goto_1
++    invoke-static {p1}, Lmiui/util/TypefaceUtils;->finalTypeface(Landroid/graphics/Typeface;)Landroid/graphics/Typeface;
++
++    move-result-object p1
++
+     return-object p1
+ 
+     .restart local p1    # "oldTypeface":Landroid/graphics/Typeface;
+-- 
+1.9.1
+

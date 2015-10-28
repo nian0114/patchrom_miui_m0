@@ -142,7 +142,6 @@
     return p1
 .end method
 
-
 # virtual methods
 .method public onCallForwardingIndicatorChanged(Z)V
     .locals 0

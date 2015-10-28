@@ -75,6 +75,7 @@ then
             rm -rf "$file"
     done
     cp -rf overlay/framework2/smali/* $BUILD_OUT/framework2/smali
+    applyPatch "overlay/framework2"
 fi
 
 if [ $2 = "$BUILD_OUT/telephony-common" ]

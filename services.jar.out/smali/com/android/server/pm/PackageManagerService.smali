@@ -6742,10 +6742,99 @@
 
 .method static compareSignatures([Landroid/content/pm/Signature;[Landroid/content/pm/Signature;)I
     .locals 7
+    .param p0, "s1"    # [Landroid/content/pm/Signature;
+    .param p1, "s2"    # [Landroid/content/pm/Signature;
 
-    const/4 v6, 0x0
+    .prologue
+    if-nez p0, :cond_1
+
+    if-nez p1, :cond_0
+
+    const/4 v6, 0x1
+
+    :goto_0
     return v6
 
+    :cond_0
+    const/4 v6, -0x1
+
+    goto :goto_0
+
+    :cond_1
+    if-nez p1, :cond_2
+
+    const/4 v6, -0x2
+
+    goto :goto_0
+
+    :cond_2
+    new-instance v3, Ljava/util/HashSet;
+
+    invoke-direct {v3}, Ljava/util/HashSet;-><init>()V
+
+    .local v3, "set1":Ljava/util/HashSet;, "Ljava/util/HashSet<Landroid/content/pm/Signature;>;"
+    move-object v0, p0
+
+    .local v0, "arr$":[Landroid/content/pm/Signature;
+    array-length v2, v0
+
+    .local v2, "len$":I
+    const/4 v1, 0x0
+
+    .local v1, "i$":I
+    :goto_1
+    if-ge v1, v2, :cond_3
+
+    aget-object v5, v0, v1
+
+    .local v5, "sig":Landroid/content/pm/Signature;
+    invoke-virtual {v3, v5}, Ljava/util/HashSet;->add(Ljava/lang/Object;)Z
+
+    add-int/lit8 v1, v1, 0x1
+
+    goto :goto_1
+
+    .end local v5    # "sig":Landroid/content/pm/Signature;
+    :cond_3
+    new-instance v4, Ljava/util/HashSet;
+
+    invoke-direct {v4}, Ljava/util/HashSet;-><init>()V
+
+    .local v4, "set2":Ljava/util/HashSet;, "Ljava/util/HashSet<Landroid/content/pm/Signature;>;"
+    move-object v0, p1
+
+    array-length v2, v0
+
+    const/4 v1, 0x0
+
+    :goto_2
+    if-ge v1, v2, :cond_4
+
+    aget-object v5, v0, v1
+
+    .restart local v5    # "sig":Landroid/content/pm/Signature;
+    invoke-virtual {v4, v5}, Ljava/util/HashSet;->add(Ljava/lang/Object;)Z
+
+    add-int/lit8 v1, v1, 0x1
+
+    goto :goto_2
+
+    .end local v5    # "sig":Landroid/content/pm/Signature;
+    :cond_4
+    invoke-virtual {v3, v4}, Ljava/util/HashSet;->equals(Ljava/lang/Object;)Z
+
+    move-result v6
+
+    if-eqz v6, :cond_5
+
+    const/4 v6, 0x0
+
+    goto :goto_0
+
+    :cond_5
+    const/4 v6, -0x3
+
+    goto :goto_0
 .end method
 
 .method static compareStrings(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Z
