@@ -68,7 +68,10 @@ sed -i 's/MiuiIccProvider/IccProvider/g' out/TeleService/smali/com/android/phone
 fi
 
 if [ $1 = "SecurityCenter" ];then
-	applyPatch $1 $2
+    sed -i 0,/0x5/s//0x1/ $2/smali/com/miui/permcenter/root/RootApplyActivity.smali
+    sed -i 0,/0x5/s//0x1/ $2/smali/com/miui/permcenter/root/RootApplyActivity.smali
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "DeskClock" ];then

@@ -835,24 +835,6 @@
     const/4 v10, 0x1
 
     :cond_2
-    move-object/from16 v2, p3
-
-    move-object/from16 v3, p5
-
-    move/from16 v4, p6
-
-    invoke-static {v2, v3, v4}, Lcom/android/server/power/PowerManagerServiceInjector;->checkWakelockBlocked(Ljava/lang/String;Landroid/os/WorkSource;I)Z
-
-    move-result v6
-
-    if-eqz v6, :cond_miui_0
-
-    monitor-exit v13
-
-    return-void
-
-    :cond_miui_0
-
     invoke-direct {p0, p1}, Lcom/android/server/power/PowerManagerService;->findWakeLockIndexLocked(Landroid/os/IBinder;)I
 
     move-result v12
@@ -2959,7 +2941,7 @@
     return-void
 .end method
 
-.method releaseWakeLockInternal(Landroid/os/IBinder;I)V
+.method private releaseWakeLockInternal(Landroid/os/IBinder;I)V
     .locals 5
     .param p1, "lock"    # Landroid/os/IBinder;
     .param p2, "flags"    # I
@@ -7722,7 +7704,7 @@
 
     .local v0, "ident":J
     :try_start_0
-    invoke-virtual {p0, p1, p2}, Lcom/android/server/power/PowerManagerService;->releaseWakeLockInternal(Landroid/os/IBinder;I)V
+    invoke-direct {p0, p1, p2}, Lcom/android/server/power/PowerManagerService;->releaseWakeLockInternal(Landroid/os/IBinder;I)V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
@@ -9108,7 +9090,7 @@
 
     iget v4, v1, Lcom/android/server/power/PowerManagerService$WakeLock;->mFlags:I
 
-    invoke-virtual {p0, v2, v4}, Lcom/android/server/power/PowerManagerService;->releaseWakeLockInternal(Landroid/os/IBinder;I)V
+    invoke-direct {p0, v2, v4}, Lcom/android/server/power/PowerManagerService;->releaseWakeLockInternal(Landroid/os/IBinder;I)V
 
     add-int/lit8 v0, v0, -0x1
 
@@ -9134,7 +9116,7 @@
 
     iget v4, v1, Lcom/android/server/power/PowerManagerService$WakeLock;->mFlags:I
 
-    invoke-virtual {p0, v2, v4}, Lcom/android/server/power/PowerManagerService;->releaseWakeLockInternal(Landroid/os/IBinder;I)V
+    invoke-direct {p0, v2, v4}, Lcom/android/server/power/PowerManagerService;->releaseWakeLockInternal(Landroid/os/IBinder;I)V
 
     add-int/lit8 v0, v0, -0x1
 
