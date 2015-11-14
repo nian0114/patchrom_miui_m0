@@ -23,15 +23,6 @@ Subject: [PATCH] add juelian changelog
              <LinearLayout android:layout_gravity="center" android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="fill_parent">
                  <TextView android:textSize="10.599976sp" android:textColor="#73000000" android:layout_gravity="center" android:id="@id/no_log" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/no_log" />
              </LinearLayout>
---- a/Updater/res/values/ids.xml
-+++ b/Updater/res/values/ids.xml
-@@ -1,5 +1,6 @@
- <?xml version="1.0" encoding="utf-8"?>
- <resources>
-+    <item type="id" name="mijl">false</item>
-     <item type="id" name="htmlContent">false</item>
-     <item type="id" name="emptyview">false</item>
-     <item type="id" name="nonetwork">false</item>
 --- a/Updater/smali/com/android/updater/MainActivity$UpdateObserver.smali
 +++ b/Updater/smali/com/android/updater/MainActivity$UpdateObserver.smali
 @@ -351,6 +351,27 @@
@@ -58,7 +49,7 @@ Subject: [PATCH] add juelian changelog
 +
 +    invoke-direct {v6, v7, v14}, Lcom/android/updater/JuelianUtils;-><init>(Landroid/webkit/WebView;Ljava/lang/String;)V
 +    # end add by juelian
-+    
++
      # getter for: Lcom/android/updater/MainActivity;->TAG:Ljava/lang/String;
      invoke-static {}, Lcom/android/updater/MainActivity;->access$1000()Ljava/lang/String;
  
@@ -100,7 +91,7 @@ Subject: [PATCH] add juelian changelog
 +
 +    #invoke-virtual {v5, v6}, Landroid/widget/ListView;->setOnTouchListener(Landroid/view/View$OnTouchListener;)V
 +
-+    const v5, 0x7f0b0067#resource id
++    const v5, 0x7f0b006b#resource id
 +
 +    invoke-virtual {p0, v5}, Lcom/android/updater/MainActivity;->findViewById(I)Landroid/view/View;
 +
@@ -151,4 +142,5 @@ Subject: [PATCH] add juelian changelog
      const-string v17, "branch"
 -- 
 1.9.1
+
 
