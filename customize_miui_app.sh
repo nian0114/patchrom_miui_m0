@@ -69,6 +69,8 @@ fi
 
 if [ $1 = "SecurityCenter" ];then
 	applyPatch $1 $2
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
 if [ $1 = "DeskClock" ];then
