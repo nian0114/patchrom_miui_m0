@@ -1,31 +1,32 @@
-From 698ce3547cfe2bf176bdd1b936679106407f3848 Mon Sep 17 00:00:00 2001
-From: jchjian <671346@qq.com>
-Date: Sat, 14 Nov 2015 22:26:16 +0800
-Subject: [PATCH] no need request online
+From a6c9ef80441189c7ef123ee99ae9ef768d4926b7 Mon Sep 17 00:00:00 2001
+From: nian0114 <268078545@qq.com>
+Date: Thu, 19 Nov 2015 08:19:17 +0800
+Subject: [PATCH] remove root
 
 ---
- SecurityCenter2/smali/com/miui/permcenter/MainAcitivty.smali | 5 ++++-
+ SecurityCenter/smali/com/miui/permcenter/MainAcitivty.smali | 5 ++++-
  1 file changed, 4 insertions(+), 1 deletion(-)
 
 --- a/SecurityCenter/smali/com/miui/permcenter/MainAcitivty.smali
 +++ b/SecurityCenter/smali/com/miui/permcenter/MainAcitivty.smali
-@@ -64,6 +64,8 @@
+@@ -64,6 +64,9 @@
      goto :goto_0
  
      :sswitch_2
++
 +    goto :cond_miui_00
 +
      new-instance v1, Landroid/content/ComponentName;
  
      const-string v0, "com.android.updater"
-@@ -102,6 +104,7 @@
+@@ -101,7 +104,7 @@
+     move-result v0
  
      if-eqz v0, :cond_1
- 
+-
 +    :cond_miui_00
      new-instance v0, Landroid/content/Intent;
  
      const-class v1, Lcom/miui/permcenter/root/RootManagementActivity;
 -- 
 1.9.1
-
