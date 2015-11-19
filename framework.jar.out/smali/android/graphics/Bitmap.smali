@@ -57,7 +57,7 @@
 
 .field private mNinePatchChunk:[B
 
-.field private mRecycled:Z
+.field public mRecycled:Z
 
 .field private mWidth:I
 
@@ -139,6 +139,10 @@
     iput p5, p0, Landroid/graphics/Bitmap;->mDensity:I
 
     :cond_1
+    const/4 v0, 0x0
+
+    invoke-static {p0, v0}, Lmiui/util/DumpBitmapInfoUtils;->putBitmap(Landroid/graphics/Bitmap;Ljava/lang/CharSequence;)V
+
     return-void
 .end method
 
@@ -327,6 +331,12 @@
     .param p1, "errorMessage"    # Ljava/lang/String;
 
     .prologue
+    iget-boolean v0, p0, Landroid/graphics/Bitmap;->mRecycled:Z
+
+    if-eqz v0, :cond_0
+
+    invoke-static {p0}, Lcom/miui/whetstone/app/WhetstoneAppManager;->restoreDirectBitmap(Landroid/graphics/Bitmap;)V
+
     iget-boolean v0, p0, Landroid/graphics/Bitmap;->mRecycled:Z
 
     if-eqz v0, :cond_0
@@ -2190,6 +2200,8 @@
     .locals 1
 
     .prologue
+    invoke-static {p0}, Lcom/miui/whetstone/app/WhetstoneAppManager;->restoreDirectBitmap(Landroid/graphics/Bitmap;)V
+    
     iget-boolean v0, p0, Landroid/graphics/Bitmap;->mRecycled:Z
 
     return v0

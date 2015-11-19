@@ -54,7 +54,6 @@ local-pre-zip-misc:
 
 	cp -rf other/system $(ZIP_DIR)/
 	cp -rf ../miui_other/system $(ZIP_DIR)/
-
 	@echo goodbye! miui prebuilt binaries!
 	cp -rf stockrom/system/bin/app_process $(ZIP_DIR)/system/bin/app_process
 	rm -rf $(ZIP_DIR)/system/bin/debuggerd_vendor
@@ -68,3 +67,6 @@ local-pre-zip-misc:
 	#security patch
 	echo "ro.build.version.security_patch=2015-11-01" >> $(ZIP_DIR)/system/build.prop
 	echo "ro.build.version.base_os=" >> $(ZIP_DIR)/system/build.prop
+	#PowerKeeper and Whetstone
+	echo "persist.sys.mcd_config_file=/system/etc/mcd_default.conf" >> $(ZIP_DIR)/system/build.prop
+	echo "persist.sys.klo=on" >> $(ZIP_DIR)/system/build.prop

@@ -5132,6 +5132,12 @@
     .locals 2
 
     .prologue
+    invoke-static {}, Lcom/miui/whetstone/app/WhetstoneAppManager;->getInstance()Lcom/miui/whetstone/app/WhetstoneAppManager;
+
+    move-result-object v1
+
+    invoke-virtual {v1, p0}, Lcom/miui/whetstone/app/WhetstoneAppManager;->onResume(Landroid/app/Activity;)V
+    
     invoke-virtual {p0}, Landroid/app/Activity;->getApplication()Landroid/app/Application;
 
     move-result-object v1

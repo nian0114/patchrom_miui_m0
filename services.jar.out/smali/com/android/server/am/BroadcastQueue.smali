@@ -5275,6 +5275,28 @@
     if-eqz v3, :cond_22
 
     :cond_21
+    move-object/from16 v0, v32
+
+    iget v3, v0, Lcom/android/server/am/BroadcastRecord;->callingPid:I
+
+    move-object/from16 v0, v32
+
+    iget-object v5, v0, Lcom/android/server/am/BroadcastRecord;->callerPackage:Ljava/lang/String;
+
+    move-object/from16 v0, v32
+
+    iget-object v6, v0, Lcom/android/server/am/BroadcastRecord;->intent:Landroid/content/Intent;
+
+    move-object/from16 v0, v32
+
+    iget-object v7, v0, Lcom/android/server/am/BroadcastRecord;->curComponent:Landroid/content/ComponentName;
+
+    invoke-static {v3, v5, v6, v7}, Lcom/miui/whetstone/client/WhetstoneClientManager;->isStartPorcessAllowedByBroadcast(ILjava/lang/String;Landroid/content/Intent;Landroid/content/ComponentName;)Z
+
+    move-result v3
+
+    if-eqz v3, :cond_22
+    
     move-object/from16 v0, p0
 
     move-object/from16 v1, v32
