@@ -20,7 +20,7 @@ local-miui-removed-apps :=
 
 local-miui-removed-priv-apps :=
 
-local-miui-modified-apps := Music miuisystem SecurityCenter DeskClock Settings MiuiHome MiuiSystemUI Updater TeleService DownloadProvider XiaomiServiceFramework  ThemeManager
+local-miui-modified-apps := Music miuisystem SecurityCenter DeskClock Settings MiuiHome MiuiSystemUI Updater TeleService DownloadProvider XiaomiServiceFramework  
 
 PORT_PRODUCT := nian_i9300
 
