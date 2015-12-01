@@ -65,7 +65,7 @@ local-pre-zip-misc:
 	echo "debug.composition.type=dyn" >> $(ZIP_DIR)/system/build.prop 
 	echo "debug.mdpcomp.maxlayer=3" >> $(ZIP_DIR)/system/build.prop
 	#security patch
-	echo "ro.build.version.security_patch=2015-11-01" >> $(ZIP_DIR)/system/build.prop
+	echo "ro.build.version.security_patch=2015-12-01" >> $(ZIP_DIR)/system/build.prop
 	echo "ro.build.version.base_os=" >> $(ZIP_DIR)/system/build.prop
 	#PowerKeeper and Whetstone
 	echo "persist.sys.mcd_config_file=/system/etc/mcd_default.conf" >> $(ZIP_DIR)/system/build.prop

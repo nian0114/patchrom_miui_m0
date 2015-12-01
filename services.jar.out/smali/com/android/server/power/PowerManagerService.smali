@@ -5080,6 +5080,18 @@
 
     if-nez v1, :cond_2
 
+    invoke-static {}, Lcom/android/server/power/PowerManagerServiceInjector;->checkWakelockBlockedEnabled()Z
+
+    move-result v4
+
+    if-eqz v4, :cond_miui_0
+
+    monitor-exit v5
+
+    return-void
+
+    :cond_miui_0
+
     new-instance v4, Ljava/lang/IllegalArgumentException;
 
     const-string v6, "Wake lock not active"
