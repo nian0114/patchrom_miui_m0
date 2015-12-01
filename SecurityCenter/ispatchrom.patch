@@ -1,7 +1,7 @@
-From ccfbd2057d5fc1babec3a0d68b431c5b2130b832 Mon Sep 17 00:00:00 2001
-From: wuxianlin <wuxianlinwxl@gmail.com>
-Date: Fri, 27 Nov 2015 21:20:54 +0800
-Subject: [PATCH] fix is_patchrom
+From 594f3fd773cd36f2986f99d453a2639d269e9319 Mon Sep 17 00:00:00 2001
+From: nian0114 <268078545@qq.com>
+Date: Tue, 1 Dec 2015 21:43:39 +0800
+Subject: [PATCH] is patchrom
 
 ---
  SecurityCenter/smali/com/miui/permcenter/MainAcitivty.smali | 2 +-
@@ -9,17 +9,15 @@ Subject: [PATCH] fix is_patchrom
 
 --- a/SecurityCenter/smali/com/miui/permcenter/MainAcitivty.smali
 +++ b/SecurityCenter/smali/com/miui/permcenter/MainAcitivty.smali
-@@ -106,7 +106,7 @@
-     invoke-virtual {v0, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
+@@ -100,7 +100,7 @@
+ 
      move-result v0
  
 -    if-nez v0, :cond_1
 +    if-eqz v0, :cond_1
  
-     new-instance v0, Landroid/content/Intent;
-
-     const-string v1, "miui.intent.action.PERMISSION_CENTER_SECURITY_WEB_VIEW"
+     invoke-static {}, Lcom/miui/securitycenter/utils/Utils;->isPatchrom()Z
+ 
 -- 
 1.9.1
 
