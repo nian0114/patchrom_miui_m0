@@ -1,0 +1,596 @@
+From 3c7c43c58af6f38ff01434ff1a70ef897d001cbc Mon Sep 17 00:00:00 2001
+From: nian0114 <268078545@qq.com>
+Date: Wed, 16 Dec 2015 05:23:04 +0800
+Subject: [PATCH] remove ad
+
+---
+ .../providers/downloads/ui/DownloadList.smali      | 366 +++------------------
+ .../ui/activity/BrowserDownloadActivity.smali      |  54 +--
+ .../downloads/ui/activity/BtSubfileActivity.smali  | 209 +-----------
+ .../ui/fragment/DownloadSettingFragment.smali      |   2 -
+ .../downloads/ui/recommend/config/ADConfig.smali   |  17 +-
+ 5 files changed, 69 insertions(+), 579 deletions(-)
+
+--- a/DownloadProviderUi/smali/com/android/providers/downloads/ui/DownloadList.smali
++++ b/DownloadProviderUi/smali/com/android/providers/downloads/ui/DownloadList.smali
+@@ -1592,9 +1592,7 @@
+ 
+     iput-object v0, p0, Lcom/android/providers/downloads/ui/DownloadList;->newLayout:Landroid/widget/RelativeLayout;
+ 
+-    invoke-static {}, Lcom/android/providers/downloads/ui/utils/BuildUtils;->isInternationalBuilder()Z
+-
+-    move-result v0
++    const v0, 0x1
+ 
+     if-eqz v0, :cond_1
+ 
+@@ -1787,205 +1785,51 @@
+ .end method
+ 
+ .method private showPrivacyDialog()V
+-    .locals 9
+-
+-    .prologue
+-    const v8, 0x7f080073
+-
+-    const v7, 0x7f080072
+-
+-    const v6, 0x7f080071
+-
+-    const v4, 0x7f080070
+-
+-    const/4 v5, 0x0
+-
+-    iget-object v3, p0, Lcom/android/providers/downloads/ui/DownloadList;->mContext:Landroid/content/Context;
+-
+-    invoke-static {v3}, Lcom/android/providers/downloads/ui/setting/DPSharePreferenceInstance;->getInstance(Landroid/content/Context;)Lcom/android/providers/downloads/ui/setting/DPSharePreferenceInstance;
+-
+-    move-result-object v3
+-
+-    invoke-virtual {v3}, Lcom/android/providers/downloads/ui/setting/DPSharePreferenceInstance;->getXunleiUsagePermission()Z
+-
+-    move-result v2
+-
+-    .local v2, "xunleiEngineOn":Z
+-    iget-object v3, p0, Lcom/android/providers/downloads/ui/DownloadList;->mContext:Landroid/content/Context;
+-
+-    invoke-static {v3}, Lcom/android/providers/downloads/ui/utils/PreferenceUtil;->getInstance(Landroid/content/Context;)Lcom/android/providers/downloads/ui/utils/PreferenceUtil;
+-
+-    move-result-object v3
+-
+-    invoke-virtual {v3}, Lcom/android/providers/downloads/ui/utils/PreferenceUtil;->isAppActived()Z
+-
+-    move-result v0
+-
+-    .local v0, "isAppActived":Z
+-    iget-object v3, p0, Lcom/android/providers/downloads/ui/DownloadList;->mContext:Landroid/content/Context;
+-
+-    invoke-static {v3}, Lcom/android/providers/downloads/ui/setting/DPSharePreferenceInstance;->getInstance(Landroid/content/Context;)Lcom/android/providers/downloads/ui/setting/DPSharePreferenceInstance;
+-
+-    move-result-object v3
+-
+-    invoke-virtual {v3}, Lcom/android/providers/downloads/ui/setting/DPSharePreferenceInstance;->isPrivacyTipShown()Z
+-
+-    move-result v1
+-
+-    .local v1, "isPrivacyTipShown":Z
+-    if-nez v1, :cond_1
+-
+-    if-eqz v2, :cond_1
+-
+-    iget-object v3, p0, Lcom/android/providers/downloads/ui/DownloadList;->mPrivacyDialog:Landroid/app/AlertDialog;
+-
+-    if-nez v3, :cond_0
+-
+-    new-instance v3, Landroid/app/AlertDialog$Builder;
+-
+-    invoke-direct {v3, p0}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
++    .locals 2
+ 
+-    invoke-virtual {v3, v4}, Landroid/app/AlertDialog$Builder;->setTitle(I)Landroid/app/AlertDialog$Builder;
++    const/4 v1, 0x1
+ 
+-    move-result-object v3
++    iget-object v0, p0, Lcom/android/providers/downloads/ui/DownloadList;->mContext:Landroid/content/Context;
+ 
+-    invoke-virtual {v3, v6}, Landroid/app/AlertDialog$Builder;->setMessage(I)Landroid/app/AlertDialog$Builder;
++    invoke-static {v0}, Lcom/android/providers/downloads/ui/setting/DPSharePreferenceInstance;->getInstance(Landroid/content/Context;)Lcom/android/providers/downloads/ui/setting/DPSharePreferenceInstance;
+ 
+-    move-result-object v3
++    move-result-object v0
+ 
+-    new-instance v4, Lcom/android/providers/downloads/ui/DownloadList$13;
++    invoke-virtual {v0, v1}, Lcom/android/providers/downloads/ui/setting/DPSharePreferenceInstance;->setXunleiUsagePermissionOpen(Z)V
+ 
+-    invoke-direct {v4, p0}, Lcom/android/providers/downloads/ui/DownloadList$13;-><init>(Lcom/android/providers/downloads/ui/DownloadList;)V
++    iget-object v0, p0, Lcom/android/providers/downloads/ui/DownloadList;->mContext:Landroid/content/Context;
+ 
+-    invoke-virtual {v3, v7, v4}, Landroid/app/AlertDialog$Builder;->setNegativeButton(ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
++    invoke-static {v0}, Lcom/android/providers/downloads/ui/setting/DPSharePreferenceInstance;->getInstance(Landroid/content/Context;)Lcom/android/providers/downloads/ui/setting/DPSharePreferenceInstance;
+ 
+-    move-result-object v3
++    move-result-object v0
+ 
+-    new-instance v4, Lcom/android/providers/downloads/ui/DownloadList$12;
++    invoke-virtual {v0, v1}, Lcom/android/providers/downloads/ui/setting/DPSharePreferenceInstance;->setPrivacyTipShown(Z)V
+ 
+-    invoke-direct {v4, p0}, Lcom/android/providers/downloads/ui/DownloadList$12;-><init>(Lcom/android/providers/downloads/ui/DownloadList;)V
++    iget-object v0, p0, Lcom/android/providers/downloads/ui/DownloadList;->mContext:Landroid/content/Context;
+ 
+-    invoke-virtual {v3, v8, v4}, Landroid/app/AlertDialog$Builder;->setPositiveButton(ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
++    invoke-static {v0}, Lcom/android/providers/downloads/ui/setting/DPSharePreferenceInstance;->getInstance(Landroid/content/Context;)Lcom/android/providers/downloads/ui/setting/DPSharePreferenceInstance;
+ 
+-    move-result-object v3
++    move-result-object v0
+ 
+-    invoke-virtual {v3}, Landroid/app/AlertDialog$Builder;->create()Landroid/app/AlertDialog;
++    invoke-virtual {v0, v1}, Lcom/android/providers/downloads/ui/setting/DPSharePreferenceInstance;->setUiPrivacyTipShown(Z)V
+ 
+-    move-result-object v3
++    iget-object v0, p0, Lcom/android/providers/downloads/ui/DownloadList;->mContext:Landroid/content/Context;
+ 
+-    iput-object v3, p0, Lcom/android/providers/downloads/ui/DownloadList;->mPrivacyDialog:Landroid/app/AlertDialog;
++    invoke-static {v0}, Lcom/android/providers/downloads/ui/utils/PreferenceUtil;->getInstance(Landroid/content/Context;)Lcom/android/providers/downloads/ui/utils/PreferenceUtil;
+ 
+-    iget-object v3, p0, Lcom/android/providers/downloads/ui/DownloadList;->mPrivacyDialog:Landroid/app/AlertDialog;
++    move-result-object v0
+ 
+-    invoke-virtual {v3, v5}, Landroid/app/AlertDialog;->setCanceledOnTouchOutside(Z)V
++    invoke-virtual {v0, v1}, Lcom/android/providers/downloads/ui/utils/PreferenceUtil;->setAppActived(Z)V
+ 
+-    iget-object v3, p0, Lcom/android/providers/downloads/ui/DownloadList;->mPrivacyDialog:Landroid/app/AlertDialog;
++    new-instance v0, Landroid/content/Intent;
+ 
+-    invoke-virtual {v3, v5}, Landroid/app/AlertDialog;->setCancelable(Z)V
++    const-string v1, "com.android.providers.downloads.PRIVACY_ACCEPT"
+ 
+-    :cond_0
+-    iget-object v3, p0, Lcom/android/providers/downloads/ui/DownloadList;->mPrivacyDialog:Landroid/app/AlertDialog;
++    invoke-direct {v0, v1}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
+ 
+-    invoke-virtual {v3}, Landroid/app/AlertDialog;->show()V
++    invoke-virtual {p0, v0}, Lcom/android/providers/downloads/ui/DownloadList;->sendBroadcast(Landroid/content/Intent;)V
+ 
+-    :goto_0
+     return-void
+-
+-    :cond_1
+-    if-eqz v1, :cond_2
+-
+-    iget-object v3, p0, Lcom/android/providers/downloads/ui/DownloadList;->mPrivacyDialog:Landroid/app/AlertDialog;
+-
+-    if-eqz v3, :cond_2
+-
+-    iget-object v3, p0, Lcom/android/providers/downloads/ui/DownloadList;->mPrivacyDialog:Landroid/app/AlertDialog;
+-
+-    invoke-virtual {v3}, Landroid/app/AlertDialog;->isShowing()Z
+-
+-    move-result v3
+-
+-    if-eqz v3, :cond_2
+-
+-    iget-object v3, p0, Lcom/android/providers/downloads/ui/DownloadList;->mPrivacyDialog:Landroid/app/AlertDialog;
+-
+-    invoke-virtual {v3}, Landroid/app/AlertDialog;->dismiss()V
+-
+-    const/4 v3, 0x0
+-
+-    iput-object v3, p0, Lcom/android/providers/downloads/ui/DownloadList;->mPrivacyDialog:Landroid/app/AlertDialog;
+-
+-    :cond_2
+-    invoke-static {}, Lcom/android/providers/downloads/ui/utils/BuildUtils;->isInternationalBuilder()Z
+-
+-    move-result v3
+-
+-    if-nez v3, :cond_4
+-
+-    invoke-static {}, Lcom/android/providers/downloads/ui/utils/BuildUtils;->isTablet()Z
+-
+-    move-result v3
+-
+-    if-nez v3, :cond_4
+-
+-    if-nez v2, :cond_4
+-
+-    if-nez v0, :cond_4
+-
+-    iget-object v3, p0, Lcom/android/providers/downloads/ui/DownloadList;->mPrivacyDialog:Landroid/app/AlertDialog;
+-
+-    if-nez v3, :cond_3
+-
+-    new-instance v3, Landroid/app/AlertDialog$Builder;
+-
+-    invoke-direct {v3, p0}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
+-
+-    invoke-virtual {v3, v4}, Landroid/app/AlertDialog$Builder;->setTitle(I)Landroid/app/AlertDialog$Builder;
+-
+-    move-result-object v3
+-
+-    invoke-virtual {v3, v6}, Landroid/app/AlertDialog$Builder;->setMessage(I)Landroid/app/AlertDialog$Builder;
+-
+-    move-result-object v3
+-
+-    new-instance v4, Lcom/android/providers/downloads/ui/DownloadList$15;
+-
+-    invoke-direct {v4, p0}, Lcom/android/providers/downloads/ui/DownloadList$15;-><init>(Lcom/android/providers/downloads/ui/DownloadList;)V
+-
+-    invoke-virtual {v3, v7, v4}, Landroid/app/AlertDialog$Builder;->setNegativeButton(ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
+-
+-    move-result-object v3
+-
+-    new-instance v4, Lcom/android/providers/downloads/ui/DownloadList$14;
+-
+-    invoke-direct {v4, p0}, Lcom/android/providers/downloads/ui/DownloadList$14;-><init>(Lcom/android/providers/downloads/ui/DownloadList;)V
+-
+-    invoke-virtual {v3, v8, v4}, Landroid/app/AlertDialog$Builder;->setPositiveButton(ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
+-
+-    move-result-object v3
+-
+-    invoke-virtual {v3}, Landroid/app/AlertDialog$Builder;->create()Landroid/app/AlertDialog;
+-
+-    move-result-object v3
+-
+-    iput-object v3, p0, Lcom/android/providers/downloads/ui/DownloadList;->mPrivacyDialog:Landroid/app/AlertDialog;
+-
+-    :cond_3
+-    iget-object v3, p0, Lcom/android/providers/downloads/ui/DownloadList;->mPrivacyDialog:Landroid/app/AlertDialog;
+-
+-    invoke-virtual {v3}, Landroid/app/AlertDialog;->show()V
+-
+-    :cond_4
+-    iget-object v3, p0, Lcom/android/providers/downloads/ui/DownloadList;->mContext:Landroid/content/Context;
+-
+-    invoke-static {v3}, Lcom/android/providers/downloads/ui/utils/PreferenceUtil;->getInstance(Landroid/content/Context;)Lcom/android/providers/downloads/ui/utils/PreferenceUtil;
+-
+-    move-result-object v3
+-
+-    const/4 v4, 0x1
+-
+-    invoke-virtual {v3, v4}, Lcom/android/providers/downloads/ui/utils/PreferenceUtil;->setAppActived(Z)V
+-
+-    goto :goto_0
+ .end method
+ 
+ .method private showToast(Ljava/lang/String;)V
+@@ -4226,136 +4070,49 @@
+ .end method
+ 
+ .method public showAlertOpenXunleiDialog()V
+-    .locals 6
+-
+-    .prologue
+-    iget-object v3, p0, Lcom/android/providers/downloads/ui/DownloadList;->mContext:Landroid/content/Context;
+-
+-    invoke-static {v3}, Lcom/android/providers/downloads/ui/setting/DPSharePreferenceInstance;->getInstance(Landroid/content/Context;)Lcom/android/providers/downloads/ui/setting/DPSharePreferenceInstance;
+-
+-    move-result-object v3
+-
+-    invoke-virtual {v3}, Lcom/android/providers/downloads/ui/setting/DPSharePreferenceInstance;->isUiPrivacyTipShown()Z
+-
+-    move-result v2
+-
+-    .local v2, "isUiPrivacyTipShown":Z
+-    if-eqz v2, :cond_0
+-
+-    new-instance v0, Landroid/app/AlertDialog$Builder;
+-
+-    invoke-direct {v0, p0}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
+-
+-    .local v0, "builder":Landroid/app/AlertDialog$Builder;
+-    invoke-virtual {p0}, Lcom/android/providers/downloads/ui/DownloadList;->getResources()Landroid/content/res/Resources;
+-
+-    move-result-object v3
+-
+-    const v4, 0x7f080068
+-
+-    invoke-virtual {v3, v4}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
+-
+-    move-result-object v3
+-
+-    invoke-virtual {v0, v3}, Landroid/app/AlertDialog$Builder;->setTitle(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;
+-
+-    invoke-virtual {p0}, Lcom/android/providers/downloads/ui/DownloadList;->getResources()Landroid/content/res/Resources;
+-
+-    move-result-object v3
++    .locals 2
+ 
+-    const v4, 0x7f080069
++    const/4 v1, 0x1
+ 
+-    invoke-virtual {v3, v4}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
++    iget-object v0, p0, Lcom/android/providers/downloads/ui/DownloadList;->mContext:Landroid/content/Context;
+ 
+-    move-result-object v3
++    invoke-static {v0}, Lcom/android/providers/downloads/ui/setting/DPSharePreferenceInstance;->getInstance(Landroid/content/Context;)Lcom/android/providers/downloads/ui/setting/DPSharePreferenceInstance;
+ 
+-    invoke-virtual {v0, v3}, Landroid/app/AlertDialog$Builder;->setMessage(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;
++    move-result-object v0
+ 
+-    invoke-virtual {p0}, Lcom/android/providers/downloads/ui/DownloadList;->getResources()Landroid/content/res/Resources;
++    invoke-virtual {v0, v1}, Lcom/android/providers/downloads/ui/setting/DPSharePreferenceInstance;->setXunleiUsagePermissionOpen(Z)V
+ 
+-    move-result-object v3
++    iget-object v0, p0, Lcom/android/providers/downloads/ui/DownloadList;->mContext:Landroid/content/Context;
+ 
+-    const v4, 0x7f08006a
++    invoke-static {v0}, Lcom/android/providers/downloads/ui/setting/DPSharePreferenceInstance;->getInstance(Landroid/content/Context;)Lcom/android/providers/downloads/ui/setting/DPSharePreferenceInstance;
+ 
+-    invoke-virtual {v3, v4}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
++    move-result-object v0
+ 
+-    move-result-object v3
++    invoke-virtual {v0, v1}, Lcom/android/providers/downloads/ui/setting/DPSharePreferenceInstance;->setPrivacyTipShown(Z)V
+ 
+-    new-instance v4, Lcom/android/providers/downloads/ui/DownloadList$1;
++    iget-object v0, p0, Lcom/android/providers/downloads/ui/DownloadList;->mContext:Landroid/content/Context;
+ 
+-    invoke-direct {v4, p0}, Lcom/android/providers/downloads/ui/DownloadList$1;-><init>(Lcom/android/providers/downloads/ui/DownloadList;)V
++    invoke-static {v0}, Lcom/android/providers/downloads/ui/setting/DPSharePreferenceInstance;->getInstance(Landroid/content/Context;)Lcom/android/providers/downloads/ui/setting/DPSharePreferenceInstance;
+ 
+-    invoke-virtual {v0, v3, v4}, Landroid/app/AlertDialog$Builder;->setPositiveButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
++    move-result-object v0
+ 
+-    invoke-virtual {p0}, Lcom/android/providers/downloads/ui/DownloadList;->getResources()Landroid/content/res/Resources;
++    invoke-virtual {v0, v1}, Lcom/android/providers/downloads/ui/setting/DPSharePreferenceInstance;->setUiPrivacyTipShown(Z)V
+ 
+-    move-result-object v3
++    iget-object v0, p0, Lcom/android/providers/downloads/ui/DownloadList;->mContext:Landroid/content/Context;
+ 
+-    const v4, 0x7f08006b
++    invoke-static {v0}, Lcom/android/providers/downloads/ui/utils/PreferenceUtil;->getInstance(Landroid/content/Context;)Lcom/android/providers/downloads/ui/utils/PreferenceUtil;
+ 
+-    invoke-virtual {v3, v4}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
++    move-result-object v0
+ 
+-    move-result-object v3
++    invoke-virtual {v0, v1}, Lcom/android/providers/downloads/ui/utils/PreferenceUtil;->setAppActived(Z)V
+ 
+-    new-instance v4, Lcom/android/providers/downloads/ui/DownloadList$2;
++    new-instance v0, Landroid/content/Intent;
+ 
+-    invoke-direct {v4, p0}, Lcom/android/providers/downloads/ui/DownloadList$2;-><init>(Lcom/android/providers/downloads/ui/DownloadList;)V
++    const-string v1, "com.android.providers.downloads.PRIVACY_ACCEPT"
+ 
+-    invoke-virtual {v0, v3, v4}, Landroid/app/AlertDialog$Builder;->setNegativeButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
++    invoke-direct {v0, v1}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
+ 
+-    invoke-virtual {v0}, Landroid/app/AlertDialog$Builder;->show()Landroid/app/AlertDialog;
++    invoke-virtual {p0, v0}, Lcom/android/providers/downloads/ui/DownloadList;->sendBroadcast(Landroid/content/Intent;)V
+ 
+-    .end local v0    # "builder":Landroid/app/AlertDialog$Builder;
+-    :goto_0
+     return-void
+-
+-    :cond_0
+-    new-instance v3, Landroid/app/AlertDialog$Builder;
+-
+-    invoke-direct {v3, p0}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
+-
+-    const v4, 0x7f080070
+-
+-    invoke-virtual {v3, v4}, Landroid/app/AlertDialog$Builder;->setTitle(I)Landroid/app/AlertDialog$Builder;
+-
+-    move-result-object v3
+-
+-    const v4, 0x7f080071
+-
+-    invoke-virtual {v3, v4}, Landroid/app/AlertDialog$Builder;->setMessage(I)Landroid/app/AlertDialog$Builder;
+-
+-    move-result-object v3
+-
+-    const v4, 0x7f080072
+-
+-    new-instance v5, Lcom/android/providers/downloads/ui/DownloadList$5;
+-
+-    invoke-direct {v5, p0}, Lcom/android/providers/downloads/ui/DownloadList$5;-><init>(Lcom/android/providers/downloads/ui/DownloadList;)V
+-
+-    invoke-virtual {v3, v4, v5}, Landroid/app/AlertDialog$Builder;->setNegativeButton(ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
+-
+-    move-result-object v3
+-
+-    const v4, 0x7f080073
+-
+-    new-instance v5, Lcom/android/providers/downloads/ui/DownloadList$4;
+-
+-    invoke-direct {v5, p0}, Lcom/android/providers/downloads/ui/DownloadList$4;-><init>(Lcom/android/providers/downloads/ui/DownloadList;)V
+-
+-    invoke-virtual {v3, v4, v5}, Landroid/app/AlertDialog$Builder;->setPositiveButton(ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
+-
+-    move-result-object v3
+-
+-    new-instance v4, Lcom/android/providers/downloads/ui/DownloadList$3;
+-
+-    invoke-direct {v4, p0}, Lcom/android/providers/downloads/ui/DownloadList$3;-><init>(Lcom/android/providers/downloads/ui/DownloadList;)V
+-
+-    invoke-virtual {v3, v4}, Landroid/app/AlertDialog$Builder;->setOnCancelListener(Landroid/content/DialogInterface$OnCancelListener;)Landroid/app/AlertDialog$Builder;
+-
+-    move-result-object v1
+-
+-    .local v1, "dialog":Landroid/app/AlertDialog$Builder;
+-    invoke-virtual {v1}, Landroid/app/AlertDialog$Builder;->show()Landroid/app/AlertDialog;
+-
+-    goto :goto_0
+ .end method
+--- a/DownloadProviderUi/smali/com/android/providers/downloads/ui/activity/BrowserDownloadActivity.smali
++++ b/DownloadProviderUi/smali/com/android/providers/downloads/ui/activity/BrowserDownloadActivity.smali
+@@ -227,49 +227,21 @@
+ .end method
+ 
+ .method private showDownloadDialog(Lcom/android/providers/downloads/ui/event/NewTaskEvent;)V
+-    .locals 4
+-    .param p1, "event"    # Lcom/android/providers/downloads/ui/event/NewTaskEvent;
++    .locals 2
+ 
+-    .prologue
+-    new-instance v0, Lmiui/app/AlertDialog$Builder;
++    invoke-virtual {p0}, Lcom/android/providers/downloads/ui/activity/BrowserDownloadActivity;->getApplicationContext()Landroid/content/Context;
+ 
+-    invoke-direct {v0, p0}, Lmiui/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
++    move-result-object v0
+ 
+-    .local v0, "builder":Lmiui/app/AlertDialog$Builder;
+-    const v2, 0x7f08008b
++    invoke-static {v0}, Lcom/android/providers/downloads/ui/setting/DPSharePreferenceInstance;->getInstance(Landroid/content/Context;)Lcom/android/providers/downloads/ui/setting/DPSharePreferenceInstance;
+ 
+-    invoke-virtual {v0, v2}, Lmiui/app/AlertDialog$Builder;->setTitle(I)Lmiui/app/AlertDialog$Builder;
++    move-result-object v0
+ 
+-    iget-object v2, p1, Lcom/android/providers/downloads/ui/event/NewTaskEvent;->rawUrl:Ljava/lang/String;
++    const/4 v1, 0x1
+ 
+-    invoke-virtual {v0, v2}, Lmiui/app/AlertDialog$Builder;->setMessage(Ljava/lang/CharSequence;)Lmiui/app/AlertDialog$Builder;
++    invoke-virtual {v0, v1}, Lcom/android/providers/downloads/ui/setting/DPSharePreferenceInstance;->setXunleiUsagePermissionOpen(Z)V
+ 
+-    const v2, 0x7f080091
+-
+-    invoke-virtual {v0, v2, p0}, Lmiui/app/AlertDialog$Builder;->setPositiveButton(ILandroid/content/DialogInterface$OnClickListener;)Lmiui/app/AlertDialog$Builder;
+-
+-    const v2, 0x7f080090
+-
+-    invoke-virtual {v0, v2, p0}, Lmiui/app/AlertDialog$Builder;->setNegativeButton(ILandroid/content/DialogInterface$OnClickListener;)Lmiui/app/AlertDialog$Builder;
+-
+-    invoke-virtual {v0}, Lmiui/app/AlertDialog$Builder;->create()Lmiui/app/AlertDialog;
+-
+-    move-result-object v1
+-
+-    .local v1, "dialog":Lmiui/app/AlertDialog;
+-    const/4 v2, 0x0
+-
+-    invoke-virtual {v1, v2}, Lmiui/app/AlertDialog;->setCanceledOnTouchOutside(Z)V
+-
+-    invoke-virtual {v1}, Lmiui/app/AlertDialog;->show()V
+-
+-    invoke-virtual {v1}, Lmiui/app/AlertDialog;->getMessageView()Landroid/widget/TextView;
+-
+-    move-result-object v2
+-
+-    iget-object v3, p1, Lcom/android/providers/downloads/ui/event/NewTaskEvent;->message:Ljava/lang/String;
+-
+-    invoke-virtual {v2, v3}, Landroid/widget/TextView;->setTag(Ljava/lang/Object;)V
++    invoke-direct {p0, p1}, Lcom/android/providers/downloads/ui/activity/BrowserDownloadActivity;->addTask(Ljava/lang/String;)V
+ 
+     return-void
+ .end method
+--- a/DownloadProviderUi/smali/com/android/providers/downloads/ui/activity/BtSubfileActivity.smali
++++ b/DownloadProviderUi/smali/com/android/providers/downloads/ui/activity/BtSubfileActivity.smali
+@@ -938,73 +938,21 @@
+ .end method
+ 
+ .method private showDialog()V
+-    .locals 3
++    .locals 2
+ 
+-    .prologue
+-    new-instance v0, Lcom/android/providers/downloads/ui/dialog/BaseDialog;
++    invoke-virtual {p0}, Lcom/android/providers/downloads/ui/activity/BtSubfileActivity;->getApplicationContext()Landroid/content/Context;
+ 
+-    invoke-direct {v0}, Lcom/android/providers/downloads/ui/dialog/BaseDialog;-><init>()V
++    move-result-object v0
+ 
+-    .local v0, "baseDialog":Lcom/android/providers/downloads/ui/dialog/BaseDialog;
+-    invoke-virtual {p0}, Lcom/android/providers/downloads/ui/activity/BtSubfileActivity;->getResources()Landroid/content/res/Resources;
++    invoke-static {v0}, Lcom/android/providers/downloads/ui/setting/DPSharePreferenceInstance;->getInstance(Landroid/content/Context;)Lcom/android/providers/downloads/ui/setting/DPSharePreferenceInstance;
+ 
+-    move-result-object v1
++    move-result-object v0
+ 
+-    const v2, 0x7f0800c2
++    const/4 v1, 0x1
+ 
+-    invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
++    invoke-virtual {v0, v1}, Lcom/android/providers/downloads/ui/setting/DPSharePreferenceInstance;->setXunleiUsagePermissionOpen(Z)V
+ 
+-    move-result-object v1
+-
+-    invoke-virtual {v0, v1}, Lcom/android/providers/downloads/ui/dialog/BaseDialog;->setTitle(Ljava/lang/String;)V
+-
+-    invoke-virtual {p0}, Lcom/android/providers/downloads/ui/activity/BtSubfileActivity;->getResources()Landroid/content/res/Resources;
+-
+-    move-result-object v1
+-
+-    const v2, 0x7f0800c4
+-
+-    invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
+-
+-    move-result-object v1
+-
+-    invoke-virtual {v0, v1}, Lcom/android/providers/downloads/ui/dialog/BaseDialog;->setContent(Ljava/lang/String;)V
+-
+-    invoke-virtual {p0}, Lcom/android/providers/downloads/ui/activity/BtSubfileActivity;->getResources()Landroid/content/res/Resources;
+-
+-    move-result-object v1
+-
+-    const v2, 0x7f0800c5
+-
+-    invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
+-
+-    move-result-object v1
+-
+-    invoke-virtual {v0, v1}, Lcom/android/providers/downloads/ui/dialog/BaseDialog;->setPositiveButtonMessage(Ljava/lang/String;)V
+-
+-    invoke-virtual {p0}, Lcom/android/providers/downloads/ui/activity/BtSubfileActivity;->getResources()Landroid/content/res/Resources;
+-
+-    move-result-object v1
+-
+-    const v2, 0x7f0800ac
+-
+-    invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
+-
+-    move-result-object v1
+-
+-    invoke-virtual {v0, v1}, Lcom/android/providers/downloads/ui/dialog/BaseDialog;->setNegativeButtonMessage(Ljava/lang/String;)V
+-
+-    new-instance v1, Lcom/android/providers/downloads/ui/activity/BtSubfileActivity$3;
+-
+-    invoke-direct {v1, p0}, Lcom/android/providers/downloads/ui/activity/BtSubfileActivity$3;-><init>(Lcom/android/providers/downloads/ui/activity/BtSubfileActivity;)V
+-
+-    invoke-virtual {v0, v1}, Lcom/android/providers/downloads/ui/dialog/BaseDialog;->setBaseDialogOnClickListener(Lcom/android/providers/downloads/ui/dialog/BaseDialog$BaseDialogOnClickListener;)V
+-
+-    invoke-virtual {v0, p0}, Lcom/android/providers/downloads/ui/dialog/BaseDialog;->createDialog(Landroid/content/Context;)Landroid/app/AlertDialog$Builder;
+-
+-    move-result-object v1
+-
+-    invoke-virtual {v1}, Landroid/app/AlertDialog$Builder;->show()Landroid/app/AlertDialog;
++    invoke-direct {p0}, Lcom/android/providers/downloads/ui/activity/BtSubfileActivity;->addTask()V
+ 
+     return-void
+ .end method
+--- a/DownloadProviderUi/smali/com/android/providers/downloads/ui/fragment/DownloadSettingFragment.smali
++++ b/DownloadProviderUi/smali/com/android/providers/downloads/ui/fragment/DownloadSettingFragment.smali
+@@ -743,8 +743,6 @@
+ 
+     iget-object v4, p0, Lcom/android/providers/downloads/ui/fragment/DownloadSettingFragment;->mDownloadPathPref:Lcom/android/providers/downloads/ui/view/DownloadPathPreference;
+ 
+-    invoke-virtual {v3, v4}, Landroid/preference/PreferenceScreen;->removePreference(Landroid/preference/Preference;)Z
+-
+     :cond_3
+     invoke-static {}, Lcom/android/providers/downloads/ui/utils/XLUtil;->isCmTestBuilder()Z
+ 
+--- a/DownloadProviderUi/smali/com/android/providers/downloads/ui/recommend/config/ADConfig.smali
++++ b/DownloadProviderUi/smali/com/android/providers/downloads/ui/recommend/config/ADConfig.smali
+@@ -76,21 +76,7 @@
+     .locals 1
+ 
+     .prologue
+-    sget-boolean v0, Lmiui/os/Build;->IS_TABLET:Z
+-
+-    if-nez v0, :cond_0
+-
+-    sget-boolean v0, Lmiui/os/Build;->IS_INTERNATIONAL_BUILD:Z
+-
+-    if-nez v0, :cond_0
+-
+-    const/4 v0, 0x1
+-
+-    :goto_0
+-    return v0
+-
+-    :cond_0
+     const/4 v0, 0x0
+ 
+-    goto :goto_0
++    return v0
+ .end method
+-- 
+1.9.1
+

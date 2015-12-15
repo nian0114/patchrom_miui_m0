@@ -100,6 +100,13 @@ if [ $1 = "ThemeManager" ];then
 fi
 
 if [ $1 = "DownloadProvider" ];then
+    applyPatch $1 $2
+    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
+    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
+fi
+
+if [ $1 = "DownloadProviderUi" ];then
+    applyPatch $1 $2
     ../tools/idtoname.py ../tools/public-miui.xml $2/smali
     ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
