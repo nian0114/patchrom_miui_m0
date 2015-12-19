@@ -7727,10 +7727,10 @@
     .local v26, "sid":I
     const/16 v33, 0x0
 
-    .local v33, "isWpsConfigured":Z
+    .local v33, "wpsState":Ljava/lang/String;
     const/16 v34, 0x0
 
-    .local v34, "isXiaomiRouter":Z
+    .local v34, "wpsDeviceName":Ljava/lang/String;
     :cond_0
     move-object/from16 v0, p0
 
@@ -8414,13 +8414,13 @@
     iput-wide v8, v2, Landroid/net/wifi/ScanResult;->timestamp:J
 
     :goto_8
-    move/from16 v0, v33
+    move-object/from16 v0, v33
 
-    iput-boolean v0, v2, Landroid/net/wifi/ScanResult;->isWpsConfigured:Z
+    iput-object v0, v2, Landroid/net/wifi/ScanResult;->wpsState:Ljava/lang/String;
 
-    move/from16 v0, v34
+    move-object/from16 v0, v34
 
-    iput-boolean v0, v2, Landroid/net/wifi/ScanResult;->isXiaomiRouter:Z
+    iput-object v0, v2, Landroid/net/wifi/ScanResult;->wpsDeviceName:Ljava/lang/String;
 
     move-object/from16 v0, p0
 
@@ -8529,7 +8529,7 @@
 
     if-eqz v37, :cond_miui_0
 
-    new-instance v38, Ljava/lang/String;
+    new-instance v33, Ljava/lang/String;
 
     invoke-virtual/range {v20 .. v20}, Ljava/lang/String;->getBytes()[B
 
@@ -8541,7 +8541,7 @@
 
     sub-int v39, v39, v35
 
-    move-object/from16 v0, v38
+    move-object/from16 v0, v33
 
     move-object/from16 v1, v37
 
@@ -8553,23 +8553,10 @@
 
     invoke-direct {v0, v1, v2, v3}, Ljava/lang/String;-><init>([BII)V
 
-    .local v38, "wpsStateStr":Ljava/lang/String;
-
     move-object/from16 v3, v40
-
-    const-string v37, "configured"
-
-    move-object/from16 v0, v37
-
-    move-object/from16 v1, v38
-
-    invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v33
 
     goto/16 :goto_5
 
-    .end local v38    # "wpsStateStr":Ljava/lang/String;
     :cond_miui_0
     const-string v37, "wps_device_name="
 
@@ -8583,7 +8570,7 @@
 
     if-eqz v37, :cond_6
 
-    new-instance v38, Ljava/lang/String;
+    new-instance v34, Ljava/lang/String;
 
     invoke-virtual/range {v20 .. v20}, Ljava/lang/String;->getBytes()[B
 
@@ -8595,7 +8582,7 @@
 
     sub-int v39, v39, v36
 
-    move-object/from16 v0, v38
+    move-object/from16 v0, v34
 
     move-object/from16 v1, v37
 
@@ -8607,23 +8594,10 @@
 
     invoke-direct {v0, v1, v2, v3}, Ljava/lang/String;-><init>([BII)V
 
-    .local v38, "wpsDeviceNameStr":Ljava/lang/String;
-
     move-object/from16 v3, v40
-
-    const-string v37, "XiaoMiRouter"
-
-    move-object/from16 v0, v37
-
-    move-object/from16 v1, v38
-
-    invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v34
 
     goto/16 :goto_5
 
-    .end local v38    # "wpsDeviceNameStr":Ljava/lang/String;
     :cond_13
     monitor-exit v30
     :try_end_a
