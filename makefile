@@ -20,7 +20,7 @@ local-miui-removed-apps :=
 
 local-miui-removed-priv-apps :=
 
-local-miui-modified-apps := Music miuisystem SecurityCenter DeskClock Settings MiuiHome MiuiSystemUI Updater TeleService DownloadProvider XiaomiServiceFramework DownloadProviderUi 
+local-miui-modified-apps := miuisystem SecurityCenter DeskClock Settings MiuiHome MiuiSystemUI Updater TeleService DownloadProvider XiaomiServiceFramework DownloadProviderUi 
 
 PORT_PRODUCT := nian_i9300
 
@@ -51,7 +51,6 @@ include $(PORT_BUILD)/porting.mk
 local-pre-zip-misc:
 	@echo Update boot.img
 	cp -rf other/boot.img $(ZIP_DIR)/boot.img
-
 	cp -rf other/system $(ZIP_DIR)/
 	cp -rf ../miui_other/system $(ZIP_DIR)/
 	@echo goodbye! miui prebuilt binaries!

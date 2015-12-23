@@ -47,12 +47,6 @@ if [ $1 = "MiuiSystemUI" ];then
     ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
 fi
 
-if [ $1 = "Music" ];then
-    applyPatch $1 $2
-    ../tools/idtoname.py ../tools/public-miui.xml $2/smali
-    ../tools/nametoid.py framework-res/res/values/public.xml $2/smali
-fi
-
 if [ $1 = "miuisystem" ];then
     applyPatch $1 $2
     cp $1/m0.xml $2/assets/device_features/

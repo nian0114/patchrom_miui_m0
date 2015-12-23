@@ -1,0 +1,39 @@
+From 69d3f8b6a7f8bde2726f6bda7e2873b386394fe3 Mon Sep 17 00:00:00 2001
+From: jchjian <671346@qq.com>
+Date: Sun, 11 Oct 2015 21:46:56 +0800
+Subject: [PATCH 1/1] modify toggles_column
+
+---
+ .../systemui/statusbar/phone/StatusBarToggles.smali  | 20 +++++++++++++++++++-
+ 1 file changed, 19 insertions(+), 1 deletion(-)
+
+--- a/MiuiSystemUI/smali/com/android/systemui/statusbar/phone/StatusBarToggles.smali
++++ b/MiuiSystemUI/smali/com/android/systemui/statusbar/phone/StatusBarToggles.smali
+@@ -795,6 +795,25 @@
+ 
+     move-result v3
+ 
++    iget-object v0, p0, Lcom/android/systemui/statusbar/phone/StatusBarToggles;->mContext:Landroid/content/Context;
++
++    invoke-virtual {v0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
++
++    move-result-object v0
++
++    const-string v2, "toggles_column"
++
++    const/4 v4, 0x0
++
++    invoke-static {v0, v2, v4}, Landroid/provider/Settings$System;->getInt(Landroid/content/ContentResolver;Ljava/lang/String;I)I
++
++    move-result v2
++
++    if-eq v2, v4, :cond_miui_00
++
++    const/4 v3, 0x3
++
++    :cond_miui_00
+     .local v3, "column":I
+     iget-object v0, p0, Lcom/android/systemui/statusbar/phone/StatusBarToggles;->mContext:Landroid/content/Context;
+ 
+-- 
+1.9.1
