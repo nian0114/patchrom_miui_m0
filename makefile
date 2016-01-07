@@ -50,7 +50,6 @@ include $(PORT_BUILD)/porting.mk
 #pre_install_data_packages := $(TMP_DIR)/pre_install_apk_pkgname.txt
 local-pre-zip-misc:
 	@echo Update boot.img
-	cp -rf other/boot.img $(ZIP_DIR)/boot.img
 	cp -rf other/system $(ZIP_DIR)/
 	cp -rf ../miui_other/system $(ZIP_DIR)/
 	@echo goodbye! miui prebuilt binaries!
