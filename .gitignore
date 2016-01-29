@@ -7,4 +7,5 @@ miuisystem/1.patch
 .delete-zip-file-when-clean
 Settings/jm.patch
 Settings/cpuinfo.patch
+other/system/etc/security
 overlay/services/signature.patch
